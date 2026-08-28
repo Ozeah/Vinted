@@ -84,17 +84,15 @@ nav {
     gap: 0.5rem;
 }
 
-.logo-icon {
-    font-size: 1.5rem;
-}
-
 .logo-text {
-    font-size: 1.4rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--purple-light), var(--purple));
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, var(--purple-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .nav-links {
