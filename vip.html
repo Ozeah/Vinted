@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OzeaH VIP — Abonnement</title>
+    <meta name="description" content="Deviens VIP OzeaH pour 4.99€/mois. Niches exclusives, legit check, estimation de prix et support prioritaire.">
+    <link rel="icon" type="image/png" href="vip.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pricing-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-dark), var(--purple-light), var(--purple-dark));
+        }
+
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(155, 89, 182, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(155, 89, 182, 0.15);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--purple-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            margin: 1.5rem 0;
+        }
+
+        .pricing-price .amount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-price .period {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-left: 0.25rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-features li .check {
+            color: var(--purple-light);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .pricing-cta {
+            margin-top: 2rem;
+        }
+
+        .pricing-cta .btn-primary {
+            width: 100%;
+            justify-content: center;
+            font-size: 1.1rem;
+            padding: 1.2rem 2rem;
+        }
+
+        .pricing-guarantee {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-text">OzeaH</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features">Fonctionnalités</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <a href="https://discord.gg/ozeah" class="btn btn-nav">Rejoindre</a>
+        </nav>
+    </header>
+
+    <!-- Pricing -->
+    <section class="pricing-section">
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+        <div class="pricing-card">
+            <span class="pricing-badge">Abonnement VIP</span>
+            <h1 class="pricing-title">Passe au niveau supérieur</h1>
+            <p style="color: var(--text-muted);">Accède à tout le potentiel d'OzeaH.</p>
+
+            <div class="pricing-price">
+                <span class="amount">4.99€</span>
+                <span class="period">/mois</span>
+            </div>
+
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> Niches exclusives introuvables ailleurs</li>
+                <li><span class="check">✓</span> Legit Check IA illimité</li>
+                <li><span class="check">✓</span> Estimation de prix par IA</li>
+                <li><span class="check">✓</span> Support prioritaire 24/7</li>
+                <li><span class="check">✓</span> Accès aux futures fonctionnalités</li>
+            </ul>
+
+            <div class="pricing-cta">
+                <a href="#" id="stripe-btn" class="btn btn-primary btn-glow">S'abonner — 4.99€/mois</a>
+            </div>
+
+            <p class="pricing-guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 OzeaH. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
