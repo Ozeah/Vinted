@@ -137,9 +137,21 @@ function initNavUser() {
             </a>
         `;
     } else if (user.type === 'email') {
+        const accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
+        const acct = accounts[user.email];
+        const discord = acct ? acct.discord : null;
+        let avatarHtml;
+        if (discord && discord.avatar) {
+            const avatarUrl = `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png?size=64`;
+            avatarHtml = `<img src="${avatarUrl}" alt="" class="user-avatar">`;
+        } else if (discord) {
+            avatarHtml = `<img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="" class="user-avatar">`;
+        } else {
+            avatarHtml = `<div class="user-avatar-letter">${user.username.charAt(0).toUpperCase()}</div>`;
+        }
         area.innerHTML = `
             <a href="profile.html" class="user-logged">
-                <div class="user-avatar-letter">${user.username.charAt(0).toUpperCase()}</div>
+                ${avatarHtml}
                 <span class="user-name">${user.username}</span>
             </a>
         `;
