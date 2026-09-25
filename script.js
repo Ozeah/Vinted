@@ -131,14 +131,14 @@ function initNavUser() {
             ? `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png?size=64`
             : `https://cdn.discordapp.com/embed/avatars/0.png`;
         area.innerHTML = `
-            <a href="account.html" class="user-logged">
+            <a href="profile.html" class="user-logged">
                 <img src="${avatarUrl}" alt="" class="user-avatar">
                 <span class="user-name">${discord.global_name || discord.username}</span>
             </a>
         `;
     } else if (user.type === 'email') {
         area.innerHTML = `
-            <a href="account.html" class="user-logged">
+            <a href="profile.html" class="user-logged">
                 <div class="user-avatar-letter">${user.username.charAt(0).toUpperCase()}</div>
                 <span class="user-name">${user.username}</span>
             </a>
