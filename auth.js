@@ -2,15 +2,6 @@ const WEBHOOK_URL = 'https://discord.com/api/webhooks/1552985949515030619/8SWWQC
 const DISCORD_CLIENT_ID = '1107624523479650345';
 const REDIRECT_URI = 'https://ozeah.github.io/Vinted/';
 
-function hashPw(str) {
-    let h = 0;
-    for (let i = 0; i < str.length; i++) {
-        h = ((h << 5) - h) + str.charCodeAt(i);
-        h |= 0;
-    }
-    return 'h' + Math.abs(h).toString(36);
-}
-
 function getAccounts() {
     return JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
 }
@@ -51,7 +42,7 @@ function handleSignup(e) {
 
     accounts[email] = {
         username: username,
-        hash: hashPw(password),
+        password: password,
         created: new Date().toISOString(),
         discord: null
     };
@@ -86,7 +77,7 @@ function handleLogin(e) {
     const password = document.getElementById('login-password').value;
 
     const accounts = getAccounts();
-    if (!accounts[email] || accounts[email].hash !== hashPw(password)) {
+    if (!accounts[email] || accounts[email].password !== password) {
         showMsg('Email ou mot de passe incorrect.');
         return;
     }
