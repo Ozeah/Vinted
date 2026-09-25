@@ -99,59 +99,11 @@ function handleLogin(e) {
     window.location.href = 'account.html';
 }
 
-// Discord OAuth for linking
+// Discord OAuth for linking — uses same redirect URI, stores flag
 function linkDiscord() {
-    const linkUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI + 'account.html')}&response_type=token&scope=identify`;
+    localStorage.setItem('ozeah_discord_link', 'pending');
+    const linkUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
     window.location.href = linkUrl;
-}
-
-// Handle discord callback on account page
-function handleDiscordLink() {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const accessToken = fragment.get('access_token');
-    if (!accessToken) return;
-
-    fetch('https://discord.com/api/users/@me', {
-        headers: { Authorization: `Bearer ${accessToken}` }
-    })
-    .then(r => r.json())
-    .then(discordUser => {
-        const user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
-        if (!user || user.type !== 'email') return;
-
-        const accounts = getAccounts();
-        if (accounts[user.email]) {
-            accounts[user.email].discord = {
-                id: discordUser.id,
-                username: discordUser.username,
-                global_name: discordUser.global_name,
-                avatar: discordUser.avatar
-            };
-            saveAccounts(accounts);
-        }
-
-        localStorage.setItem('discord_user', JSON.stringify(discordUser));
-        window.history.replaceState(null, '', window.location.pathname);
-
-        fetch(WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                embeds: [{
-                    title: 'Discord lie a un compte OzeaH',
-                    color: 0x5865F2,
-                    fields: [
-                        { name: 'Pseudo OzeaH', value: user.username, inline: true },
-                        { name: 'Email', value: user.email, inline: true },
-                        { name: 'Discord', value: `${discordUser.global_name || discordUser.username} (${discordUser.id})`, inline: false }
-                    ],
-                    footer: { text: 'OzeaH — Liaison Discord' }
-                }]
-            })
-        });
-
-        renderAccountPage();
-    });
 }
 
 // Render the account page
@@ -220,7 +172,6 @@ function logoutAccount() {
 // Init on account page
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('account-content')) {
-        handleDiscordLink();
         renderAccountPage();
     }
 });

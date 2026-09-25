@@ -153,21 +153,60 @@ function loginDiscord() {
     window.location.href = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
 }
 
-// Handle Discord OAuth callback on main page
+// Handle Discord OAuth callback on main page (login OR link)
 function handleDiscordLogin() {
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const accessToken = fragment.get('access_token');
     if (!accessToken) return;
 
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1552985949515030619/8SWWQCCR5iV0s9FjMRMS_LfEs-t3hcWT3wDy6jEaNChpzIIOeztQWsx3HD_UVbw6ht6D';
+    const isLinking = localStorage.getItem('ozeah_discord_link') === 'pending';
+
     fetch('https://discord.com/api/users/@me', {
         headers: { Authorization: `Bearer ${accessToken}` }
     })
     .then(r => r.json())
-    .then(user => {
-        localStorage.setItem('discord_user', JSON.stringify(user));
-        localStorage.setItem('ozeah_user', JSON.stringify({ type: 'discord', username: user.global_name || user.username, id: user.id }));
+    .then(discordUser => {
+        localStorage.setItem('discord_user', JSON.stringify(discordUser));
         window.history.replaceState(null, '', window.location.pathname);
-        initNavUser();
+
+        if (isLinking) {
+            localStorage.removeItem('ozeah_discord_link');
+            const ozeahUser = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
+            if (ozeahUser && ozeahUser.type === 'email') {
+                const accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
+                if (accounts[ozeahUser.email]) {
+                    accounts[ozeahUser.email].discord = {
+                        id: discordUser.id,
+                        username: discordUser.username,
+                        global_name: discordUser.global_name,
+                        avatar: discordUser.avatar
+                    };
+                    localStorage.setItem('ozeah_accounts', JSON.stringify(accounts));
+                }
+
+                fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: 'Discord lie a un compte OzeaH',
+                            color: 0x5865F2,
+                            fields: [
+                                { name: 'Pseudo OzeaH', value: ozeahUser.username, inline: true },
+                                { name: 'Email', value: ozeahUser.email, inline: true },
+                                { name: 'Discord', value: `${discordUser.global_name || discordUser.username} (${discordUser.id})`, inline: false }
+                            ],
+                            footer: { text: 'OzeaH — Liaison Discord' }
+                        }]
+                    })
+                });
+            }
+            window.location.href = 'account.html';
+        } else {
+            localStorage.setItem('ozeah_user', JSON.stringify({ type: 'discord', username: discordUser.global_name || discordUser.username, id: discordUser.id }));
+            initNavUser();
+        }
     });
 }
 
