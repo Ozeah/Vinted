@@ -115,6 +115,72 @@ function initMascotTilt() {
     });
 }
 
+// Discord OAuth2
+const DISCORD_CLIENT_ID = '1107624523479650345';
+const REDIRECT_URI = 'https://ozeah.github.io/Vinted/';
+const OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+
+function loginDiscord() {
+    window.location.href = OAUTH_URL;
+}
+
+function handleDiscordCallback() {
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const accessToken = fragment.get('access_token');
+    if (!accessToken) return;
+
+    fetch('https://discord.com/api/users/@me', {
+        headers: { Authorization: `Bearer ${accessToken}` }
+    })
+    .then(r => r.json())
+    .then(user => {
+        localStorage.setItem('discord_user', JSON.stringify(user));
+        window.history.replaceState(null, '', window.location.pathname);
+        renderUser(user);
+    });
+}
+
+function renderUser(user) {
+    const area = document.getElementById('user-area');
+    if (!area || !user) return;
+    const avatarUrl = user.avatar
+        ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
+        : `https://cdn.discordapp.com/embed/avatars/${(parseInt(user.id) >> 22) % 6}.png`;
+
+    area.innerHTML = `
+        <div class="user-logged" onclick="toggleDropdown(this)">
+            <img src="${avatarUrl}" alt="" class="user-avatar">
+            <span class="user-name">${user.global_name || user.username}</span>
+            <div class="user-dropdown">
+                <button onclick="logoutDiscord(event)">Déconnexion</button>
+            </div>
+        </div>
+    `;
+}
+
+function toggleDropdown(el) {
+    el.querySelector('.user-dropdown').classList.toggle('show');
+}
+
+function logoutDiscord(e) {
+    e.stopPropagation();
+    localStorage.removeItem('discord_user');
+    location.reload();
+}
+
+function initDiscord() {
+    handleDiscordCallback();
+    const saved = localStorage.getItem('discord_user');
+    if (saved) renderUser(JSON.parse(saved));
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.user-logged')) {
+        document.querySelectorAll('.user-dropdown.show').forEach(d => d.classList.remove('show'));
+    }
+});
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
@@ -123,4 +189,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initSmoothScroll();
     initMascotTilt();
+    initDiscord();
 });
