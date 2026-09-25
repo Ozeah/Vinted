@@ -229,20 +229,23 @@
 
     <script src="script.js"></script>
     <script>
-        function hasDiscordLinked() {
+        function getDiscordId() {
             var user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
-            if (!user) return false;
-            if (user.type === 'discord') return true;
+            if (!user) return null;
+            if (user.type === 'discord') return user.id;
             if (user.type === 'email') {
                 var accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
-                return accounts[user.email] && accounts[user.email].discord;
+                if (accounts[user.email] && accounts[user.email].discord) {
+                    return accounts[user.email].discord.id;
+                }
             }
-            return false;
+            return null;
         }
 
         function handleVipClick() {
-            if (hasDiscordLinked()) {
-                window.location.href = 'https://buy.stripe.com/aFaeVcaATa1Cc52aK428801';
+            var discordId = getDiscordId();
+            if (discordId) {
+                window.location.href = 'https://buy.stripe.com/aFaeVcaATa1Cc52aK428801?client_reference_id=' + discordId;
             } else {
                 document.getElementById('vip-overlay').classList.add('show');
             }
