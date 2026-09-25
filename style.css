@@ -286,9 +286,8 @@ nav {
 }
 
 .mascot-img {
-    max-height: 320px;
+    max-height: 420px;
     width: auto;
-    filter: drop-shadow(0 20px 50px rgba(155, 89, 182, 0.3));
     transition: transform 0.15s ease-out;
     will-change: transform;
 }
