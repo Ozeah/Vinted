@@ -208,6 +208,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-left: auto;
 }
 
 .btn-login {
@@ -236,6 +237,20 @@ nav {
     height: 32px;
     border-radius: 50%;
     border: 2px solid var(--purple);
+}
+
+.user-avatar-letter {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--purple);
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
 }
 
 .user-name {
@@ -856,6 +871,161 @@ footer {
 .footer-bottom p {
     color: var(--text-muted);
     font-size: 0.8rem;
+}
+
+/* Auth Modal */
+.auth-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-overlay.show {
+    display: flex;
+}
+
+.auth-modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    max-width: 420px;
+    width: 90%;
+    position: relative;
+    animation: fadeInUp 0.3s ease;
+}
+
+.auth-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.auth-close:hover {
+    color: var(--text);
+}
+
+.auth-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-discord-auth {
+    width: 100%;
+    padding: 0.85rem;
+    background: #5865F2;
+    color: white;
+    font-size: 0.95rem;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.btn-discord-auth:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+}
+
+.auth-separator {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.auth-separator::before,
+.auth-separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.25rem;
+    background: rgba(155, 89, 182, 0.05);
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.auth-tab.active {
+    background: var(--purple);
+    color: white;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-family: inherit;
+    margin-bottom: 0.75rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.auth-input:focus {
+    border-color: var(--purple);
+}
+
+.auth-submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.25rem;
+}
+
+.auth-error {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 1rem;
+    min-height: 1rem;
+}
+
+.auth-success {
+    color: #2ecc71;
 }
 
 /* Responsive */
