@@ -91,6 +91,30 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Mascot tilt 3D effect
+function initMascotTilt() {
+    const mascot = document.querySelector('.hero-mascot');
+    const img = document.querySelector('.mascot-img');
+    if (!mascot || !img) return;
+
+    mascot.addEventListener('mousemove', (e) => {
+        const rect = mascot.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        const rotateY = (x - 0.5) * 25;
+        const rotateX = (0.5 - y) * 25;
+        const translateX = (x - 0.5) * 20;
+        const translateY = (y - 0.5) * 20;
+
+        img.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate(${translateX}px, ${translateY}px)`;
+    });
+
+    mascot.addEventListener('mouseleave', () => {
+        img.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translate(0px, 0px)';
+    });
+}
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
@@ -98,4 +122,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initHeader();
     initSmoothScroll();
+    initMascotTilt();
 });
