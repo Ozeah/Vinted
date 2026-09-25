@@ -10,428 +10,253 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Background effects -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="particles" id="particles"></div>
 
-    <!-- Top Banner -->
-    <div class="announcement-bar">
-        <a href="#pricing">
-            <span class="announce-desktop">Offre de lancement — VIP à 4.99€/mois · Places limitées</span>
-            <span class="announce-mobile">VIP : 4.99€/mois · Places limitées</span>
-            <span class="announce-cta">En profiter →</span>
-        </a>
-    </div>
-
-    <!-- Navbar -->
+    <!-- Header -->
     <header>
         <nav>
-            <a href="/" class="logo">
+            <div class="logo">
                 <span class="logo-text">OzeaH</span>
-            </a>
+            </div>
             <div class="nav-links">
-                <a href="#roles">Fonctionnalités</a>
-                <a href="#how-it-works">Comment ça marche</a>
-                <a href="#pricing">VIP</a>
+                <a href="#features">Fonctionnalités</a>
+                <a href="vip.html">VIP</a>
                 <a href="#faq">FAQ</a>
             </div>
             <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-nav">Rejoindre</a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
         </nav>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#roles">Fonctionnalités</a>
-            <a href="#how-it-works">Comment ça marche</a>
-            <a href="#pricing">VIP</a>
-            <a href="#faq">FAQ</a>
-            <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary" style="margin-top:0.5rem;text-align:center;">Rejoindre le Discord</a>
-        </div>
     </header>
 
     <!-- Hero -->
     <section class="hero">
-        <p class="hero-kicker">Un seul bot pour tout ton resell Vinted</p>
-        <h1>Les meilleures affaires,<br><span class="gradient-text">avant tout le monde.</span></h1>
-        <div class="live-badge">
-            <span class="live-dot"></span>
-            <span class="live-label">en direct</span>
-            <span class="live-text">— il détecte une pépite à 3€ sur Vinted</span>
-        </div>
+        <div class="hero-badge">🚀 Le bot #1 pour le resell Vinted</div>
+        <h1>Trouve les <span class="gradient-text">meilleures affaires</span> avant tout le monde.</h1>
+        <p class="hero-subtitle">Alertes instantanées, legit check par IA, estimation de prix — tout dans ton serveur Discord.</p>
         <div class="hero-cta">
-            <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary-lg">Rejoindre le Discord</a>
-            <a href="#roles" class="btn btn-secondary-lg">Voir les fonctionnalités</a>
+            <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary">Rejoindre le Discord</a>
+            <a href="#features" class="btn btn-secondary">Découvrir</a>
         </div>
         <div class="hero-stats">
             <div class="stat">
-                <span class="stat-value">7</span>
-                <span class="stat-label">OUTILS EN 1</span>
+                <span class="stat-number">100+</span>
+                <span class="stat-label">Membres</span>
             </div>
-            <span class="stat-divider">·</span>
             <div class="stat">
-                <span class="stat-value">24/7</span>
-                <span class="stat-label">BOT ACTIF</span>
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Bot actif</span>
             </div>
-            <span class="stat-divider">·</span>
             <div class="stat">
-                <span class="stat-value">&lt; 30s</span>
-                <span class="stat-label">DÉLAI ALERTES</span>
+                <span class="stat-number">30s</span>
+                <span class="stat-label">Délai max</span>
             </div>
         </div>
     </section>
 
-    <!-- Trust Bar -->
-    <div class="trust-bar">
-        <div class="trust-item">
-            <span class="trust-icon">💬</span>
-            <span>Rejoindre le Discord</span>
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-badge">Fonctionnalités</span>
+            <h2>Tout ce qu'il te faut pour <span class="gradient-text">dominer</span> le resell.</h2>
+            <p>Un bot complet, rapide et intelligent qui travaille pour toi 24h/24.</p>
         </div>
-        <div class="trust-item">
-            <span class="trust-icon">👥</span>
-            <span>100+ membres actifs</span>
-        </div>
-        <div class="trust-item">
-            <span class="trust-icon">⚡</span>
-            <span>Alertes en temps réel</span>
-        </div>
-    </div>
-
-    <!-- Pain Points -->
-    <section class="pain-section">
-        <div class="section-container">
-            <span class="section-kicker">AVANT OZEAH</span>
-            <h2 class="section-title">Tu passes plus de temps à <span class="gradient-text">chercher</span> qu'à revendre.</h2>
-            <p class="section-subtitle">Tu scrolles Vinted pendant des heures, tu rates les bonnes affaires, et quand tu trouves un article tu sais même pas si c'est un vrai. On connaît.</p>
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <div class="pain-icon">⏳</div>
-                    <h3>Les pépites qui partent</h3>
-                    <p>Le temps de voir l'annonce, quelqu'un a déjà acheté. Tu arrives toujours 5 minutes trop tard.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">❓</div>
-                    <h3>Le doute sur l'authenticité</h3>
-                    <p>C'est un vrai ou un fake ? Impossible de savoir sans expertise. Un mauvais achat et c'est ta marge qui saute.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">💸</div>
-                    <h3>Le prix au pif</h3>
-                    <p>Tu achètes sans savoir combien tu peux revendre. Résultat : tu surpayes ou tu vends trop bas.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">😴</div>
-                    <h3>La veille sans fin</h3>
-                    <p>Tu passes tes soirées sur Vinted à rafraîchir les pages. C'est épuisant et ça rapporte peu.</p>
-                </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Alertes instantanées</h3>
+                <p>Reçois les nouvelles annonces Vinted en temps réel dans ton channel Discord. Filtre par marque, prix, état et catégorie.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Legit Check IA</h3>
+                <p>Vérifie l'authenticité d'un article en quelques secondes grâce à l'intelligence artificielle. Score de fiabilité + détails.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Estimation de prix</h3>
+                <p>Calcule le prix de revente optimal d'un article à partir d'une photo. Basé sur les vrais prix du marché Vinted.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Multi-catégories</h3>
+                <p>Vêtements, mangas, musculation, bonnes affaires à 1€ — ou crée tes propres niches personnalisées.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Anti-arnaque</h3>
+                <p>Filtrage automatique des concours et faux articles sur les alertes 1€. Ne perds plus ton temps.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Description IA</h3>
+                <p>Génère un titre accrocheur et une description vendeur optimisée à partir de tes photos. Prêt à copier-coller.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Filtres avancés</h3>
+                <p>Prix max, état (neuf, très bon), catégorie Vinted — personnalise tes alertes comme tu veux.</p>
             </div>
         </div>
     </section>
 
-    <!-- Transition -->
-    <section class="transition-section">
-        <div class="transition-container">
-            <p class="transition-text">Tu voulais faire du resell.<br>Pas devenir <span class="gradient-text">esclave de Vinted</span>.</p>
-            <div class="role-tags">
-                <span class="role-tag"><span class="role-dot" style="background:#9b59b6"></span>Veilleur</span>
-                <span class="role-tag"><span class="role-dot" style="background:#3498db"></span>Expert authenticité</span>
-                <span class="role-tag"><span class="role-dot" style="background:#2ecc71"></span>Estimateur</span>
-                <span class="role-tag"><span class="role-dot" style="background:#e67e22"></span>Rédacteur</span>
-            </div>
-            <blockquote class="blockquote-choc">« Je gère, c'est pas grave » — c'est la phrase qui te coûte le plus cher.</blockquote>
-            <p class="transition-resolve">Ce n'est pas normal. C'est l'absence d'un outil fait pour toi.</p>
+    <!-- How it works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <span class="section-badge">Comment ça marche</span>
+            <h2>En place en <span class="gradient-text">30 secondes</span>.</h2>
         </div>
-    </section>
-
-    <!-- Features / Roles -->
-    <section class="roles-section" id="roles">
-        <div class="section-container">
-            <span class="section-kicker">CE QUE FAIT TON BOT</span>
-            <h2 class="section-title">Sept outils. <span class="gradient-text">Un seul bot.</span></h2>
-            <p class="section-subtitle">OzeaH couvre tout ton workflow de resell — de la détection à la vente.</p>
-            <div class="roles-grid">
-                <div class="role-card" data-span="2">
-                    <span class="role-label">Alertes</span>
-                    <h3>Détection instantanée</h3>
-                    <p>Reçois les nouvelles annonces Vinted en temps réel dans ton channel Discord. Filtre par marque, prix, état et catégorie. Plus jamais 5 minutes de retard.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-label">Authenticité</span>
-                    <h3>Legit Check IA</h3>
-                    <p>Envoie jusqu'à 5 photos et obtiens un score d'authenticité de 0 à 100%. Coutures, logos, étiquettes — l'IA voit tout.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-label">Prix</span>
-                    <h3>Estimation de prix</h3>
-                    <p>Calcule le prix de revente optimal d'un article à partir d'une photo. Basé sur les vrais prix du marché Vinted.</p>
-                </div>
-                <div class="role-card" data-span="2">
-                    <span class="role-label">Niches</span>
-                    <h3>Multi-catégories</h3>
-                    <p>Vêtements, mangas, musculation, bonnes affaires à 1€ — ou crée tes propres niches personnalisées pour cibler exactement ce que tu cherches.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-label">Sécurité</span>
-                    <h3>Anti-arnaque</h3>
-                    <p>Filtrage automatique des concours et faux articles. Ne perds plus ton temps sur des annonces bidons.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-label">Rédaction</span>
-                    <h3>Description IA</h3>
-                    <p>Génère un titre accrocheur et une description vendeur optimisée à partir de tes photos. Prêt à copier-coller.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-label">Filtres</span>
-                    <h3>Filtres avancés</h3>
-                    <p>Prix max, état, catégorie Vinted — personnalise tes alertes exactement comme tu veux.</p>
-                </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Rejoins le Discord</h3>
+                <p>Accède au serveur OzeaH et découvre les channels d'alertes.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Choisis tes niches</h3>
+                <p>Sélectionne les catégories qui t'intéressent ou intègre tes propres niches au bot.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Profite des alertes</h3>
+                <p>Reçois les meilleures affaires en temps réel et achète avant les autres.</p>
             </div>
         </div>
     </section>
 
-    <!-- How it works - Timeline -->
-    <section class="timeline-section" id="how-it-works">
-        <div class="section-container">
-            <span class="section-kicker">TA JOURNÉE AVEC OZEAH</span>
-            <h2 class="section-title">Pendant que tu vis, <span class="gradient-text">ton bot tourne.</span></h2>
-            <p class="section-subtitle">Une journée type avec OzeaH dans ton serveur Discord.</p>
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                <div class="timeline-step">
-                    <div class="step-dot"></div>
-                    <div class="step-content">
-                        <div class="step-time">
-                            <span class="time">03:42</span>
-                            <span class="context">Pendant que tu dors</span>
+    <!-- VIP Section -->
+    <section class="vip" id="vip">
+        <div class="vip-container">
+            <div class="vip-content">
+                <span class="section-badge">VIP</span>
+                <h2>Passe au niveau <span class="gradient-text">supérieur</span>.</h2>
+                <p class="vip-subtitle">Accède à des fonctionnalités exclusives et prends une longueur d'avance.</p>
+                <ul class="vip-perks">
+                    <li>
+                        <span class="perk-icon">💎</span>
+                        <div>
+                            <strong>Niches exclusives + niches perso</strong>
+                            <span>Des catégories premium introuvables ailleurs + intègre tes propres niches au bot.</span>
                         </div>
-                        <span class="step-badge">Détecte</span>
-                        <h3>Il scanne tout Vinted</h3>
-                        <p>Une Nike Dunk tombe à 15€. L'alerte part dans ton channel en moins de 30 secondes. Tu achètes au réveil avant les autres.</p>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot"></div>
-                    <div class="step-content">
-                        <div class="step-time">
-                            <span class="time">12:30</span>
-                            <span class="context">Avant que tu achètes</span>
+                    </li>
+                    <li>
+                        <span class="perk-icon">✅</span>
+                        <div>
+                            <strong>Legit Check illimité</strong>
+                            <span>Vérifie l'authenticité de tous tes articles sans limite.</span>
                         </div>
-                        <span class="step-badge">Vérifie</span>
-                        <h3>Il check l'authenticité</h3>
-                        <p>Tu hésites sur un article ? Envoie les photos avec /legit. Score de fiabilité en quelques secondes. Plus de doute.</p>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot"></div>
-                    <div class="step-content">
-                        <div class="step-time">
-                            <span class="time">18:00</span>
-                            <span class="context">Quand tu veux revendre</span>
+                    </li>
+                    <li>
+                        <span class="perk-icon">💰</span>
+                        <div>
+                            <strong>Estimation de prix</strong>
+                            <span>Calcule le prix de revente optimal avant d'acheter.</span>
                         </div>
-                        <span class="step-badge">Estime</span>
-                        <h3>Il calcule ton prix</h3>
-                        <p>Avant de fixer ton prix, /estimation te donne la fourchette de marché réelle. Tu sais exactement combien demander.</p>
-                    </div>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-dot"></div>
-                    <div class="step-content">
-                        <div class="step-time">
-                            <span class="time">21:00</span>
-                            <span class="context">Quand tu postes</span>
+                    </li>
+                    <li>
+                        <span class="perk-icon">📝</span>
+                        <div>
+                            <strong>Description IA</strong>
+                            <span>Génère titre + description vendeur optimisés pour tes annonces.</span>
                         </div>
-                        <span class="step-badge">Rédige</span>
-                        <h3>Il écrit ton annonce</h3>
-                        <p>Envoie ta photo, /description génère un titre accrocheur et un texte vendeur optimisé. Copie-colle et c'est publié.</p>
-                    </div>
-                </div>
+                    </li>
+                    <li>
+                        <span class="perk-icon">🎧</span>
+                        <div>
+                            <strong>Support prioritaire</strong>
+                            <span>Réactif, disponible et prioritaire. On est là pour toi.</span>
+                        </div>
+                    </li>
+                </ul>
+                <a href="vip.html" class="btn btn-primary btn-glow">Devenir VIP</a>
             </div>
-        </div>
-    </section>
-
-    <!-- VIP / Pricing -->
-    <section class="pricing-section" id="pricing">
-        <div class="section-container">
-            <span class="section-kicker">PASSE AU NIVEAU SUPÉRIEUR</span>
-            <h2 class="section-title">Tout OzeaH. <span class="gradient-text">4.99€/mois.</span></h2>
-            <p class="section-subtitle">Un seul abonnement pour débloquer tout le potentiel du bot.</p>
-
-            <div class="pricing-wrapper">
-                <div class="pricing-card-free">
-                    <span class="plan-badge">Gratuit</span>
-                    <div class="plan-price">
-                        <span class="plan-amount">0€</span>
-                        <span class="plan-period">/mois</span>
-                    </div>
-                    <p class="plan-desc">Pour découvrir OzeaH</p>
-                    <ul class="plan-features">
-                        <li><span class="check">✓</span> Alertes de base (niches publiques)</li>
-                        <li><span class="check">✓</span> Accès au serveur Discord</li>
-                        <li><span class="check dim">✗</span> <span class="dim">Niches exclusives & perso</span></li>
-                        <li><span class="check dim">✗</span> <span class="dim">Legit Check IA</span></li>
-                        <li><span class="check dim">✗</span> <span class="dim">Estimation de prix</span></li>
-                        <li><span class="check dim">✗</span> <span class="dim">Description IA</span></li>
-                        <li><span class="check dim">✗</span> <span class="dim">Support prioritaire</span></li>
-                    </ul>
-                    <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-outline-plan">Rejoindre gratuitement</a>
-                </div>
-
-                <div class="pricing-card-vip">
-                    <div class="popular-tag">Le plus populaire</div>
-                    <span class="plan-badge">VIP</span>
-                    <div class="plan-price">
-                        <span class="plan-amount">4.99€</span>
-                        <span class="plan-period">/mois</span>
-                    </div>
-                    <p class="plan-desc">Pour dominer le resell</p>
-                    <ul class="plan-features">
-                        <li><span class="check">✓</span> Alertes de base (niches publiques)</li>
-                        <li><span class="check">✓</span> Accès au serveur Discord</li>
-                        <li><span class="check">✓</span> Niches exclusives + tes niches perso</li>
-                        <li><span class="check">✓</span> Legit Check IA illimité</li>
-                        <li><span class="check">✓</span> Estimation de prix par IA</li>
-                        <li><span class="check">✓</span> Description IA pour tes annonces</li>
-                        <li><span class="check">✓</span> Support prioritaire 24/7</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/8x2aEWcJ16PqglibO828800" class="btn btn-filled-plan">Devenir VIP — 4.99€/mois</a>
-                    <p class="plan-note">Annulable à tout moment · Paiement sécurisé par Stripe</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- C'est pour toi si -->
-    <section class="qualification-section">
-        <div class="section-container">
-            <span class="section-kicker">C'EST POUR TOI SI</span>
-            <h2 class="section-title">Tu veux arrêter de <span class="gradient-text">perdre ton temps.</span></h2>
-            <div class="qualification-list">
-                <div class="qualification-item">
-                    <span class="qual-check">✓</span>
-                    <div>
-                        <strong>Tu veux être le premier sur les pépites</strong>
-                        <p>Les alertes en 30 secondes te donnent un avantage que personne d'autre n'a.</p>
-                    </div>
-                </div>
-                <div class="qualification-item">
-                    <span class="qual-check">✓</span>
-                    <div>
-                        <strong>Tu veux acheter sans te faire arnaquer</strong>
-                        <p>Le Legit Check IA te protège avant chaque achat risqué.</p>
-                    </div>
-                </div>
-                <div class="qualification-item">
-                    <span class="qual-check">✓</span>
-                    <div>
-                        <strong>Tu veux vendre au bon prix</strong>
-                        <p>L'estimation de prix te donne la vraie valeur marché, pas un chiffre au hasard.</p>
-                    </div>
-                </div>
-                <div class="qualification-item">
-                    <span class="qual-check">✓</span>
-                    <div>
-                        <strong>Tu veux des annonces qui vendent</strong>
-                        <p>La description IA génère des textes optimisés en quelques secondes.</p>
-                    </div>
-                </div>
-                <div class="qualification-item">
-                    <span class="qual-check">✓</span>
-                    <div>
-                        <strong>Tu veux libérer tes soirées</strong>
-                        <p>Le bot tourne 24/7 — toi, tu vis ta vie.</p>
-                    </div>
-                </div>
+            <div class="vip-image">
+                <img src="vip.png" alt="OzeaH VIP">
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="faq-section" id="faq">
-        <div class="section-container faq-container">
-            <h2 class="section-title">Questions fréquentes.</h2>
-            <p class="section-subtitle">Tout ce que tu veux savoir avant de rejoindre.</p>
-            <div class="faq-list">
-                <details class="faq-item" open>
-                    <summary>C'est quoi OzeaH ?</summary>
-                    <div class="faq-answer">
-                        <p>OzeaH est un bot Discord qui scanne Vinted en temps réel et t'envoie les meilleures affaires directement dans ton serveur. Il intègre aussi un legit check, une estimation de prix et une génération de description par IA.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>Comment fonctionne le Legit Check ?</summary>
-                    <div class="faq-answer">
-                        <p>Envoie jusqu'à 5 photos de ton article avec la commande /legit. L'IA analyse les coutures, logos, étiquettes et matériaux pour te donner un score d'authenticité de 0 à 100%.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>Comment fonctionne l'estimation de prix ?</summary>
-                    <div class="faq-answer">
-                        <p>Envoie une photo + description avec /estimation. L'IA identifie l'article, cherche les prix réels sur Vinted, et te donne une fourchette de prix de vente réaliste.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>Le bot tourne 24/7 ?</summary>
-                    <div class="faq-answer">
-                        <p>Oui, le bot est hébergé sur un serveur dédié et scanne Vinted toutes les 30 secondes, 24h/24, 7j/7.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>C'est quoi la différence entre gratuit et VIP ?</summary>
-                    <div class="faq-answer">
-                        <p>En gratuit tu accèdes aux alertes de base. En VIP tu débloques des niches exclusives, le legit check IA, l'estimation de prix, la description IA et un support prioritaire.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>Comment je deviens VIP ?</summary>
-                    <div class="faq-answer">
-                        <p>Clique sur "Devenir VIP" et finalise ton paiement via Stripe. Ton rôle VIP est activé automatiquement sur Discord en quelques minutes.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>Je peux annuler quand je veux ?</summary>
-                    <div class="faq-answer">
-                        <p>Oui, l'abonnement est sans engagement. Tu peux annuler à tout moment depuis ton espace Stripe et garder l'accès VIP jusqu'à la fin de ta période payée.</p>
-                    </div>
-                </details>
-            </div>
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <span class="section-badge">FAQ</span>
+            <h2>Questions fréquentes</h2>
         </div>
-    </section>
-
-    <!-- CTA Final -->
-    <section class="final-cta">
-        <div class="final-cta-glow"></div>
-        <div class="section-container final-cta-content">
-            <p class="section-kicker">PRÊT À PASSER DEVANT ?</p>
-            <h2 class="section-title">Rejoins OzeaH.<br><span class="gradient-text">Maintenant.</span></h2>
-            <p class="section-subtitle">Pendant que tu hésites, les autres achètent les pépites.</p>
-            <div class="hero-cta">
-                <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary-lg">Rejoindre le Discord</a>
-                <a href="#roles" class="btn btn-secondary-lg">Voir les fonctionnalités</a>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>C'est quoi OzeaH ?</span>
+                    <span class="faq-arrow">›</span>
+                </button>
+                <div class="faq-answer">
+                    <p>OzeaH est un bot Discord qui scanne Vinted en temps réel et t'envoie les meilleures affaires directement dans ton serveur. Il intègre aussi un legit check et une estimation de prix par IA.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Comment fonctionne le Legit Check ?</span>
+                    <span class="faq-arrow">›</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Envoie jusqu'à 5 photos de ton article avec la commande /legit. L'IA analyse les coutures, logos, étiquettes et matériaux pour te donner un score d'authenticité de 0 à 100%.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Comment fonctionne l'estimation de prix ?</span>
+                    <span class="faq-arrow">›</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Envoie une photo + description avec /estimation. L'IA identifie l'article, cherche les prix réels sur Vinted, et te donne une fourchette de prix de vente réaliste.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Le bot tourne 24/7 ?</span>
+                    <span class="faq-arrow">›</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Oui, le bot est hébergé sur un serveur dédié et scanne Vinted toutes les 30 secondes, 24h/24, 7j/7.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>C'est quoi la différence entre gratuit et VIP ?</span>
+                    <span class="faq-arrow">›</span>
+                </button>
+                <div class="faq-answer">
+                    <p>En gratuit tu accèdes aux alertes de base. En VIP tu débloques des niches exclusives, le legit check, l'estimation de prix et un support prioritaire.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="logo-text">OzeaH</span>
-                    <p>L'outil essentiel pour le resell Vinted.</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">👑</span>
+                <span class="logo-text">OzeaH</span>
+                <p>L'outil essentiel pour le resell.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="#features">Fonctionnalités</a>
+                    <a href="#vip">VIP</a>
+                    <a href="#faq">FAQ</a>
                 </div>
-                <div class="footer-columns">
-                    <div class="footer-col">
-                        <h4>Navigation</h4>
-                        <a href="#roles">Fonctionnalités</a>
-                        <a href="#how-it-works">Comment ça marche</a>
-                        <a href="#pricing">VIP</a>
-                        <a href="#faq">FAQ</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Liens</h4>
-                        <a href="https://discord.gg/7aSMg8DEt8">Discord</a>
-                    </div>
+                <div class="footer-col">
+                    <h4>Liens</h4>
+                    <a href="https://discord.gg/7aSMg8DEt8">Discord</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 OzeaH. Tous droits réservés.</p>
-            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 OzeaH. Tous droits réservés.</p>
         </div>
     </footer>
 

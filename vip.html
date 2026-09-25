@@ -9,150 +9,159 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .pricing-page-section {
+        .pricing-section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
         }
 
-        .pricing-page-section::before {
-            content: '';
-            position: fixed;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(155, 89, 182, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .vip-card {
+        .pricing-card {
             background: var(--bg-card);
-            border: 1px solid var(--purple);
-            border-radius: 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 30px;
             padding: 3rem;
             max-width: 450px;
             width: 100%;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 60px rgba(155, 89, 182, 0.08);
         }
 
-        .vip-card::before {
+        .pricing-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, var(--purple-dark), var(--purple-light), var(--purple-dark));
         }
 
-        .vip-badge {
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(155, 89, 182, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pricing-badge {
             display: inline-block;
-            padding: 0.3rem 0.9rem;
-            background: var(--purple-subtle);
-            border-radius: 9999px;
-            font-size: 0.7rem;
+            padding: 0.4rem 1rem;
+            background: rgba(155, 89, 182, 0.15);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
             color: var(--purple-light);
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 1px;
             margin-bottom: 1.5rem;
         }
 
-        .vip-card h1 {
-            font-size: 1.6rem;
+        .pricing-title {
+            font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
         }
 
-        .vip-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        .pricing-price {
+            margin: 1.5rem 0;
         }
 
-        .vip-price {
-            margin: 2rem 0;
-        }
-
-        .vip-price .amount {
+        .pricing-price .amount {
             font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--text);
-            letter-spacing: -0.03em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .vip-price .period {
+        .pricing-price .period {
             font-size: 1.1rem;
             color: var(--text-muted);
+            margin-left: 0.25rem;
         }
 
-        .vip-features {
+        .pricing-features {
             list-style: none;
             text-align: left;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
-        .vip-features li {
+        .pricing-features li {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            font-size: 0.875rem;
-            color: #ccc;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
-        .vip-features .check {
+        .pricing-features li .check {
             color: var(--purple-light);
-            font-weight: 700;
+            font-size: 1.2rem;
             flex-shrink: 0;
         }
 
-        .vip-cta {
-            display: block;
+        .pricing-cta {
+            margin-top: 2rem;
+        }
+
+        .pricing-cta .btn-primary {
             width: 100%;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            font-weight: 600;
-            font-size: 1rem;
+            justify-content: center;
+            font-size: 1.1rem;
+            padding: 1.2rem 2rem;
+        }
+
+        .pricing-guarantee {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .back-link {
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
             text-decoration: none;
-            background: var(--text);
-            color: var(--bg);
-            transition: all 0.2s;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
 
-        .vip-cta:hover {
-            background: #e5e5e5;
-            transform: translateY(-1px);
-        }
-
-        .vip-guarantee {
-            margin-top: 1rem;
-            font-size: 0.72rem;
-            color: var(--text-dim);
+        .back-link:hover {
+            color: var(--text);
         }
     </style>
 </head>
 <body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="particles" id="particles"></div>
 
-    <!-- Navbar -->
+    <!-- Header -->
     <header>
         <nav>
             <a href="index.html" class="logo">
                 <span class="logo-text">OzeaH</span>
             </a>
             <div class="nav-links">
-                <a href="index.html#roles">Fonctionnalités</a>
+                <a href="index.html#features">Fonctionnalités</a>
                 <a href="index.html#faq">FAQ</a>
             </div>
             <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-nav">Rejoindre</a>
@@ -160,20 +169,20 @@
     </header>
 
     <!-- Pricing -->
-    <section class="pricing-page-section">
+    <section class="pricing-section">
         <a href="index.html" class="back-link">← Retour à l'accueil</a>
 
-        <div class="vip-card">
-            <span class="vip-badge">Abonnement VIP</span>
-            <h1>Passe au niveau supérieur</h1>
-            <p class="vip-desc">Accède à tout le potentiel d'OzeaH.</p>
+        <div class="pricing-card">
+            <span class="pricing-badge">Abonnement VIP</span>
+            <h1 class="pricing-title">Passe au niveau supérieur</h1>
+            <p style="color: var(--text-muted);">Accède à tout le potentiel d'OzeaH.</p>
 
-            <div class="vip-price">
+            <div class="pricing-price">
                 <span class="amount">4.99€</span>
                 <span class="period">/mois</span>
             </div>
 
-            <ul class="vip-features">
+            <ul class="pricing-features">
                 <li><span class="check">✓</span> Niches exclusives + intègre tes propres niches au bot</li>
                 <li><span class="check">✓</span> Legit Check IA illimité</li>
                 <li><span class="check">✓</span> Estimation de prix par IA</li>
@@ -182,8 +191,11 @@
                 <li><span class="check">✓</span> Accès aux futures fonctionnalités</li>
             </ul>
 
-            <a href="https://buy.stripe.com/8x2aEWcJ16PqglibO828800" class="vip-cta">S'abonner — 4.99€/mois</a>
-            <p class="vip-guarantee">Annulable à tout moment · Paiement sécurisé par Stripe</p>
+            <div class="pricing-cta">
+                <a href="https://buy.stripe.com/8x2aEWcJ16PqglibO828800" id="stripe-btn" class="btn btn-primary btn-glow">S'abonner — 4.99€/mois</a>
+            </div>
+
+            <p class="pricing-guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.</p>
         </div>
     </section>
 
