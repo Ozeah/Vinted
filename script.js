@@ -38,7 +38,7 @@ function initScrollAnimations() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.feature-card, .step, .vip-container, .faq-item').forEach(el => {
+    document.querySelectorAll('.feature-card, .step, .pricing-card, .faq-item').forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });

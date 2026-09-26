@@ -24,7 +24,7 @@
             </div>
             <div class="nav-links">
                 <a href="#features">Fonctionnalités</a>
-                <a href="vip.html">VIP</a>
+                <a href="#vip">VIP</a>
                 <a href="#faq">FAQ</a>
             </div>
             <div class="nav-right">
@@ -140,56 +140,53 @@
     </section>
 
     <!-- VIP Section -->
-    <section class="vip" id="vip">
-        <div class="vip-container">
-            <div class="vip-content">
-                <span class="section-badge">VIP</span>
-                <h2>Passe au niveau <span class="gradient-text">supérieur</span>.</h2>
-                <p class="vip-subtitle">Accède à des fonctionnalités exclusives et prends une longueur d'avance.</p>
-                <ul class="vip-perks">
-                    <li>
-                        <span class="perk-icon">💎</span>
-                        <div>
-                            <strong>Niches exclusives + niches perso</strong>
-                            <span>Des catégories premium introuvables ailleurs + intègre tes propres niches au bot.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="perk-icon">✅</span>
-                        <div>
-                            <strong>Legit Check illimité</strong>
-                            <span>Vérifie l'authenticité de tous tes articles sans limite.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="perk-icon">💰</span>
-                        <div>
-                            <strong>Estimation de prix</strong>
-                            <span>Calcule le prix de revente optimal avant d'acheter.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="perk-icon">📝</span>
-                        <div>
-                            <strong>Description IA</strong>
-                            <span>Génère titre + description vendeur optimisés pour tes annonces.</span>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="perk-icon">🎧</span>
-                        <div>
-                            <strong>Support prioritaire</strong>
-                            <span>Réactif, disponible et prioritaire. On est là pour toi.</span>
-                        </div>
-                    </li>
-                </ul>
-                <a href="vip.html" class="btn btn-primary btn-glow">Devenir VIP</a>
+    <section class="vip-pricing" id="vip">
+        <div class="section-header">
+            <span class="section-badge">VIP</span>
+            <h2>Passe au niveau <span class="gradient-text">supérieur</span>.</h2>
+            <p>Accède à tout le potentiel d'OzeaH.</p>
+        </div>
+
+        <div class="pricing-card">
+            <span class="pricing-badge">Abonnement VIP</span>
+
+            <div class="pricing-price">
+                <span class="amount">9.59€</span>
+                <span class="period">/mois</span>
             </div>
-            <div class="vip-image">
-                <img src="vip.png" alt="OzeaH VIP">
+
+            <ul class="pricing-features">
+                <li><span class="check">✓</span> Niches exclusives + intègre tes propres niches au bot</li>
+                <li><span class="check">✓</span> Legit Check IA illimité</li>
+                <li><span class="check">✓</span> Estimation de prix par IA</li>
+                <li><span class="check">✓</span> Description IA pour tes annonces</li>
+                <li><span class="check">✓</span> Support prioritaire 24/7</li>
+                <li><span class="check">✓</span> Accès aux futures fonctionnalités</li>
+            </ul>
+
+            <div class="pricing-cta">
+                <button onclick="handleVipClick()" class="btn btn-primary btn-glow">S'abonner — 9.59€/mois</button>
             </div>
+
+            <p class="pricing-guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.</p>
         </div>
     </section>
+
+    <!-- Discord required popup -->
+    <div class="vip-overlay" id="vip-overlay" onclick="closeVipPopup(event)">
+        <div class="vip-popup">
+            <button class="vip-popup-close" onclick="closeVipPopup()">&times;</button>
+            <div class="vip-popup-icon">
+                <svg width="40" height="30" viewBox="0 0 71 55" fill="#5865F2"><path d="M60.1 4.9A58.5 58.5 0 0045.4.2a.2.2 0 00-.2.1 40.8 40.8 0 00-1.8 3.7 54 54 0 00-16.2 0A37.3 37.3 0 0025.4.3a.2.2 0 00-.2-.1A58.4 58.4 0 0010.5 4.9a.2.2 0 00-.1.1C1.5 18.7-.9 32.2.3 45.5v.1a58.7 58.7 0 0017.7 9a.2.2 0 00.3-.1 42 42 0 003.6-5.9.2.2 0 00-.1-.3 38.6 38.6 0 01-5.5-2.6.2.2 0 01 0-.4l1.1-.9a.2.2 0 01.2 0 41.8 41.8 0 0035.6 0 .2.2 0 01.2 0l1.1.9a.2.2 0 010 .4 36.3 36.3 0 01-5.5 2.6.2.2 0 00-.1.3 47.2 47.2 0 003.6 5.9.2.2 0 00.3.1 58.5 58.5 0 0017.7-9v-.1c1.4-15-2.3-28.4-9.8-40.1a.2.2 0 00-.1-.1zM23.7 37.3c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7zm23.3 0c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7z"/></svg>
+            </div>
+            <h2 class="vip-popup-title">Connexion Discord requise</h2>
+            <p class="vip-popup-desc">Tu dois lier ton compte Discord pour recevoir le role VIP automatiquement apres le paiement.</p>
+            <button class="btn-vip-discord" onclick="loginDiscord()">
+                <svg width="20" height="15" viewBox="0 0 71 55" fill="white"><path d="M60.1 4.9A58.5 58.5 0 0045.4.2a.2.2 0 00-.2.1 40.8 40.8 0 00-1.8 3.7 54 54 0 00-16.2 0A37.3 37.3 0 0025.4.3a.2.2 0 00-.2-.1A58.4 58.4 0 0010.5 4.9a.2.2 0 00-.1.1C1.5 18.7-.9 32.2.3 45.5v.1a58.7 58.7 0 0017.7 9a.2.2 0 00.3-.1 42 42 0 003.6-5.9.2.2 0 00-.1-.3 38.6 38.6 0 01-5.5-2.6.2.2 0 01 0-.4l1.1-.9a.2.2 0 01.2 0 41.8 41.8 0 0035.6 0 .2.2 0 01.2 0l1.1.9a.2.2 0 010 .4 36.3 36.3 0 01-5.5 2.6.2.2 0 00-.1.3 47.2 47.2 0 003.6 5.9.2.2 0 00.3.1 58.5 58.5 0 0017.7-9v-.1c1.4-15-2.3-28.4-9.8-40.1a.2.2 0 00-.1-.1zM23.7 37.3c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7zm23.3 0c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7z"/></svg>
+                Se connecter avec Discord
+            </button>
+        </div>
+    </div>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
@@ -255,7 +252,7 @@
             </div>
             <div class="footer-links-row">
                 <a href="#features">Fonctionnalités</a>
-                <a href="vip.html">VIP</a>
+                <a href="#vip">VIP</a>
                 <a href="#faq">FAQ</a>
                 <a href="https://discord.gg/7aSMg8DEt8">Discord</a>
             </div>
@@ -266,5 +263,33 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        function getDiscordId() {
+            var user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
+            if (!user) return null;
+            if (user.type === 'discord') return user.id;
+            if (user.type === 'email') {
+                var accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
+                if (accounts[user.email] && accounts[user.email].discord) {
+                    return accounts[user.email].discord.id;
+                }
+            }
+            return null;
+        }
+
+        function handleVipClick() {
+            var discordId = getDiscordId();
+            if (discordId) {
+                window.location.href = 'https://buy.stripe.com/aFaeVcaATa1Cc52aK428801?client_reference_id=' + discordId;
+            } else {
+                document.getElementById('vip-overlay').classList.add('show');
+            }
+        }
+
+        function closeVipPopup(e) {
+            if (e && e.target !== e.currentTarget) return;
+            document.getElementById('vip-overlay').classList.remove('show');
+        }
+    </script>
 </body>
 </html>
