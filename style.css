@@ -361,7 +361,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 8rem 2rem 4rem;
+    padding: 4rem 2rem 4rem;
     position: relative;
     z-index: 1;
 }
@@ -718,6 +718,45 @@ nav {
     margin-top: 1.5rem;
     font-size: 0.8rem;
     color: var(--text-muted);
+}
+
+.cgv-check {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.cgv-check input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--purple);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.cgv-check a {
+    color: var(--purple-light);
+    text-decoration: none;
+}
+
+.cgv-check a:hover {
+    text-decoration: underline;
+}
+
+.cgv-check.cgv-error {
+    color: #e74c3c;
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
 }
 
 /* FAQ */

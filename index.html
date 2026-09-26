@@ -16,26 +16,6 @@
     <div class="bg-orb bg-orb-3"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">
-                <span class="logo-text">OzeaH</span>
-            </div>
-            <div class="nav-links">
-                <a href="#features">Fonctionnalités</a>
-                <a href="#vip">VIP</a>
-                <a href="#faq">FAQ</a>
-            </div>
-            <div class="nav-right">
-                <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-nav">Rejoindre</a>
-                <div id="user-area">
-                    <button onclick="loginDiscord()" class="btn btn-login">Connexion</button>
-                </div>
-            </div>
-        </nav>
-    </header>
-
     <!-- Hero -->
     <section class="hero">
         <div class="hero-inner">
@@ -178,6 +158,11 @@
                 <li><span class="check">✓</span> Accès aux futures fonctionnalités</li>
             </ul>
 
+            <label class="cgv-check">
+                <input type="checkbox" id="cgv-checkbox">
+                <span>J'accepte les <a href="cgv.html" target="_blank">Conditions Générales de Vente</a></span>
+            </label>
+
             <div class="pricing-cta">
                 <button onclick="handleVipClick()" class="btn btn-primary btn-glow">S'abonner — 9.59€/mois</button>
             </div>
@@ -269,6 +254,7 @@
                 <a href="#vip">VIP</a>
                 <a href="#faq">FAQ</a>
                 <a href="https://discord.gg/7aSMg8DEt8">Discord</a>
+                <a href="cgv.html">CGV</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -292,6 +278,11 @@
         }
 
         function handleVipClick() {
+            if (!document.getElementById('cgv-checkbox').checked) {
+                document.getElementById('cgv-checkbox').parentElement.classList.add('cgv-error');
+                return;
+            }
+            document.getElementById('cgv-checkbox').parentElement.classList.remove('cgv-error');
             var discordId = getDiscordId();
             if (discordId) {
                 window.location.href = 'https://buy.stripe.com/aFaeVcaATa1Cc52aK428801?client_reference_id=' + discordId;
