@@ -198,7 +198,7 @@ async function renderProfile() {
     const identity = getDiscordIdentity();
 
     if (!identity) {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
         return;
     }
 
