@@ -124,23 +124,20 @@ function initNavUser() {
     if (!saved) return;
     const user = JSON.parse(saved);
 
+    let avatarHtml, displayName;
+
     if (user.type === 'discord') {
         const discord = JSON.parse(localStorage.getItem('discord_user') || 'null');
         if (!discord) return;
         const avatarUrl = discord.avatar
             ? `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png?size=64`
             : `https://cdn.discordapp.com/embed/avatars/0.png`;
-        area.innerHTML = `
-            <a href="profile.html" class="user-logged">
-                <img src="${avatarUrl}" alt="" class="user-avatar">
-                <span class="user-name">${discord.global_name || discord.username}</span>
-            </a>
-        `;
+        avatarHtml = `<img src="${avatarUrl}" alt="" class="user-avatar">`;
+        displayName = discord.global_name || discord.username;
     } else if (user.type === 'email') {
         const accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
         const acct = accounts[user.email];
         const discord = acct ? acct.discord : null;
-        let avatarHtml;
         if (discord && discord.avatar) {
             const avatarUrl = `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png?size=64`;
             avatarHtml = `<img src="${avatarUrl}" alt="" class="user-avatar">`;
@@ -149,13 +146,23 @@ function initNavUser() {
         } else {
             avatarHtml = `<div class="user-avatar-letter">${user.username.charAt(0).toUpperCase()}</div>`;
         }
-        area.innerHTML = `
-            <a href="profile.html" class="user-logged">
-                ${avatarHtml}
-                <span class="user-name">${user.username}</span>
-            </a>
-        `;
+        displayName = user.username;
+    } else {
+        return;
     }
+
+    area.innerHTML = `
+        <div class="user-dropdown">
+            <div class="user-logged">
+                ${avatarHtml}
+                <span class="user-name">${displayName}</span>
+            </div>
+            <div class="user-dropdown-menu">
+                <a href="profile.html">Profil</a>
+                <a href="#" onclick="logout(); return false;">Déconnexion</a>
+            </div>
+        </div>
+    `;
 }
 
 // Discord login redirect (used on signup/login pages)
@@ -220,6 +227,13 @@ function handleDiscordLogin() {
             initNavUser();
         }
     });
+}
+
+// Logout
+function logout() {
+    localStorage.removeItem('ozeah_user');
+    localStorage.removeItem('discord_user');
+    window.location.reload();
 }
 
 // Init
