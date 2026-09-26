@@ -142,8 +142,14 @@ header {
     right: 0;
     z-index: 1000;
     padding: 1rem 2rem;
-    background: rgba(10, 10, 15, 0.8);
-    backdrop-filter: blur(20px);
+    background: transparent;
+    backdrop-filter: blur(12px);
+    border-bottom: none;
+    transition: background 0.3s, border-bottom 0.3s;
+}
+
+header.scrolled {
+    background: rgba(13, 11, 20, 0.6);
     border-bottom: 1px solid var(--border);
 }
 
@@ -361,7 +367,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 2rem 4rem;
+    padding: 7rem 2rem 4rem;
     position: relative;
     z-index: 1;
 }

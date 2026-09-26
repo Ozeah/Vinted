@@ -47,11 +47,12 @@ function initScrollAnimations() {
 // Header scroll effect
 function initHeader() {
     const header = document.querySelector('header');
+    if (!header) return;
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.background = 'rgba(10, 10, 15, 0.95)';
+            header.classList.add('scrolled');
         } else {
-            header.style.background = 'rgba(10, 10, 15, 0.8)';
+            header.classList.remove('scrolled');
         }
     });
 }
