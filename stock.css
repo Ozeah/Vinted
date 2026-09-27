@@ -574,24 +574,34 @@
 }
 
 /* Brand autocomplete */
-.form-brand-wrap {
-    position: relative;
-}
-
 .brand-suggestions {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% - 2px);
     left: 0;
     right: 0;
     background: rgba(20, 16, 32, 0.98);
     border: 1px solid var(--border);
     border-radius: 10px;
-    margin-top: 0.25rem;
-    z-index: 10;
+    margin-top: 0;
+    z-index: 9999;
     max-height: 180px;
     overflow-y: auto;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.form-brand-wrap {
+    position: relative;
+    overflow: visible !important;
+}
+
+.form-grid {
+    overflow: visible;
+}
+
+.modal-content.modal-large {
+    overflow: visible;
+    overflow-y: auto;
 }
 
 .brand-suggestion-item {
