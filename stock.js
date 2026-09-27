@@ -506,8 +506,8 @@ function handleArticleSubmit(e) {
             history: [],
             created_at: new Date().toISOString(),
         };
-        addHistory(article, 'Article achete', buy_price ? formatPrice(buy_price) : null);
-        addHistory(article, 'Mis en stock');
+        addHistory(article, 'Article achete', buy_price ? formatPrice(buy_price) : null, date_purchase);
+        addHistory(article, 'Mis en stock', null, date_purchase || todayStr());
         articles.push(article);
     }
 
@@ -562,7 +562,7 @@ function actionInStock(id) {
     if (!a) return;
     a.status = 'in_stock';
     a.date_stock = todayStr();
-    addHistory(a, 'Mis en stock');
+    addHistory(a, 'Mis en stock', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -573,7 +573,7 @@ function actionShipped(id) {
     if (!a) return;
     a.status = 'shipped';
     a.date_shipped = todayStr();
-    addHistory(a, 'Expedie');
+    addHistory(a, 'Expedie', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -584,7 +584,7 @@ function actionFinalized(id) {
     if (!a) return;
     a.status = 'finalized';
     a.date_finalized = todayStr();
-    addHistory(a, 'Vente finalisee');
+    addHistory(a, 'Vente finalisee', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -594,7 +594,7 @@ function actionArchived(id) {
     const a = articles.find(x => x.id === id);
     if (!a) return;
     a.status = 'archived';
-    addHistory(a, 'Archive');
+    addHistory(a, 'Archive', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -624,7 +624,7 @@ function handleSellSubmit(e) {
     a.sell_platform = document.getElementById('s-platform').value;
     a.date_sale = document.getElementById('s-date').value || todayStr();
     a.status = 'sold';
-    addHistory(a, 'Vente enregistree', formatPrice(a.sell_price));
+    addHistory(a, 'Vente enregistree', formatPrice(a.sell_price), a.date_sale);
     saveArticles(articles);
     closeModal('modal-sell');
     renderArticles();
@@ -648,13 +648,15 @@ function confirmDelete() {
 
 // ── History ──
 
-function addHistory(article, label, price) {
+function addHistory(article, label, price, dateOverride) {
     if (!article.history) article.history = [];
-    article.history.push({
-        date: new Date().toISOString(),
-        label: label,
-        price: price || null,
-    });
+    let date;
+    if (dateOverride) {
+        date = dateOverride.includes('T') ? dateOverride : dateOverride + 'T12:00:00.000Z';
+    } else {
+        date = new Date().toISOString();
+    }
+    article.history.push({ date, label, price: price || null });
 }
 
 function openHistory(id) {
