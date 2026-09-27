@@ -1,4 +1,121 @@
 {
-  "users": {},
-  "updated_at": 0
+  "users": {
+    "453315368472281098": {
+      "first_seen": "2026-09-26T12:15:30.696Z",
+      "legit_checks": 1,
+      "descriptions": 0,
+      "estimations": 0,
+      "deals_viewed": 0,
+      "weekly": {
+        "legit_checks": 1,
+        "descriptions": 0,
+        "estimations": 0,
+        "deals_viewed": 0
+      },
+      "monthly": {
+        "legit_checks": 1,
+        "descriptions": 0,
+        "estimations": 0,
+        "deals_viewed": 0
+      },
+      "recent_activity": [
+        {
+          "type": "legit_check",
+          "timestamp": "2026-09-26T12:15:30.696Z"
+        }
+      ],
+      "activity_heatmap": {
+        "2026-09-26": 1
+      },
+      "active_days_30": 1
+    },
+    "659449375629508618": {
+      "first_seen": "2026-09-26T12:48:21.634Z",
+      "legit_checks": 1,
+      "descriptions": 0,
+      "estimations": 0,
+      "deals_viewed": 0,
+      "weekly": {
+        "legit_checks": 1,
+        "descriptions": 0,
+        "estimations": 0,
+        "deals_viewed": 0
+      },
+      "monthly": {
+        "legit_checks": 1,
+        "descriptions": 0,
+        "estimations": 0,
+        "deals_viewed": 0
+      },
+      "recent_activity": [
+        {
+          "type": "legit_check",
+          "timestamp": "2026-09-26T12:48:21.634Z"
+        }
+      ],
+      "activity_heatmap": {
+        "2026-09-26": 1
+      },
+      "active_days_30": 1
+    },
+    "1305989842227822686": {
+      "first_seen": "2026-09-26T14:56:12.725Z",
+      "legit_checks": 0,
+      "descriptions": 0,
+      "estimations": 1,
+      "deals_viewed": 0,
+      "weekly": {
+        "legit_checks": 0,
+        "descriptions": 0,
+        "estimations": 1,
+        "deals_viewed": 0
+      },
+      "monthly": {
+        "legit_checks": 0,
+        "descriptions": 0,
+        "estimations": 1,
+        "deals_viewed": 0
+      },
+      "recent_activity": [
+        {
+          "type": "estimation",
+          "timestamp": "2026-09-26T14:56:12.725Z"
+        }
+      ],
+      "activity_heatmap": {
+        "2026-09-26": 1
+      },
+      "active_days_30": 1
+    },
+    "719891826802163753": {
+      "first_seen": "2026-09-26T15:02:15.467Z",
+      "legit_checks": 0,
+      "descriptions": 0,
+      "estimations": 1,
+      "deals_viewed": 0,
+      "weekly": {
+        "legit_checks": 0,
+        "descriptions": 0,
+        "estimations": 1,
+        "deals_viewed": 0
+      },
+      "monthly": {
+        "legit_checks": 0,
+        "descriptions": 0,
+        "estimations": 1,
+        "deals_viewed": 0
+      },
+      "recent_activity": [
+        {
+          "type": "estimation",
+          "timestamp": "2026-09-26T15:02:15.467Z"
+        }
+      ],
+      "activity_heatmap": {
+        "2026-09-26": 1
+      },
+      "active_days_30": 1
+    }
+  },
+  "updated_at": 1790504875401
 }

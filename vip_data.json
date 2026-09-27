@@ -1,4 +1,12 @@
 {
-  "subscribers": {},
+  "subscribers": {
+    "939598583924150314": {
+      "status": "active",
+      "current_period_start": 0,
+      "current_period_end": 9999999999,
+      "cancel_at_period_end": false,
+      "lifetime": true
+    }
+  },
   "updated_at": 0
 }

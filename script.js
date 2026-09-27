@@ -125,11 +125,12 @@ function initNavUser() {
     if (!saved) return;
     const user = JSON.parse(saved);
 
-    let avatarHtml, displayName;
+    let avatarHtml, displayName, discordId;
 
     if (user.type === 'discord') {
         const discord = JSON.parse(localStorage.getItem('discord_user') || 'null');
         if (!discord) return;
+        discordId = discord.id;
         const avatarUrl = discord.avatar
             ? `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png?size=64`
             : `https://cdn.discordapp.com/embed/avatars/0.png`;
@@ -139,6 +140,7 @@ function initNavUser() {
         const accounts = JSON.parse(localStorage.getItem('ozeah_accounts') || '{}');
         const acct = accounts[user.email];
         const discord = acct ? acct.discord : null;
+        discordId = discord ? discord.id : null;
         if (discord && discord.avatar) {
             const avatarUrl = `https://cdn.discordapp.com/avatars/${discord.id}/${discord.avatar}.png?size=64`;
             avatarHtml = `<img src="${avatarUrl}" alt="" class="user-avatar">`;
@@ -160,10 +162,12 @@ function initNavUser() {
             </div>
             <div class="user-dropdown-menu">
                 <a href="profile.html">Profil</a>
+                <a href="stock.html">Gestion</a>
                 <a href="#" onclick="logout(); return false;">Déconnexion</a>
             </div>
         </div>
     `;
+
 }
 
 // Discord login redirect (used on signup/login pages)

@@ -216,6 +216,10 @@ async function renderProfile() {
     // Header
     page.innerHTML += renderHeader(identity, stats, vip);
 
+    // Quick access: Gestion (visible par tous, VIP-only au clic)
+    const isVip = vip && (vip.status === 'active' || vip.status === 'trialing');
+    page.innerHTML += renderStockBanner(isVip);
+
     // XP
     page.innerHTML += renderXpSection(levelInfo);
 
@@ -255,6 +259,42 @@ function renderHeader(identity, stats, vip) {
                 <span class="p-meta-item">Membre depuis le ${memberSince}</span>
                 <span class="p-meta-item">${daysText}</span>
             </div>
+        </div>
+    </div>`;
+}
+
+function renderStockBanner(isVip) {
+    if (isVip) {
+        return `
+        <a href="stock.html" class="p-stock-banner">
+            <div class="p-stock-banner-left">
+                <div class="p-stock-banner-icon">📦</div>
+                <div>
+                    <div class="p-stock-banner-title">Gestion de stock</div>
+                    <div class="p-stock-banner-desc">Suivi complet de tes articles : achat, stock, vente, expedition</div>
+                </div>
+            </div>
+            <div class="p-stock-banner-arrow">→</div>
+        </a>`;
+    }
+    return `
+    <div class="p-stock-banner p-stock-banner-locked" onclick="document.getElementById('vip-stock-popup').classList.add('show')">
+        <div class="p-stock-banner-left">
+            <div class="p-stock-banner-icon">📦</div>
+            <div>
+                <div class="p-stock-banner-title">Gestion de stock <span class="p-stock-vip-tag">VIP</span></div>
+                <div class="p-stock-banner-desc">Suivi complet de tes articles : achat, stock, vente, expedition</div>
+            </div>
+        </div>
+        <div class="p-stock-banner-arrow">👑</div>
+    </div>
+    <div class="p-vip-popup-overlay" id="vip-stock-popup" onclick="if(event.target===this)this.classList.remove('show')">
+        <div class="p-vip-popup">
+            <button class="p-vip-popup-close" onclick="document.getElementById('vip-stock-popup').classList.remove('show')">&times;</button>
+            <div style="font-size:2.5rem;margin-bottom:1rem;">👑</div>
+            <h2 class="p-vip-popup-title">Fonctionnalite VIP</h2>
+            <p class="p-vip-popup-desc">La gestion de stock est reservee aux membres VIP. Abonne-toi pour suivre tes articles, calculer tes benefices et gerer ton stock.</p>
+            <a href="index.html#vip" class="p-vip-popup-btn">Devenir VIP — 9.59€/mois</a>
         </div>
     </div>`;
 }
