@@ -162,7 +162,7 @@ function renderDashboard(articles) {
         : s.avgMargin;
 
     let html = `
-        <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.total}</div><div class="dash-label">Articles</div></div>
+        <div class="dash-card"><div class="dash-emoji">👕</div><div class="dash-value">${s.total}</div><div class="dash-label">Articles</div></div>
         <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.inStock}</div><div class="dash-label">En stock</div></div>
         <div class="dash-card"><div class="dash-emoji">💰</div><div class="dash-value">${formatPrice(s.stockValue)}</div><div class="dash-label">Valeur stock</div></div>
         <div class="dash-card"><div class="dash-emoji">🛒</div><div class="dash-value">${s.soldCount}</div><div class="dash-label">Ventes</div></div>
