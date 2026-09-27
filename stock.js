@@ -705,6 +705,16 @@ function closeModalOverlay(e) {
 
 // ── Brand autocomplete ──
 
+function positionBrandDropdown() {
+    const input = document.getElementById('f-brand');
+    const container = document.getElementById('brand-suggestions');
+    if (!input || !container) return;
+    const rect = input.getBoundingClientRect();
+    container.style.top = rect.bottom + 2 + 'px';
+    container.style.left = rect.left + 'px';
+    container.style.width = rect.width + 'px';
+}
+
 function onBrandInput(val) {
     const container = document.getElementById('brand-suggestions');
     if (!val || val.length < 1) {
@@ -719,7 +729,8 @@ function onBrandInput(val) {
         container.style.display = 'none';
         return;
     }
-    container.style.display = '';
+    positionBrandDropdown();
+    container.style.display = 'block';
     container.innerHTML = matches.map(b =>
         `<div class="brand-suggestion-item" onmousedown="selectBrand('${b.replace(/'/g, "\\'")}')">${highlightMatch(b, query)}</div>`
     ).join('');
@@ -742,8 +753,10 @@ function closeBrandSuggestions() {
 }
 
 document.addEventListener('click', function(e) {
-    if (!e.target.closest('.form-brand-wrap')) closeBrandSuggestions();
+    if (!e.target.closest('.form-brand-wrap') && !e.target.closest('.brand-suggestions')) closeBrandSuggestions();
 });
+
+document.addEventListener('scroll', function() { closeBrandSuggestions(); }, true);
 
 // ── Filter / Sort events ──
 
