@@ -113,7 +113,10 @@ function computeDashStats(articles, period) {
     );
 
     const soldInPeriod = cutoff
-        ? allSold.filter(a => (a.date_sale || '') >= cutoff)
+        ? allSold.filter(a => {
+            const d = a.date_sale || a.created_at?.split('T')[0] || '';
+            return d >= cutoff;
+        })
         : allSold;
 
     const soldCount = soldInPeriod.length;
