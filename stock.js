@@ -101,30 +101,20 @@ function getPeriodCutoff(period) {
 function computeDashStats(articles, period) {
     const cutoff = getPeriodCutoff(period);
 
-    const periodArticles = cutoff
-        ? articles.filter(a => (a.date_purchase || a.created_at?.split('T')[0] || '') >= cutoff)
-        : articles;
+    const total = articles.length;
+    const inStock = articles.filter(a => a.status === 'in_stock').length;
 
-    const total = periodArticles.length;
-    const inStock = periodArticles.filter(a => a.status === 'in_stock').length;
-
-    const stockValue = periodArticles
+    const stockValue = articles
         .filter(a => a.status === 'in_stock')
         .reduce((sum, a) => sum + (parseFloat(a.buy_price) || 0), 0);
 
-    const soldArticles = periodArticles.filter(a =>
+    const allSold = articles.filter(a =>
         ['sold', 'shipped', 'finalized', 'archived'].includes(a.status) && a.sell_price
     );
 
-    if (cutoff) {
-        var soldInPeriod = articles.filter(a =>
-            ['sold', 'shipped', 'finalized', 'archived'].includes(a.status) &&
-            a.sell_price &&
-            (a.date_sale || '') >= cutoff
-        );
-    } else {
-        var soldInPeriod = soldArticles;
-    }
+    const soldInPeriod = cutoff
+        ? allSold.filter(a => (a.date_sale || '') >= cutoff)
+        : allSold;
 
     const soldCount = soldInPeriod.length;
     const revenue = soldInPeriod.reduce((sum, a) => sum + (parseFloat(a.sell_price) || 0), 0);
