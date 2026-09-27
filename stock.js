@@ -83,44 +83,93 @@ function formatDateLong(d) {
 
 // ── Dashboard ──
 
-function renderDashboard(articles) {
-    const container = document.getElementById('dashboard-grid');
-    const total = articles.length;
-    const inStock = articles.filter(a => a.status === 'in_stock').length;
+let currentDashPeriod = 'all';
 
-    const stockValue = articles
+function getPeriodCutoff(period) {
+    if (period === 'all') return null;
+    const now = new Date();
+    switch (period) {
+        case '1m': now.setMonth(now.getMonth() - 1); break;
+        case '3m': now.setMonth(now.getMonth() - 3); break;
+        case '6m': now.setMonth(now.getMonth() - 6); break;
+        case '1y': now.setFullYear(now.getFullYear() - 1); break;
+    }
+    return now.toISOString().split('T')[0];
+}
+
+function computeDashStats(articles, period) {
+    const cutoff = getPeriodCutoff(period);
+
+    const periodArticles = cutoff
+        ? articles.filter(a => (a.date_purchase || a.created_at?.split('T')[0] || '') >= cutoff)
+        : articles;
+
+    const total = periodArticles.length;
+    const inStock = periodArticles.filter(a => a.status === 'in_stock').length;
+
+    const stockValue = periodArticles
         .filter(a => a.status === 'in_stock')
         .reduce((sum, a) => sum + (parseFloat(a.buy_price) || 0), 0);
 
-    const soldArticles = articles.filter(a =>
+    const soldArticles = periodArticles.filter(a =>
         ['sold', 'shipped', 'finalized', 'archived'].includes(a.status) && a.sell_price
     );
-    const soldCount = soldArticles.length;
 
-    const revenue = soldArticles.reduce((sum, a) => sum + (parseFloat(a.sell_price) || 0), 0);
+    if (cutoff) {
+        var soldInPeriod = articles.filter(a =>
+            ['sold', 'shipped', 'finalized', 'archived'].includes(a.status) &&
+            a.sell_price &&
+            (a.date_sale || '') >= cutoff
+        );
+    } else {
+        var soldInPeriod = soldArticles;
+    }
 
-    const totalBenefit = soldArticles.reduce((sum, a) => {
-        const b = (parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0);
-        return sum + b;
+    const soldCount = soldInPeriod.length;
+    const revenue = soldInPeriod.reduce((sum, a) => sum + (parseFloat(a.sell_price) || 0), 0);
+
+    const totalBenefit = soldInPeriod.reduce((sum, a) => {
+        return sum + ((parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0));
     }, 0);
 
     const avgMargin = soldCount > 0
-        ? soldArticles.reduce((sum, a) => {
+        ? soldInPeriod.reduce((sum, a) => {
             const bp = parseFloat(a.buy_price) || 0;
             if (bp === 0) return sum;
             return sum + (((parseFloat(a.sell_price) || 0) - bp) / bp * 100);
         }, 0) / soldCount
         : 0;
 
+    const urssaf = revenue * 0.134;
+
+    return { total, inStock, stockValue, soldCount, revenue, totalBenefit, avgMargin, urssaf };
+}
+
+function renderDashboard(articles) {
+    const container = document.getElementById('dashboard-grid');
+    const s = computeDashStats(articles, currentDashPeriod);
+
     container.innerHTML = `
-        <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${total}</div><div class="dash-label">Articles</div></div>
-        <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${inStock}</div><div class="dash-label">En stock</div></div>
-        <div class="dash-card"><div class="dash-emoji">💰</div><div class="dash-value">${formatPrice(stockValue)}</div><div class="dash-label">Valeur stock</div></div>
-        <div class="dash-card"><div class="dash-emoji">🛒</div><div class="dash-value">${soldCount}</div><div class="dash-label">Ventes</div></div>
-        <div class="dash-card"><div class="dash-emoji">💵</div><div class="dash-value">${formatPrice(revenue)}</div><div class="dash-label">CA</div></div>
-        <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(totalBenefit)}</div><div class="dash-label">Benefice</div></div>
-        <div class="dash-card"><div class="dash-emoji">📊</div><div class="dash-value">${avgMargin > 0 ? avgMargin.toFixed(1) + ' %' : '-'}</div><div class="dash-label">Marge moy.</div></div>
+        <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.total}</div><div class="dash-label">Articles</div></div>
+        <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.inStock}</div><div class="dash-label">En stock</div></div>
+        <div class="dash-card"><div class="dash-emoji">💰</div><div class="dash-value">${formatPrice(s.stockValue)}</div><div class="dash-label">Valeur stock</div></div>
+        <div class="dash-card"><div class="dash-emoji">🛒</div><div class="dash-value">${s.soldCount}</div><div class="dash-label">Ventes</div></div>
+        <div class="dash-card"><div class="dash-emoji">💵</div><div class="dash-value">${formatPrice(s.revenue)}</div><div class="dash-label">CA</div></div>
+        <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(s.totalBenefit)}</div><div class="dash-label">Benefice</div></div>
+        <div class="dash-card"><div class="dash-emoji">📊</div><div class="dash-value">${s.avgMargin > 0 ? s.avgMargin.toFixed(1) + ' %' : '-'}</div><div class="dash-label">Marge moy.</div></div>
+        <div class="dash-card dash-card-urssaf"><div class="dash-emoji">🏛️</div><div class="dash-value">${formatPrice(s.urssaf)}</div><div class="dash-label">URSSAF (13.4%)</div></div>
     `;
+}
+
+function initDashPeriodTabs() {
+    document.querySelectorAll('.dash-period-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.dash-period-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentDashPeriod = btn.dataset.period;
+            renderArticles();
+        });
+    });
 }
 
 // ── Article list ──
@@ -211,7 +260,7 @@ function renderArticleCard(a) {
     const hasSale = a.sell_price !== null && a.sell_price !== undefined && a.sell_price !== '';
     const benefit = hasSale ? sp - bp : null;
     const margin = hasSale && bp > 0 ? (benefit / bp * 100) : null;
-    const urssaf = hasSale ? sp * 0.132 : null;
+    const urssaf = hasSale ? sp * 0.134 : null;
 
     const photoHtml = a.photo
         ? `<img src="${a.photo}" alt="">`
@@ -753,5 +802,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const hasAccess = await checkVipAccess();
     if (!hasAccess) return;
     initFilters();
+    initDashPeriodTabs();
     renderArticles();
 });
