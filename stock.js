@@ -7,8 +7,8 @@ const STATUS_CONFIG = {
     in_stock:  { label: 'En stock',  emoji: '🔵', class: 'status-in_stock'  },
     sold:      { label: 'Vendu',     emoji: '🟣', class: 'status-sold'      },
     shipped:   { label: 'Expédié',   emoji: '🔵', class: 'status-shipped'   },
-    finalized: { label: 'Finalise',  emoji: '🟢', class: 'status-finalized' },
-    archived:  { label: 'Archive',   emoji: '⚪',       class: 'status-archived'  },
+    finalized: { label: 'Finalisé',  emoji: '🟢', class: 'status-finalized' },
+    archived:  { label: 'Archivé',   emoji: '⚪',       class: 'status-archived'  },
 };
 
 const STATUS_ORDER = ['ordered', 'in_stock', 'sold', 'shipped', 'finalized', 'archived'];
@@ -259,7 +259,7 @@ function renderArticles() {
         container.innerHTML = `
             <div class="stock-empty">
                 <div class="stock-empty-icon">📦</div>
-                <div class="stock-empty-text">${hasAny ? 'Aucun resultat' : 'Aucun article'}</div>
+                <div class="stock-empty-text">${hasAny ? 'Aucun résultat' : 'Aucun article'}</div>
                 <div class="stock-empty-sub">${hasAny ? 'Essaie de modifier tes filtres.' : 'Clique sur "+ Nouvel article" pour commencer.'}</div>
             </div>
         `;
@@ -308,7 +308,7 @@ function renderArticleCard(a) {
             actionHtml = `<button class="btn-action btn-action-secondary" onclick="actionArchived('${a.id}')">Archiver</button>`;
             break;
         case 'archived':
-            actionHtml = `<button class="btn-action btn-action-secondary" onclick="actionUnarchive('${a.id}')">Desarchiver</button>`;
+            actionHtml = `<button class="btn-action btn-action-secondary" onclick="actionUnarchive('${a.id}')">Désarchivér</button>`;
             break;
     }
 
@@ -331,7 +331,7 @@ function renderArticleCard(a) {
                     <span class="price-value">${formatPrice(bp)}</span>
                 </div>
                 <div class="price-item">
-                    <span class="price-label">Prevu</span>
+                    <span class="price-label">Prévu</span>
                     <span class="price-value ${ep ? '' : 'neutral'}">${ep ? formatPrice(ep) : '-'}</span>
                 </div>
                 <div class="price-item">
@@ -481,7 +481,7 @@ function handleArticleSubmit(e) {
         if (document.getElementById('f-sell-date-group').style.display !== 'none') {
             articles[idx].date_sale = editSellDate;
         }
-        addHistory(articles[idx], 'Article modifie');
+        addHistory(articles[idx], 'Article modifié');
     } else {
         if (!reference) reference = generateRef();
         const article = {
@@ -508,7 +508,7 @@ function handleArticleSubmit(e) {
             history: [],
             created_at: new Date().toISOString(),
         };
-        addHistory(article, 'Article achete', buy_price ? formatPrice(buy_price) : null, date_purchase);
+        addHistory(article, 'Article acheté', buy_price ? formatPrice(buy_price) : null, date_purchase);
         addHistory(article, 'Mis en stock', null, date_purchase || todayStr());
         articles.push(article);
     }
@@ -586,7 +586,7 @@ function actionFinalized(id) {
     if (!a) return;
     a.status = 'finalized';
     a.date_finalized = todayStr();
-    addHistory(a, 'Vente finalisee', null, todayStr());
+    addHistory(a, 'Vente finalisée', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -596,7 +596,7 @@ function actionArchived(id) {
     const a = articles.find(x => x.id === id);
     if (!a) return;
     a.status = 'archived';
-    addHistory(a, 'Archive', null, todayStr());
+    addHistory(a, 'Archivé', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -606,7 +606,7 @@ function actionUnarchive(id) {
     const a = articles.find(x => x.id === id);
     if (!a) return;
     a.status = 'finalized';
-    addHistory(a, 'Desarchive', null, todayStr());
+    addHistory(a, 'Désarchivé', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -636,7 +636,7 @@ function handleSellSubmit(e) {
     a.sell_platform = document.getElementById('s-platform').value;
     a.date_sale = document.getElementById('s-date').value || todayStr();
     a.status = 'sold';
-    addHistory(a, 'Vente enregistree', formatPrice(a.sell_price), a.date_sale);
+    addHistory(a, 'Vente enregistrée', formatPrice(a.sell_price), a.date_sale);
     saveArticles(articles);
     closeModal('modal-sell');
     renderArticles();
@@ -830,14 +830,14 @@ async function checkVipAccess() {
 
     const discordId = getDiscordIdForStock();
     if (!discordId) {
-        showVipWall('Lie ton compte Discord pour acceder a la gestion de stock.');
+        showVipWall('Lie ton compte Discord pour accéder à la gestion de stock.');
         return false;
     }
 
     try {
         const res = await fetch('vip_data.json?t=' + Date.now());
         if (!res.ok) {
-            showVipWall('Impossible de verifier ton statut VIP.');
+            showVipWall('Impossible de vérifier ton statut VIP.');
             return false;
         }
         const data = await res.json();

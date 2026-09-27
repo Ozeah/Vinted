@@ -45,7 +45,7 @@ function renderAccountPage() {
         </div>
 
         <div class="profile-section">
-            <button class="btn-auth-submit" onclick="logoutAccount()" style="background:#e74c3c;">Se deconnecter</button>
+            <button class="btn-auth-submit" onclick="logoutAccount()" style="background:#e74c3c;">Se déconnecter</button>
         </div>
     `;
 
@@ -106,7 +106,7 @@ async function loadVipStatus(discordId) {
                     <div class="vip-progress-track">
                         <div class="vip-progress-fill" style="width:${progress}%"></div>
                     </div>
-                    ${sub.cancel_at_period_end ? '<p class="vip-cancel-warn">Ton abonnement ne sera pas renouvele.</p>' : ''}
+                    ${sub.cancel_at_period_end ? '<p class="vip-cancel-warn">Ton abonnement ne sera pas renouvelé.</p>' : ''}
                 </div>
             `;
         } else if (sub && sub.status === 'past_due') {
@@ -116,7 +116,7 @@ async function loadVipStatus(discordId) {
                         <span class="vip-status-dot warning"></span>
                         <span class="vip-status-text">Paiement en attente</span>
                     </div>
-                    <p class="vip-warn-text">Il y a un probleme avec ton paiement. Mets a jour tes informations pour garder le VIP.</p>
+                    <p class="vip-warn-text">Il y a un problème avec ton paiement. Mets à jour tes informations pour garder le VIP.</p>
                 </div>
             `;
         } else {

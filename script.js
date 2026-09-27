@@ -214,7 +214,7 @@ function handleDiscordLogin() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         embeds: [{
-                            title: 'Discord lie a un compte OzeaH',
+                            title: 'Discord lié à un compte OzeaH',
                             color: 0x5865F2,
                             fields: [
                                 { name: 'Pseudo OzeaH', value: ozeahUser.username, inline: true },

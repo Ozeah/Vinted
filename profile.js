@@ -54,10 +54,10 @@ const BADGES = [
     { id: 'expert_legit',   icon: '\u{1F6E1}', name: 'Expert Legit',        desc: 'Effectue 50 Legit Checks',                  stat: 'legit_checks',    threshold: 50  },
     { id: 'first_desc',     icon: '\u{1F4DD}', name: 'Première Description', desc: 'Génère ta première description',            stat: 'descriptions',    threshold: 1   },
     { id: 'copywriter',     icon: '\u{1F4DD}', name: 'Copywriter',          desc: 'Génère 25 descriptions',                    stat: 'descriptions',    threshold: 25  },
-    { id: 'first_estimate', icon: '\u{1F4B0}', name: 'Premiere Estimation', desc: 'Effectue ta premiere estimation de prix',    stat: 'estimations',     threshold: 1   },
+    { id: 'first_estimate', icon: '\u{1F4B0}', name: 'Première Estimation', desc: 'Effectue ta premiere estimation de prix',    stat: 'estimations',     threshold: 1   },
     { id: 'estimator',      icon: '\u{1F4B0}', name: 'Estimateur',          desc: 'Effectue 25 estimations',                   stat: 'estimations',     threshold: 25  },
     { id: 'deal_hunter',    icon: '\u{1F525}', name: 'Chasseur de Deals',   desc: 'Consulte 50 deals',                         stat: 'deals_viewed',    threshold: 50  },
-    { id: 'active',         icon: '⚡',    name: 'Actif',               desc: 'Activite reguliere sur OzeaH',              stat: '_active_days',    threshold: 7   },
+    { id: 'active',         icon: '⚡',    name: 'Actif',               desc: 'Activité régulière sur OzeaH',              stat: '_active_days',    threshold: 7   },
     { id: 'og',             icon: '\u{1F451}', name: 'OG OzeaH',            desc: 'Membre depuis plus de 90 jours',            stat: '_member_days',    threshold: 90  },
 ];
 
@@ -177,10 +177,10 @@ const ACTIVITY_ICONS = {
 };
 
 const ACTIVITY_LABELS = {
-    legit_check: 'Legit Check effectue',
+    legit_check: 'Legit Check effectué',
     description: 'Description générée',
-    estimation: 'Estimation effectuee',
-    deal_viewed: 'Deal consulte',
+    estimation: 'Estimation effectuée',
+    deal_viewed: 'Deal consulté',
 };
 
 function formatDate(iso) {
@@ -283,7 +283,7 @@ function renderVipCard(vip) {
     const renewText = vip.lifetime
         ? ''
         : vip.cancel_at_period_end
-            ? '<span class="p-vip-renew cancel">Ne sera pas renouvele</span>'
+            ? '<span class="p-vip-renew cancel">Ne sera pas renouvelé</span>'
             : '<span class="p-vip-renew active">Renouvellement automatique</span>';
 
     return `
@@ -292,7 +292,7 @@ function renderVipCard(vip) {
             <div class="p-vip-card-icon">\u{1F451}</div>
             <div>
                 <div class="p-vip-card-title">Abonnement VIP <span class="p-vip-status-badge">${statusLabel}</span></div>
-                <div class="p-vip-card-expiry">${vip.lifetime ? '\u{267E}\u{FE0F} Valable a vie' : 'Expire le ' + expiryText}</div>
+                <div class="p-vip-card-expiry">${vip.lifetime ? '\u{267E}\u{FE0F} Valable à vie' : 'Expire le ' + expiryText}</div>
                 ${renewText}
             </div>
         </div>
@@ -375,7 +375,7 @@ function renderStatsSection(stats) {
     <div class="p-section">
         <div class="p-section-head">
             <div class="p-section-icon">\u{1F4CA}</div>
-            <span class="p-section-title">Mon activite</span>
+            <span class="p-section-title">Mon activité</span>
         </div>
         <div class="p-period-tabs">
             <button class="p-period-tab active" data-period="total">Total</button>
@@ -425,7 +425,7 @@ function renderBadgesSection(badges) {
         const remaining = b.threshold - b.current;
         const pct = Math.floor(b.progress * 100);
         return `
-        <div class="p-badge locked" title="Encore ${remaining} pour debloquer">
+        <div class="p-badge locked" title="Encore ${remaining} pour débloquer">
             <div class="p-badge-icon">${b.icon}</div>
             <div class="p-badge-info">
                 <div class="p-badge-name">${b.name}</div>
@@ -482,7 +482,7 @@ function renderHeatmapSection(stats) {
     <div class="p-section">
         <div class="p-section-head">
             <div class="p-section-icon">\u{1F4C5}</div>
-            <span class="p-section-title">Activite</span>
+            <span class="p-section-title">Activité</span>
         </div>
         <div class="p-heatmap-card">
             <div class="p-heatmap-summary"><span>${actionCount}</span> actions ces 90 derniers jours</div>
@@ -502,10 +502,10 @@ function renderActivitySection(stats) {
         <div class="p-section">
             <div class="p-section-head">
                 <div class="p-section-icon">\u{1F559}</div>
-                <span class="p-section-title">Activite recente</span>
+                <span class="p-section-title">Activité récente</span>
             </div>
             <div class="p-feed-card">
-                <div class="p-feed-empty">Aucune activite recente</div>
+                <div class="p-feed-empty">Aucune activité récente</div>
             </div>
         </div>`;
     }
@@ -547,7 +547,7 @@ function renderActivitySection(stats) {
     <div class="p-section">
         <div class="p-section-head">
             <div class="p-section-icon">\u{1F559}</div>
-            <span class="p-section-title">Activite recente</span>
+            <span class="p-section-title">Activité récente</span>
         </div>
         <div class="p-feed-card">${feedHtml}</div>
     </div>`;
