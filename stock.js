@@ -157,6 +157,9 @@ function renderDashboard(articles) {
     const s = computeDashStats(articles, currentDashPeriod);
 
     const netBenefit = isUrssafEnabled ? s.totalBenefit - s.urssaf : s.totalBenefit;
+    const displayMargin = isUrssafEnabled && s.revenue > 0
+        ? ((s.totalBenefit - s.urssaf) / (s.revenue - s.totalBenefit) * 100)
+        : s.avgMargin;
 
     let html = `
         <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.total}</div><div class="dash-label">Articles</div></div>
@@ -165,7 +168,7 @@ function renderDashboard(articles) {
         <div class="dash-card"><div class="dash-emoji">🛒</div><div class="dash-value">${s.soldCount}</div><div class="dash-label">Ventes</div></div>
         <div class="dash-card"><div class="dash-emoji">💵</div><div class="dash-value">${formatPrice(s.revenue)}</div><div class="dash-label">CA</div></div>
         <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(netBenefit)}</div><div class="dash-label">Benefice${isUrssafEnabled ? ' net' : ''}</div></div>
-        <div class="dash-card"><div class="dash-emoji">📊</div><div class="dash-value">${s.avgMargin > 0 ? s.avgMargin.toFixed(1) + ' %' : '-'}</div><div class="dash-label">Marge moy.</div></div>
+        <div class="dash-card"><div class="dash-emoji">📊</div><div class="dash-value">${displayMargin > 0 ? displayMargin.toFixed(1) + ' %' : '-'}</div><div class="dash-label">Marge moy.</div></div>
     `;
 
     if (isUrssafEnabled) {
