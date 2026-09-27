@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OzeaH — Admin</title>
+    <link rel="icon" type="image/png" href="vip.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-text">OzeaH</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features">Fonctionnalités</a>
+                <a href="index.html#vip">VIP</a>
+                <a href="index.html#faq">FAQ</a>
+            </div>
+            <div class="nav-right">
+                <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-nav">Rejoindre</a>
+                <div id="user-area">
+                    <button onclick="loginDiscord()" class="btn btn-login">Connexion</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-page" id="admin-page">
+        <div class="admin-loading" id="admin-loading">Chargement...</div>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 OzeaH. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
