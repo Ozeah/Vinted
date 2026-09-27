@@ -6,7 +6,7 @@ const STATUS_CONFIG = {
     ordered:   { label: 'Commande',  emoji: '🟠', class: 'status-ordered'   },
     in_stock:  { label: 'En stock',  emoji: '🔵', class: 'status-in_stock'  },
     sold:      { label: 'Vendu',     emoji: '🟣', class: 'status-sold'      },
-    shipped:   { label: 'Expedie',   emoji: '🔵', class: 'status-shipped'   },
+    shipped:   { label: 'Expédié',   emoji: '🔵', class: 'status-shipped'   },
     finalized: { label: 'Finalise',  emoji: '🟢', class: 'status-finalized' },
     archived:  { label: 'Archive',   emoji: '⚪',       class: 'status-archived'  },
 };
@@ -160,7 +160,7 @@ function renderDashboard(articles) {
         <div class="dash-card"><div class="dash-emoji">💰</div><div class="dash-value">${formatPrice(s.stockValue)}</div><div class="dash-label">Valeur stock</div></div>
         <div class="dash-card"><div class="dash-emoji">🛒</div><div class="dash-value">${s.soldCount}</div><div class="dash-label">Ventes</div></div>
         <div class="dash-card"><div class="dash-emoji">💵</div><div class="dash-value">${formatPrice(s.revenue)}</div><div class="dash-label">CA</div></div>
-        <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(netBenefit)}</div><div class="dash-label">Benefice${isUrssafEnabled ? ' net' : ''}</div></div>
+        <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(netBenefit)}</div><div class="dash-label">Bénéfice${isUrssafEnabled ? ' net' : ''}</div></div>
         <div class="dash-card"><div class="dash-emoji">📊</div><div class="dash-value">${displayMargin > 0 ? displayMargin.toFixed(1) + ' %' : '-'}</div><div class="dash-label">Marge moy.</div></div>
     `;
 
@@ -299,7 +299,7 @@ function renderArticleCard(a) {
             actionHtml = `<button class="btn-action btn-action-primary" onclick="openSellModal('${a.id}')">Enregistrer la vente</button>`;
             break;
         case 'sold':
-            actionHtml = `<button class="btn-action btn-action-primary" onclick="actionShipped('${a.id}')">Marquer comme expedie</button>`;
+            actionHtml = `<button class="btn-action btn-action-primary" onclick="actionShipped('${a.id}')">Marquer comme expédié</button>`;
             break;
         case 'shipped':
             actionHtml = `<button class="btn-action btn-action-primary" onclick="actionFinalized('${a.id}')">Finaliser</button>`;
@@ -339,7 +339,7 @@ function renderArticleCard(a) {
                     <span class="price-value ${hasSale ? '' : 'neutral'}">${hasSale ? formatPrice(sp) : '-'}</span>
                 </div>
                 <div class="price-item">
-                    <span class="price-label">Benefice</span>
+                    <span class="price-label">Bénéfice</span>
                     <span class="price-value ${benefit !== null ? (benefit >= 0 ? 'positive' : 'negative') : 'neutral'}">${benefit !== null ? formatPrice(benefit) : '-'}</span>
                 </div>
                 <div class="price-item">
@@ -575,7 +575,7 @@ function actionShipped(id) {
     if (!a) return;
     a.status = 'shipped';
     a.date_shipped = todayStr();
-    addHistory(a, 'Expedie', null, todayStr());
+    addHistory(a, 'Expédié', null, todayStr());
     saveArticles(articles);
     renderArticles();
 }
@@ -859,9 +859,9 @@ function showVipWall(customMsg) {
     overlay.innerHTML = `
         <div class="modal-content modal-small" style="text-align:center;">
             <div style="font-size:2.5rem;margin-bottom:1rem;">👑</div>
-            <h2 class="modal-title">Fonctionnalite VIP</h2>
+            <h2 class="modal-title">Fonctionnalité VIP</h2>
             <p class="delete-warn" style="margin-bottom:1.5rem;">
-                ${customMsg || 'La gestion de stock est reservee aux membres VIP. Abonne-toi pour debloquer cette fonctionnalite.'}
+                ${customMsg || 'La gestion de stock est réservée aux membres VIP. Abonne-toi pour débloquer cette fonctionnalité.'}
             </p>
             <div class="form-actions" style="justify-content:center;gap:0.75rem;">
                 <a href="profile.html" class="btn-modal-cancel" style="text-decoration:none;">Retour</a>

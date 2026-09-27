@@ -52,8 +52,8 @@ const BADGES = [
     { id: 'first_check',   icon: '\u{1F6E1}', name: 'Premier Check',       desc: 'Effectue ton premier Legit Check',          stat: 'legit_checks',    threshold: 1   },
     { id: 'authenticator',  icon: '\u{1F6E1}', name: 'Authentificateur',    desc: 'Effectue 10 Legit Checks',                  stat: 'legit_checks',    threshold: 10  },
     { id: 'expert_legit',   icon: '\u{1F6E1}', name: 'Expert Legit',        desc: 'Effectue 50 Legit Checks',                  stat: 'legit_checks',    threshold: 50  },
-    { id: 'first_desc',     icon: '\u{1F4DD}', name: 'Premiere Description', desc: 'Genere ta premiere description',            stat: 'descriptions',    threshold: 1   },
-    { id: 'copywriter',     icon: '\u{1F4DD}', name: 'Copywriter',          desc: 'Genere 25 descriptions',                    stat: 'descriptions',    threshold: 25  },
+    { id: 'first_desc',     icon: '\u{1F4DD}', name: 'Première Description', desc: 'Génère ta première description',            stat: 'descriptions',    threshold: 1   },
+    { id: 'copywriter',     icon: '\u{1F4DD}', name: 'Copywriter',          desc: 'Génère 25 descriptions',                    stat: 'descriptions',    threshold: 25  },
     { id: 'first_estimate', icon: '\u{1F4B0}', name: 'Premiere Estimation', desc: 'Effectue ta premiere estimation de prix',    stat: 'estimations',     threshold: 1   },
     { id: 'estimator',      icon: '\u{1F4B0}', name: 'Estimateur',          desc: 'Effectue 25 estimations',                   stat: 'estimations',     threshold: 25  },
     { id: 'deal_hunter',    icon: '\u{1F525}', name: 'Chasseur de Deals',   desc: 'Consulte 50 deals',                         stat: 'deals_viewed',    threshold: 50  },
@@ -178,7 +178,7 @@ const ACTIVITY_ICONS = {
 
 const ACTIVITY_LABELS = {
     legit_check: 'Legit Check effectue',
-    description: 'Description generee',
+    description: 'Description générée',
     estimation: 'Estimation effectuee',
     deal_viewed: 'Deal consulte',
 };
@@ -308,7 +308,7 @@ function renderStockBanner(isVip) {
                 <div class="p-stock-banner-icon">📦</div>
                 <div>
                     <div class="p-stock-banner-title">Gestion de stock</div>
-                    <div class="p-stock-banner-desc">Suivi complet de tes articles : achat, stock, vente, expedition</div>
+                    <div class="p-stock-banner-desc">Suivi complet de tes articles : achat, stock, vente, expédition</div>
                 </div>
             </div>
             <div class="p-stock-banner-arrow">→</div>
@@ -320,7 +320,7 @@ function renderStockBanner(isVip) {
             <div class="p-stock-banner-icon">📦</div>
             <div>
                 <div class="p-stock-banner-title">Gestion de stock <span class="p-stock-vip-tag">VIP</span></div>
-                <div class="p-stock-banner-desc">Suivi complet de tes articles : achat, stock, vente, expedition</div>
+                <div class="p-stock-banner-desc">Suivi complet de tes articles : achat, stock, vente, expédition</div>
             </div>
         </div>
         <div class="p-stock-banner-arrow">👑</div>
@@ -329,8 +329,8 @@ function renderStockBanner(isVip) {
         <div class="p-vip-popup">
             <button class="p-vip-popup-close" onclick="document.getElementById('vip-stock-popup').classList.remove('show')">&times;</button>
             <div style="font-size:2.5rem;margin-bottom:1rem;">👑</div>
-            <h2 class="p-vip-popup-title">Fonctionnalite VIP</h2>
-            <p class="p-vip-popup-desc">La gestion de stock est reservee aux membres VIP. Abonne-toi pour suivre tes articles, calculer tes benefices et gerer ton stock.</p>
+            <h2 class="p-vip-popup-title">Fonctionnalité VIP</h2>
+            <p class="p-vip-popup-desc">La gestion de stock est réservée aux membres VIP. Abonne-toi pour suivre tes articles, calculer tes bénéfices et gérer ton stock.</p>
             <a href="index.html#vip" class="p-vip-popup-btn">Devenir VIP — 9.59€/mois</a>
         </div>
     </div>`;
