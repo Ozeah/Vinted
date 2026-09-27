@@ -154,6 +154,8 @@ function initNavUser() {
         return;
     }
 
+    const adminLink = discordId === '939598583924150314' ? `<a href="admin.html">Admin</a>` : '';
+
     area.innerHTML = `
         <div class="user-dropdown">
             <div class="user-logged">
@@ -163,6 +165,7 @@ function initNavUser() {
             <div class="user-dropdown-menu">
                 <a href="profile.html">Profil</a>
                 <a href="stock.html">Gestion</a>
+                ${adminLink}
                 <a href="#" onclick="logout(); return false;">Déconnexion</a>
             </div>
         </div>
