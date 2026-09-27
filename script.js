@@ -197,6 +197,15 @@ function handleDiscordLogin() {
         localStorage.setItem('discord_user', JSON.stringify(discordUser));
         window.history.replaceState(null, '', window.location.pathname);
 
+        const registry = JSON.parse(localStorage.getItem('ozeah_users_registry') || '{}');
+        registry[discordUser.id] = {
+            username: discordUser.username,
+            global_name: discordUser.global_name,
+            avatar: discordUser.avatar,
+            last_seen: new Date().toISOString(),
+        };
+        localStorage.setItem('ozeah_users_registry', JSON.stringify(registry));
+
         if (isLinking) {
             localStorage.removeItem('ozeah_discord_link');
             const ozeahUser = JSON.parse(localStorage.getItem('ozeah_user') || 'null');

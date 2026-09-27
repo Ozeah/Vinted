@@ -16,6 +16,7 @@ const STATUS_CONFIG = {
 let allUsers = [];
 let vipData = {};
 let statsData = {};
+let usersRegistry = {};
 
 function getAdminDiscordId() {
     const user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
@@ -72,6 +73,7 @@ async function initAdmin() {
         statsData = { users: {} };
     }
 
+    usersRegistry = JSON.parse(localStorage.getItem('ozeah_users_registry') || '{}');
     buildUserList();
     renderAdminPage();
 }
@@ -97,6 +99,14 @@ function buildUserList() {
             const id = key.replace('stock_d_', '');
             if (!userMap[id]) userMap[id] = { discordId: id };
             userMap[id].hasStock = true;
+        }
+    }
+
+    for (const id in userMap) {
+        const reg = usersRegistry[id];
+        if (reg) {
+            userMap[id].username = reg.global_name || reg.username || null;
+            userMap[id].avatar = reg.avatar || null;
         }
     }
 
@@ -166,7 +176,7 @@ function renderAdminPage() {
         }
         const filtered = allUsers.filter(u => {
             if (u.discordId.includes(q)) return true;
-            const name = u.stats?.username || u.discordId;
+            const name = u.username || u.discordId;
             if (name.toLowerCase().includes(q)) return true;
             return false;
         });
@@ -186,7 +196,7 @@ function renderUserList(users) {
     }
 
     container.innerHTML = users.map(u => {
-        const name = u.discordId;
+        const displayName = u.username || u.discordId;
         const isVip = u.vip && (u.vip.status === 'active' || u.vip.status === 'trialing');
         const isLifetime = u.vip && u.vip.lifetime;
         const stats = u.stats || {};
@@ -196,11 +206,15 @@ function renderUserList(users) {
         if (isVip) tagsHtml += `<span class="admin-tag admin-tag-vip">VIP</span>`;
         if (isLifetime) tagsHtml += `<span class="admin-tag admin-tag-lifetime">Lifetime</span>`;
 
+        const avatarHtml = u.avatar
+            ? `<img src="https://cdn.discordapp.com/avatars/${u.discordId}/${u.avatar}.png?size=64" class="admin-user-avatar" alt="">`
+            : `<div class="admin-user-avatar-letter">${displayName.charAt(0).toUpperCase()}</div>`;
+
         return `
         <div class="admin-user-card" onclick="openDetail('${u.discordId}')">
-            <div class="admin-user-avatar-letter">${name.charAt(0)}</div>
+            ${avatarHtml}
             <div class="admin-user-info">
-                <div class="admin-user-name">${escapeHtml(name)}</div>
+                <div class="admin-user-name">${escapeHtml(displayName)}</div>
                 <div class="admin-user-id">${u.discordId}</div>
                 ${tagsHtml ? `<div class="admin-user-tags">${tagsHtml}</div>` : ''}
             </div>
@@ -261,9 +275,11 @@ function openDetail(discordId) {
         <button class="admin-detail-close" onclick="closeDetail()">&times;</button>
 
         <div class="admin-detail-header">
-            <div class="admin-detail-avatar-letter">${discordId.charAt(0)}</div>
+            ${u.avatar
+                ? `<img src="https://cdn.discordapp.com/avatars/${discordId}/${u.avatar}.png?size=128" class="admin-detail-avatar" alt="">`
+                : `<div class="admin-detail-avatar-letter">${(u.username || discordId).charAt(0).toUpperCase()}</div>`}
             <div>
-                <div class="admin-detail-name">${escapeHtml(discordId)} ${isVip ? '<span class="admin-tag admin-tag-vip" style="font-size:0.7rem;padding:0.15rem 0.6rem;">VIP</span>' : ''}</div>
+                <div class="admin-detail-name">${escapeHtml(u.username || discordId)} ${isVip ? '<span class="admin-tag admin-tag-vip" style="font-size:0.7rem;padding:0.15rem 0.6rem;">VIP</span>' : ''}</div>
                 <div class="admin-detail-id">${discordId}</div>
                 <div class="admin-detail-first-seen">Membre depuis le ${formatDate(stats.first_seen)}</div>
             </div>
