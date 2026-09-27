@@ -216,8 +216,13 @@ async function renderProfile() {
     // Header
     page.innerHTML += renderHeader(identity, stats, vip);
 
-    // Quick access: Gestion (visible par tous, VIP-only au clic)
     const isVip = vip && (vip.status === 'active' || vip.status === 'trialing');
+
+    if (isVip) {
+        page.innerHTML += renderVipCard(vip);
+    }
+
+    // Quick access: Gestion (visible par tous, VIP-only au clic)
     page.innerHTML += renderStockBanner(isVip);
 
     // XP
@@ -260,6 +265,38 @@ function renderHeader(identity, stats, vip) {
                 ${days > 0 ? `<span class="p-meta-item">${daysText}</span>` : ''}
             </div>
         </div>
+    </div>`;
+}
+
+function renderVipCard(vip) {
+    let expiryText;
+    if (vip.lifetime) {
+        expiryText = 'A vie';
+    } else {
+        const end = new Date(vip.current_period_end * 1000);
+        const dateStr = end.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+        const timeStr = end.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        expiryText = `${dateStr} a ${timeStr}`;
+    }
+
+    const statusLabel = vip.status === 'trialing' ? 'Essai' : 'Actif';
+    const renewText = vip.lifetime
+        ? ''
+        : vip.cancel_at_period_end
+            ? '<span class="p-vip-renew cancel">Ne sera pas renouvele</span>'
+            : '<span class="p-vip-renew active">Renouvellement automatique</span>';
+
+    return `
+    <div class="p-vip-card">
+        <div class="p-vip-card-left">
+            <div class="p-vip-card-icon">\u{1F451}</div>
+            <div>
+                <div class="p-vip-card-title">Abonnement VIP <span class="p-vip-status-badge">${statusLabel}</span></div>
+                <div class="p-vip-card-expiry">${vip.lifetime ? '\u{267E}\u{FE0F} Valable a vie' : 'Expire le ' + expiryText}</div>
+                ${renewText}
+            </div>
+        </div>
+        <div class="p-vip-card-badge">VIP</div>
     </div>`;
 }
 

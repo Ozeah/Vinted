@@ -101,6 +101,102 @@
     text-transform: uppercase;
 }
 
+/* ── VIP card ── */
+.p-vip-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.5rem;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.06), rgba(230, 126, 34, 0.12));
+    border: 1px solid rgba(243, 156, 18, 0.25);
+    border-radius: 16px;
+    margin-bottom: 1rem;
+}
+
+.p-vip-card-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.p-vip-card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.25);
+}
+
+.p-vip-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.p-vip-status-badge {
+    display: inline-flex;
+    padding: 0.1rem 0.5rem;
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 6px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #2ecc71;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.p-vip-card-expiry {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.p-vip-renew {
+    display: block;
+    font-size: 0.68rem;
+    margin-top: 0.15rem;
+}
+
+.p-vip-renew.active {
+    color: rgba(46, 204, 113, 0.7);
+}
+
+.p-vip-renew.cancel {
+    color: rgba(231, 76, 60, 0.7);
+}
+
+.p-vip-card-badge {
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .p-vip-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .p-vip-card-badge {
+        display: none;
+    }
+}
+
 /* ── Stock banner ── */
 .p-stock-banner {
     display: flex;
