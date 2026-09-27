@@ -84,6 +84,7 @@ function formatDateLong(d) {
 // ── Dashboard ──
 
 let currentDashPeriod = 'all';
+let isUrssafEnabled = localStorage.getItem('ozeah_urssaf') === 'true';
 
 function getPeriodCutoff(period) {
     if (period === 'all') return null;
@@ -145,20 +146,33 @@ function computeDashStats(articles, period) {
     return { total, inStock, stockValue, soldCount, revenue, totalBenefit, avgMargin, urssaf };
 }
 
+function toggleUrssaf() {
+    isUrssafEnabled = document.getElementById('urssaf-checkbox').checked;
+    localStorage.setItem('ozeah_urssaf', isUrssafEnabled);
+    renderArticles();
+}
+
 function renderDashboard(articles) {
     const container = document.getElementById('dashboard-grid');
     const s = computeDashStats(articles, currentDashPeriod);
 
-    container.innerHTML = `
+    const netBenefit = isUrssafEnabled ? s.totalBenefit - s.urssaf : s.totalBenefit;
+
+    let html = `
         <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.total}</div><div class="dash-label">Articles</div></div>
         <div class="dash-card"><div class="dash-emoji">📦</div><div class="dash-value">${s.inStock}</div><div class="dash-label">En stock</div></div>
         <div class="dash-card"><div class="dash-emoji">💰</div><div class="dash-value">${formatPrice(s.stockValue)}</div><div class="dash-label">Valeur stock</div></div>
         <div class="dash-card"><div class="dash-emoji">🛒</div><div class="dash-value">${s.soldCount}</div><div class="dash-label">Ventes</div></div>
         <div class="dash-card"><div class="dash-emoji">💵</div><div class="dash-value">${formatPrice(s.revenue)}</div><div class="dash-label">CA</div></div>
-        <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(s.totalBenefit)}</div><div class="dash-label">Benefice</div></div>
+        <div class="dash-card"><div class="dash-emoji">📈</div><div class="dash-value">${formatPrice(netBenefit)}</div><div class="dash-label">Benefice${isUrssafEnabled ? ' net' : ''}</div></div>
         <div class="dash-card"><div class="dash-emoji">📊</div><div class="dash-value">${s.avgMargin > 0 ? s.avgMargin.toFixed(1) + ' %' : '-'}</div><div class="dash-label">Marge moy.</div></div>
-        <div class="dash-card dash-card-urssaf"><div class="dash-emoji">🏛️</div><div class="dash-value">${formatPrice(s.urssaf)}</div><div class="dash-label">URSSAF (13.4%)</div></div>
     `;
+
+    if (isUrssafEnabled) {
+        html += `<div class="dash-card dash-card-urssaf"><div class="dash-emoji">🏛️</div><div class="dash-value">${formatPrice(s.urssaf)}</div><div class="dash-label">URSSAF (13,4%)</div></div>`;
+    }
+
+    container.innerHTML = html;
 }
 
 function initDashPeriodTabs() {
@@ -258,9 +272,10 @@ function renderArticleCard(a) {
     const ep = parseFloat(a.expected_price) || 0;
 
     const hasSale = a.sell_price !== null && a.sell_price !== undefined && a.sell_price !== '';
-    const benefit = hasSale ? sp - bp : null;
-    const margin = hasSale && bp > 0 ? (benefit / bp * 100) : null;
+    const rawBenefit = hasSale ? sp - bp : null;
     const urssaf = hasSale ? sp * 0.134 : null;
+    const benefit = (hasSale && isUrssafEnabled) ? rawBenefit - urssaf : rawBenefit;
+    const margin = hasSale && bp > 0 ? (benefit / bp * 100) : null;
 
     const photoHtml = a.photo
         ? `<img src="${a.photo}" alt="">`
@@ -326,10 +341,10 @@ function renderArticleCard(a) {
                     <span class="price-label">Marge</span>
                     <span class="price-value ${margin !== null ? (margin >= 0 ? 'positive' : 'negative') : 'neutral'}">${margin !== null ? margin.toFixed(1) + ' %' : '-'}</span>
                 </div>
-                <div class="price-item">
+                ${isUrssafEnabled ? `<div class="price-item">
                     <span class="price-label">URSSAF</span>
                     <span class="price-value ${urssaf !== null ? 'negative' : 'neutral'}">${urssaf !== null ? formatPrice(urssaf) : '-'}</span>
-                </div>
+                </div>` : ''}
             </div>
         </div>
         <div class="article-actions">
@@ -801,6 +816,8 @@ function showVipWall(customMsg) {
 document.addEventListener('DOMContentLoaded', async () => {
     const hasAccess = await checkVipAccess();
     if (!hasAccess) return;
+    const cb = document.getElementById('urssaf-checkbox');
+    if (cb) cb.checked = isUrssafEnabled;
     initFilters();
     initDashPeriodTabs();
     renderArticles();
