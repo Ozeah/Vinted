@@ -175,15 +175,28 @@ function renderDashboard(articles) {
     container.innerHTML = html;
 }
 
+function movePeriodSlider() {
+    const active = document.querySelector('.dash-period-btn.active');
+    const slider = document.getElementById('dash-period-slider');
+    const tabs = document.getElementById('dash-period-tabs');
+    if (!active || !slider || !tabs) return;
+    const tabsRect = tabs.getBoundingClientRect();
+    const btnRect = active.getBoundingClientRect();
+    slider.style.width = btnRect.width + 'px';
+    slider.style.transform = 'translateX(' + (btnRect.left - tabsRect.left - 3) + 'px)';
+}
+
 function initDashPeriodTabs() {
     document.querySelectorAll('.dash-period-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.dash-period-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentDashPeriod = btn.dataset.period;
+            movePeriodSlider();
             renderArticles();
         });
     });
+    requestAnimationFrame(movePeriodSlider);
 }
 
 // ── Article list ──
@@ -821,4 +834,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     initFilters();
     initDashPeriodTabs();
     renderArticles();
+    window.addEventListener('resize', movePeriodSlider);
 });

@@ -42,12 +42,20 @@
             </div>
         </div>
 
-        <div class="dash-period-tabs" id="dash-period-tabs">
-            <button class="dash-period-btn active" data-period="all">Depuis le debut</button>
-            <button class="dash-period-btn" data-period="1m">1 mois</button>
-            <button class="dash-period-btn" data-period="3m">3 mois</button>
-            <button class="dash-period-btn" data-period="6m">6 mois</button>
-            <button class="dash-period-btn" data-period="1y">1 an</button>
+        <div class="dash-controls">
+            <div class="dash-period-tabs" id="dash-period-tabs">
+                <div class="dash-period-slider" id="dash-period-slider"></div>
+                <button class="dash-period-btn active" data-period="all">Tout</button>
+                <button class="dash-period-btn" data-period="1m">1M</button>
+                <button class="dash-period-btn" data-period="3m">3M</button>
+                <button class="dash-period-btn" data-period="6m">6M</button>
+                <button class="dash-period-btn" data-period="1y">1A</button>
+            </div>
+            <label class="urssaf-toggle" id="urssaf-toggle">
+                <input type="checkbox" id="urssaf-checkbox" onchange="toggleUrssaf()">
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                <span class="urssaf-toggle-label">Micro-entrepreneur</span>
+            </label>
         </div>
         <div class="dashboard-grid" id="dashboard-grid"></div>
 

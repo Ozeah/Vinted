@@ -55,74 +55,117 @@
     flex-wrap: wrap;
 }
 
-.urssaf-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    user-select: none;
-    padding: 0.45rem 0.9rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-
-.urssaf-toggle:hover {
-    border-color: rgba(231, 76, 60, 0.3);
-}
-
-.urssaf-toggle input[type="checkbox"] {
-    accent-color: #e74c3c;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-}
-
-.urssaf-toggle-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    transition: color 0.2s;
-}
-
-.urssaf-toggle input:checked ~ .urssaf-toggle-label {
-    color: #e74c3c;
-}
-
-/* Dashboard period tabs */
+/* Period tabs — pill slider */
 .dash-period-tabs {
     display: flex;
-    gap: 0.25rem;
-    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-    padding: 0.2rem;
+    border-radius: 12px;
+    padding: 3px;
     width: fit-content;
+    gap: 2px;
+}
+
+.dash-period-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: calc(100% - 6px);
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    box-shadow: 0 2px 8px var(--purple-glow);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .dash-period-btn {
-    padding: 0.45rem 0.9rem;
+    position: relative;
+    z-index: 1;
+    padding: 0.5rem 1rem;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     color: var(--text-muted);
     background: none;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-family: inherit;
-    transition: all 0.2s;
+    transition: color 0.25s;
     white-space: nowrap;
 }
 
 .dash-period-btn.active {
-    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
     color: white;
 }
 
 .dash-period-btn:hover:not(.active) {
     color: var(--text);
+}
+
+/* Micro-entrepreneur toggle — custom switch */
+.urssaf-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.urssaf-toggle input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.toggle-track {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #666;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.urssaf-toggle input:checked ~ .toggle-track {
+    background: rgba(231, 76, 60, 0.2);
+    border-color: rgba(231, 76, 60, 0.4);
+}
+
+.urssaf-toggle input:checked ~ .toggle-track .toggle-thumb {
+    transform: translateX(16px);
+    background: #e74c3c;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
+}
+
+.urssaf-toggle-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.25s;
+}
+
+.urssaf-toggle input:checked ~ .urssaf-toggle-label {
+    color: #e74c3c;
 }
 
 /* Dashboard */
@@ -993,6 +1036,7 @@
     .dash-controls {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.75rem;
     }
 
     .dash-period-tabs {
@@ -1002,11 +1046,9 @@
     }
 
     .dash-period-btn {
-        flex-shrink: 0;
-    }
-
-    .urssaf-toggle {
-        align-self: flex-start;
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem 0.6rem;
     }
 
     .form-grid {
