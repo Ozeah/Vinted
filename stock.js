@@ -221,7 +221,9 @@ function getFilteredArticles() {
         );
     }
 
-    if (statusFilter !== 'all') {
+    if (statusFilter === 'all') {
+        articles = articles.filter(a => a.status !== 'archived');
+    } else {
         articles = articles.filter(a => a.status === statusFilter);
     }
 
