@@ -243,9 +243,9 @@ function renderHeader(identity, stats, vip) {
         ? `<img src="${identity.avatarUrl}" class="p-avatar" alt="">`
         : `<div class="p-avatar-letter">${identity.username.charAt(0).toUpperCase()}</div>`;
 
-    const memberSince = stats.first_seen ? formatDate(stats.first_seen) : 'Aujourd\'hui';
+    const memberSince = stats.first_seen ? formatDate(stats.first_seen) : formatDate(new Date().toISOString());
     const days = stats.first_seen ? daysAgo(stats.first_seen) : 0;
-    const daysText = days === 0 ? 'Premier jour' : days === 1 ? '1 jour avec OzeaH' : `${days} jours avec OzeaH`;
+    const daysText = days === 1 ? '1 jour avec OzeaH' : `${days} jours avec OzeaH`;
 
     const isVip = vip && (vip.status === 'active' || vip.status === 'trialing');
     const vipHtml = isVip ? `<span class="p-vip-tag">\u{1F451} VIP</span>` : '';
@@ -257,7 +257,7 @@ function renderHeader(identity, stats, vip) {
             <h1 class="p-username">${identity.username} ${vipHtml}</h1>
             <div class="p-meta">
                 <span class="p-meta-item">Membre depuis le ${memberSince}</span>
-                <span class="p-meta-item">${daysText}</span>
+                ${days > 0 ? `<span class="p-meta-item">${daysText}</span>` : ''}
             </div>
         </div>
     </div>`;
