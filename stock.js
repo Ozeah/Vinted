@@ -204,11 +204,13 @@ function initDashPeriodTabs() {
 
 // ── Article list ──
 
+let currentSort = 'date_purchase';
+let currentSortDir = 'desc';
+
 function getFilteredArticles() {
     let articles = loadArticles();
     const search = (document.getElementById('stock-search').value || '').toLowerCase().trim();
     const statusFilter = document.querySelector('.status-filter-btn.active')?.dataset.status || 'all';
-    const sort = document.getElementById('stock-sort').value;
 
     if (search) {
         articles = articles.filter(a =>
@@ -223,35 +225,28 @@ function getFilteredArticles() {
         articles = articles.filter(a => a.status === statusFilter);
     }
 
+    const dir = currentSortDir === 'desc' ? -1 : 1;
     articles.sort((a, b) => {
-        switch (sort) {
-            case 'date_purchase_desc': return (b.date_purchase || '').localeCompare(a.date_purchase || '');
-            case 'date_purchase_asc':  return (a.date_purchase || '').localeCompare(b.date_purchase || '');
-            case 'buy_price_asc':      return (parseFloat(a.buy_price) || 0) - (parseFloat(b.buy_price) || 0);
-            case 'buy_price_desc':     return (parseFloat(b.buy_price) || 0) - (parseFloat(a.buy_price) || 0);
-            case 'sell_price_asc':     return (parseFloat(a.sell_price) || 0) - (parseFloat(b.sell_price) || 0);
-            case 'sell_price_desc':    return (parseFloat(b.sell_price) || 0) - (parseFloat(a.sell_price) || 0);
-            case 'benefit_desc': {
-                const ba = (parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0);
-                const bb = (parseFloat(b.sell_price) || 0) - (parseFloat(b.buy_price) || 0);
-                return bb - ba;
-            }
-            case 'benefit_asc': {
-                const ba2 = (parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0);
-                const bb2 = (parseFloat(b.sell_price) || 0) - (parseFloat(b.buy_price) || 0);
-                return ba2 - bb2;
-            }
-            case 'margin_desc': {
-                const ma = (parseFloat(a.buy_price) || 0) > 0 ? ((parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0)) / (parseFloat(a.buy_price) || 1) : 0;
-                const mb = (parseFloat(b.buy_price) || 0) > 0 ? ((parseFloat(b.sell_price) || 0) - (parseFloat(b.buy_price) || 0)) / (parseFloat(b.buy_price) || 1) : 0;
-                return mb - ma;
-            }
-            case 'margin_asc': {
-                const ma2 = (parseFloat(a.buy_price) || 0) > 0 ? ((parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0)) / (parseFloat(a.buy_price) || 1) : 0;
-                const mb2 = (parseFloat(b.buy_price) || 0) > 0 ? ((parseFloat(b.sell_price) || 0) - (parseFloat(b.buy_price) || 0)) / (parseFloat(b.buy_price) || 1) : 0;
-                return ma2 - mb2;
-            }
-            case 'status': return STATUS_ORDER.indexOf(a.status) - STATUS_ORDER.indexOf(b.status);
+        let va, vb;
+        switch (currentSort) {
+            case 'date_purchase':
+                return dir * (a.date_purchase || '').localeCompare(b.date_purchase || '');
+            case 'buy_price':
+                va = parseFloat(a.buy_price) || 0;
+                vb = parseFloat(b.buy_price) || 0;
+                return dir * (va - vb);
+            case 'sell_price':
+                va = parseFloat(a.sell_price) || 0;
+                vb = parseFloat(b.sell_price) || 0;
+                return dir * (va - vb);
+            case 'benefit':
+                va = (parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0);
+                vb = (parseFloat(b.sell_price) || 0) - (parseFloat(b.buy_price) || 0);
+                return dir * (va - vb);
+            case 'margin':
+                va = (parseFloat(a.buy_price) || 0) > 0 ? ((parseFloat(a.sell_price) || 0) - (parseFloat(a.buy_price) || 0)) / (parseFloat(a.buy_price) || 1) : 0;
+                vb = (parseFloat(b.buy_price) || 0) > 0 ? ((parseFloat(b.sell_price) || 0) - (parseFloat(b.buy_price) || 0)) / (parseFloat(b.buy_price) || 1) : 0;
+                return dir * (va - vb);
             default: return 0;
         }
     });
@@ -320,6 +315,7 @@ function renderArticleCard(a) {
             actionHtml = `<button class="btn-action btn-action-secondary" onclick="actionArchived('${a.id}')">Archiver</button>`;
             break;
         case 'archived':
+            actionHtml = `<button class="btn-action btn-action-secondary" onclick="actionUnarchive('${a.id}')">Desarchiver</button>`;
             break;
     }
 
@@ -599,6 +595,16 @@ function actionArchived(id) {
     renderArticles();
 }
 
+function actionUnarchive(id) {
+    const articles = loadArticles();
+    const a = articles.find(x => x.id === id);
+    if (!a) return;
+    a.status = 'finalized';
+    addHistory(a, 'Desarchive', null, todayStr());
+    saveArticles(articles);
+    renderArticles();
+}
+
 // ── Sell modal ──
 
 function openSellModal(id) {
@@ -773,7 +779,25 @@ function initFilters() {
         });
     });
 
-    document.getElementById('stock-sort').addEventListener('change', renderArticles);
+    document.querySelectorAll('.sort-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            const sort = chip.dataset.sort;
+            if (currentSort === sort) {
+                currentSortDir = currentSortDir === 'desc' ? 'asc' : 'desc';
+            } else {
+                currentSort = sort;
+                currentSortDir = 'desc';
+            }
+            document.querySelectorAll('.sort-chip').forEach(c => {
+                c.classList.remove('active');
+                c.querySelector('.sort-arrow').textContent = '▼';
+            });
+            chip.classList.add('active');
+            chip.dataset.dir = currentSortDir;
+            chip.querySelector('.sort-arrow').textContent = currentSortDir === 'desc' ? '▼' : '▲';
+            renderArticles();
+        });
+    });
 }
 
 // ── Auth + VIP guard ──

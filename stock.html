@@ -66,28 +66,19 @@
             </div>
             <div class="stock-status-filters" id="status-filters">
                 <button class="status-filter-btn active" data-status="all">Tous</button>
-                <button class="status-filter-btn" data-status="ordered">Commandes</button>
                 <button class="status-filter-btn" data-status="in_stock">En stock</button>
                 <button class="status-filter-btn" data-status="sold">Vendus</button>
                 <button class="status-filter-btn" data-status="shipped">Expedies</button>
                 <button class="status-filter-btn" data-status="finalized">Finalises</button>
                 <button class="status-filter-btn" data-status="archived">Archives</button>
             </div>
-            <div class="stock-sort-wrap">
-                <select class="stock-sort" id="stock-sort">
-                    <option value="date_purchase_desc">Date d'achat (recent)</option>
-                    <option value="date_purchase_asc">Date d'achat (ancien)</option>
-                    <option value="buy_price_asc">Prix d'achat (croissant)</option>
-                    <option value="buy_price_desc">Prix d'achat (decroissant)</option>
-                    <option value="sell_price_asc">Prix de vente (croissant)</option>
-                    <option value="sell_price_desc">Prix de vente (decroissant)</option>
-                    <option value="benefit_desc">Benefice (decroissant)</option>
-                    <option value="benefit_asc">Benefice (croissant)</option>
-                    <option value="margin_desc">Marge (decroissante)</option>
-                    <option value="margin_asc">Marge (croissante)</option>
-                    <option value="status">Statut</option>
-                </select>
-            </div>
+        </div>
+        <div class="stock-sort-bar" id="stock-sort-bar">
+            <button class="sort-chip active" data-sort="date_purchase" data-dir="desc">Date <span class="sort-arrow">▼</span></button>
+            <button class="sort-chip" data-sort="buy_price" data-dir="desc">Achat <span class="sort-arrow">▼</span></button>
+            <button class="sort-chip" data-sort="sell_price" data-dir="desc">Vente <span class="sort-arrow">▼</span></button>
+            <button class="sort-chip" data-sort="benefit" data-dir="desc">Benef <span class="sort-arrow">▼</span></button>
+            <button class="sort-chip" data-sort="margin" data-dir="desc">Marge <span class="sort-arrow">▼</span></button>
         </div>
 
         <div class="stock-list" id="stock-list"></div>
