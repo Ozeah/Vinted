@@ -91,7 +91,7 @@ async function loadVipStatus(discordId) {
                     </div>
                     <div class="vip-info-grid">
                         <div class="vip-info-item">
-                            <span class="vip-info-label">Debut de la periode</span>
+                            <span class="vip-info-label">Début de la période</span>
                             <span class="vip-info-value">${startStr}</span>
                         </div>
                         <div class="vip-info-item">
