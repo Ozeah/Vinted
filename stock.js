@@ -211,7 +211,7 @@ function renderArticleCard(a) {
     const hasSale = a.sell_price !== null && a.sell_price !== undefined && a.sell_price !== '';
     const benefit = hasSale ? sp - bp : null;
     const margin = hasSale && bp > 0 ? (benefit / bp * 100) : null;
-    const urssaf = hasSale && benefit > 0 ? benefit * 0.132 : null;
+    const urssaf = hasSale ? sp * 0.132 : null;
 
     const photoHtml = a.photo
         ? `<img src="${a.photo}" alt="">`
