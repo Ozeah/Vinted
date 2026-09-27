@@ -375,6 +375,8 @@ function openAddModal() {
     document.getElementById('f-date').value = '';
     document.getElementById('f-sell-price-group').style.display = 'none';
     document.getElementById('f-sell-price').value = '';
+    document.getElementById('f-sell-date-group').style.display = 'none';
+    document.getElementById('f-sell-date').value = '';
     document.getElementById('photo-placeholder').style.display = '';
     document.getElementById('photo-preview-wrap').style.display = 'none';
     closeBrandSuggestions();
@@ -404,12 +406,19 @@ function openEditModal(id) {
 
     const sellGroup = document.getElementById('f-sell-price-group');
     const sellInput = document.getElementById('f-sell-price');
-    if (a.sell_price !== '' && a.sell_price !== null && a.sell_price !== undefined) {
+    const sellDateGroup = document.getElementById('f-sell-date-group');
+    const sellDateInput = document.getElementById('f-sell-date');
+    const hasSale = a.sell_price !== '' && a.sell_price !== null && a.sell_price !== undefined;
+    if (hasSale) {
         sellGroup.style.display = '';
         sellInput.value = a.sell_price;
+        sellDateGroup.style.display = '';
+        sellDateInput.value = a.date_sale || '';
     } else {
         sellGroup.style.display = 'none';
         sellInput.value = '';
+        sellDateGroup.style.display = 'none';
+        sellDateInput.value = '';
     }
 
     if (a.photo) {
@@ -464,6 +473,10 @@ function handleArticleSubmit(e) {
         const editSellPrice = document.getElementById('f-sell-price').value;
         if (document.getElementById('f-sell-price-group').style.display !== 'none' && editSellPrice !== '') {
             articles[idx].sell_price = editSellPrice;
+        }
+        const editSellDate = document.getElementById('f-sell-date').value;
+        if (document.getElementById('f-sell-date-group').style.display !== 'none') {
+            articles[idx].date_sale = editSellDate;
         }
         addHistory(articles[idx], 'Article modifie');
     } else {
