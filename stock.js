@@ -13,6 +13,26 @@ const STATUS_CONFIG = {
 
 const STATUS_ORDER = ['ordered', 'in_stock', 'sold', 'shipped', 'finalized', 'archived'];
 
+const POPULAR_BRANDS = [
+    'Nike', 'Adidas', 'Lacoste', 'Ralph Lauren', 'Tommy Hilfiger', 'The North Face',
+    'Carhartt', 'Stone Island', 'CP Company', 'Moncler', 'Canada Goose', 'Arc\'teryx',
+    'Patagonia', 'Columbia', 'Napapijri', 'Timberland', 'New Balance', 'Puma', 'Reebok',
+    'Asics', 'Vans', 'Converse', 'Jordan', 'Yeezy', 'Balenciaga', 'Gucci', 'Louis Vuitton',
+    'Dior', 'Prada', 'Burberry', 'Versace', 'Fendi', 'Givenchy', 'Off-White', 'Palm Angels',
+    'Essentials', 'Fear of God', 'Stussy', 'Supreme', 'Bape', 'Kenzo', 'Hugo Boss',
+    'Calvin Klein', 'Armani', 'Diesel', 'Levi\'s', 'Wrangler', 'Lee', 'G-Star Raw',
+    'Zara', 'H&M', 'Uniqlo', 'Pull & Bear', 'Bershka', 'Massimo Dutti',
+    'Fred Perry', 'Ben Sherman', 'Barbour', 'Fjallraven', 'Salomon', 'Hoka',
+    'Under Armour', 'Fila', 'Ellesse', 'Sergio Tacchini', 'Kappa', 'Umbro',
+    'Champion', 'Russell Athletic', 'Dickies', 'Obey', 'Volcom', 'Quiksilver',
+    'Billabong', 'Rip Curl', 'Element', 'DC Shoes', 'Supra',
+    'Comme des Garcons', 'Acne Studios', 'AMI Paris', 'Maison Margiela', 'Rick Owens',
+    'Yves Saint Laurent', 'Celine', 'Bottega Veneta', 'Loewe', 'Hermes',
+    'Chanel', 'Valentino', 'Alexander McQueen', 'Balmain', 'Dsquared2',
+    'Trapstar', 'Corteiz', 'Represent', 'Amiri', 'Gallery Dept',
+    'Vlone', 'Chrome Hearts', 'Rhude', 'Casablanca', 'Jacquemus',
+];
+
 function getUserKey() {
     const user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
     if (!user) return null;
@@ -191,6 +211,7 @@ function renderArticleCard(a) {
     const hasSale = a.sell_price !== null && a.sell_price !== undefined && a.sell_price !== '';
     const benefit = hasSale ? sp - bp : null;
     const margin = hasSale && bp > 0 ? (benefit / bp * 100) : null;
+    const urssaf = hasSale && benefit > 0 ? benefit * 0.132 : null;
 
     const photoHtml = a.photo
         ? `<img src="${a.photo}" alt="">`
@@ -256,6 +277,10 @@ function renderArticleCard(a) {
                     <span class="price-label">Marge</span>
                     <span class="price-value ${margin !== null ? (margin >= 0 ? 'positive' : 'negative') : 'neutral'}">${margin !== null ? margin.toFixed(1) + ' %' : '-'}</span>
                 </div>
+                <div class="price-item">
+                    <span class="price-label">URSSAF</span>
+                    <span class="price-value ${urssaf !== null ? 'negative' : 'neutral'}">${urssaf !== null ? formatPrice(urssaf) : '-'}</span>
+                </div>
             </div>
         </div>
         <div class="article-actions">
@@ -281,9 +306,12 @@ function openAddModal() {
     document.getElementById('btn-article-submit').textContent = 'Ajouter';
     document.getElementById('edit-id').value = '';
     document.getElementById('form-article').reset();
-    document.getElementById('f-date').value = todayStr();
+    document.getElementById('f-date').value = '';
+    document.getElementById('f-sell-price-group').style.display = 'none';
+    document.getElementById('f-sell-price').value = '';
     document.getElementById('photo-placeholder').style.display = '';
     document.getElementById('photo-preview-wrap').style.display = 'none';
+    closeBrandSuggestions();
     openModal('modal-add');
 }
 
@@ -307,6 +335,16 @@ function openEditModal(id) {
     document.getElementById('f-date').value = a.date_purchase || '';
     document.getElementById('f-url').value = a.url || '';
     document.getElementById('f-notes').value = a.notes || '';
+
+    const sellGroup = document.getElementById('f-sell-price-group');
+    const sellInput = document.getElementById('f-sell-price');
+    if (a.sell_price !== '' && a.sell_price !== null && a.sell_price !== undefined) {
+        sellGroup.style.display = '';
+        sellInput.value = a.sell_price;
+    } else {
+        sellGroup.style.display = 'none';
+        sellInput.value = '';
+    }
 
     if (a.photo) {
         document.getElementById('photo-placeholder').style.display = 'none';
@@ -357,6 +395,10 @@ function handleArticleSubmit(e) {
         articles[idx].url = url;
         articles[idx].notes = notes;
         articles[idx].photo = photo;
+        const editSellPrice = document.getElementById('f-sell-price').value;
+        if (document.getElementById('f-sell-price-group').style.display !== 'none' && editSellPrice !== '') {
+            articles[idx].sell_price = editSellPrice;
+        }
         addHistory(articles[idx], 'Article modifie');
     } else {
         if (!reference) reference = generateRef();
@@ -377,15 +419,15 @@ function handleArticleSubmit(e) {
             sell_price: '',
             sell_platform: '',
             date_sale: '',
-            date_stock: '',
+            date_stock: todayStr(),
             date_shipped: '',
             date_finalized: '',
-            status: 'ordered',
+            status: 'in_stock',
             history: [],
             created_at: new Date().toISOString(),
         };
         addHistory(article, 'Article achete', buy_price ? formatPrice(buy_price) : null);
-        addHistory(article, 'Commande enregistree');
+        addHistory(article, 'Mis en stock');
         articles.push(article);
     }
 
@@ -580,6 +622,48 @@ function closeModalOverlay(e) {
         document.body.style.overflow = '';
     }
 }
+
+// ── Brand autocomplete ──
+
+function onBrandInput(val) {
+    const container = document.getElementById('brand-suggestions');
+    if (!val || val.length < 1) {
+        container.innerHTML = '';
+        container.style.display = 'none';
+        return;
+    }
+    const query = val.toLowerCase();
+    const matches = POPULAR_BRANDS.filter(b => b.toLowerCase().includes(query)).slice(0, 6);
+    if (matches.length === 0) {
+        container.innerHTML = '';
+        container.style.display = 'none';
+        return;
+    }
+    container.style.display = '';
+    container.innerHTML = matches.map(b =>
+        `<div class="brand-suggestion-item" onmousedown="selectBrand('${b.replace(/'/g, "\\'")}')">${highlightMatch(b, query)}</div>`
+    ).join('');
+}
+
+function highlightMatch(text, query) {
+    const idx = text.toLowerCase().indexOf(query);
+    if (idx === -1) return escapeHtml(text);
+    return escapeHtml(text.slice(0, idx)) + '<strong>' + escapeHtml(text.slice(idx, idx + query.length)) + '</strong>' + escapeHtml(text.slice(idx + query.length));
+}
+
+function selectBrand(brand) {
+    document.getElementById('f-brand').value = brand;
+    closeBrandSuggestions();
+}
+
+function closeBrandSuggestions() {
+    const c = document.getElementById('brand-suggestions');
+    if (c) { c.innerHTML = ''; c.style.display = 'none'; }
+}
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.form-brand-wrap')) closeBrandSuggestions();
+});
 
 // ── Filter / Sort events ──
 

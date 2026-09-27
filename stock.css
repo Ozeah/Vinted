@@ -573,6 +573,45 @@
     margin-top: 0.75rem;
 }
 
+/* Brand autocomplete */
+.form-brand-wrap {
+    position: relative;
+}
+
+.brand-suggestions {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(20, 16, 32, 0.98);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-top: 0.25rem;
+    z-index: 10;
+    max-height: 180px;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.brand-suggestion-item {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.brand-suggestion-item:hover {
+    background: rgba(155, 89, 182, 0.12);
+    color: var(--text);
+}
+
+.brand-suggestion-item strong {
+    color: var(--purple-light);
+    font-weight: 700;
+}
+
 .form-group label {
     font-size: 0.75rem;
     font-weight: 600;

@@ -94,9 +94,10 @@
                         <label>Reference</label>
                         <input type="text" id="f-reference" placeholder="Auto-genere si vide">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-brand-wrap">
                         <label>Marque</label>
-                        <input type="text" id="f-brand" placeholder="Ex: Lacoste">
+                        <input type="text" id="f-brand" placeholder="Ex: Lacoste" autocomplete="off" oninput="onBrandInput(this.value)" onfocus="onBrandInput(this.value)">
+                        <div class="brand-suggestions" id="brand-suggestions"></div>
                     </div>
                     <div class="form-group">
                         <label>Taille</label>
@@ -131,6 +132,10 @@
                     <div class="form-group">
                         <label>Prix de vente prevu (EUR)</label>
                         <input type="number" id="f-expected-price" step="0.01" min="0" placeholder="0.00">
+                    </div>
+                    <div class="form-group" id="f-sell-price-group" style="display:none;">
+                        <label>Prix de vente reel (EUR)</label>
+                        <input type="number" id="f-sell-price" step="0.01" min="0" placeholder="0.00">
                     </div>
                     <div class="form-group">
                         <label>Date d'achat</label>
