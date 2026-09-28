@@ -33,6 +33,8 @@ const POPULAR_BRANDS = [
     'Vlone', 'Chrome Hearts', 'Rhude', 'Casablanca', 'Jacquemus',
 ];
 
+var _currentDiscordId = null;
+
 function getUserKey() {
     const user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
     if (!user) return null;
@@ -42,12 +44,18 @@ function getUserKey() {
 }
 
 function loadArticles() {
+    if (typeof dbGetCachedArticles === 'function' && _currentDiscordId) {
+        return dbGetCachedArticles();
+    }
     const key = getUserKey();
     if (!key) return [];
     return JSON.parse(localStorage.getItem(key) || '[]');
 }
 
 function saveArticles(articles) {
+    if (typeof dbSyncArticles === 'function' && _currentDiscordId) {
+        dbSyncArticles(_currentDiscordId, articles);
+    }
     const key = getUserKey();
     if (!key) return;
     localStorage.setItem(key, JSON.stringify(articles));
@@ -877,6 +885,13 @@ function showVipWall(customMsg) {
 document.addEventListener('DOMContentLoaded', async () => {
     const hasAccess = await checkVipAccess();
     if (!hasAccess) return;
+
+    _currentDiscordId = getDiscordIdForStock();
+    if (_currentDiscordId && typeof dbMigrateLocalStock === 'function') {
+        await dbMigrateLocalStock(_currentDiscordId);
+        await dbInitStock(_currentDiscordId);
+    }
+
     const cb = document.getElementById('urssaf-checkbox');
     if (cb) cb.checked = isUrssafEnabled;
     initFilters();

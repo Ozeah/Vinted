@@ -355,6 +355,10 @@ function handleDiscordLogin() {
         localStorage.setItem('discord_user', JSON.stringify(discordUser));
         window.history.replaceState(null, '', window.location.pathname);
 
+        if (typeof dbSaveUser === 'function') {
+            dbSaveUser(discordUser);
+        }
+
         const registry = JSON.parse(localStorage.getItem('ozeah_users_registry') || '{}');
         registry[discordUser.id] = {
             username: discordUser.username,

@@ -74,12 +74,35 @@ async function initAdmin() {
     }
 
     usersRegistry = JSON.parse(localStorage.getItem('ozeah_users_registry') || '{}');
+
+    if (typeof dbGetAllUsers === 'function') {
+        var fbUsers = await dbGetAllUsers();
+        fbUsers.forEach(function(u) {
+            usersRegistry[u.discordId] = {
+                username: u.username,
+                global_name: u.global_name,
+                avatar: u.avatar,
+                last_seen: u.last_seen,
+                first_seen: u.first_seen,
+            };
+        });
+    }
+
     buildUserList();
     renderAdminPage();
 }
 
 function buildUserList() {
     const userMap = {};
+
+    for (const id in usersRegistry) {
+        if (!userMap[id]) userMap[id] = { discordId: id };
+        const reg = usersRegistry[id];
+        userMap[id].username = reg.global_name || reg.username || null;
+        userMap[id].avatar = reg.avatar || null;
+        userMap[id].first_seen = reg.first_seen || null;
+        userMap[id].last_seen = reg.last_seen || null;
+    }
 
     const subs = vipData.subscribers || {};
     for (const id in subs) {
@@ -93,20 +116,13 @@ function buildUserList() {
         userMap[id].stats = users[id];
     }
 
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith('stock_d_')) {
-            const id = key.replace('stock_d_', '');
-            if (!userMap[id]) userMap[id] = { discordId: id };
-            userMap[id].hasStock = true;
-        }
-    }
-
     for (const id in userMap) {
-        const reg = usersRegistry[id];
-        if (reg) {
-            userMap[id].username = reg.global_name || reg.username || null;
-            userMap[id].avatar = reg.avatar || null;
+        if (!userMap[id].username) {
+            const reg = usersRegistry[id];
+            if (reg) {
+                userMap[id].username = reg.global_name || reg.username || null;
+                userMap[id].avatar = reg.avatar || null;
+            }
         }
     }
 
@@ -116,14 +132,29 @@ function buildUserList() {
         const aVip = a.vip ? 1 : 0;
         const bVip = b.vip ? 1 : 0;
         if (aVip !== bVip) return bVip - aVip;
-        const aDate = a.stats?.first_seen || '';
-        const bDate = b.stats?.first_seen || '';
+        const aDate = a.last_seen || a.first_seen || '';
+        const bDate = b.last_seen || b.first_seen || '';
         return bDate.localeCompare(aDate);
     });
 }
 
+var _adminStockCache = {};
+
+async function getStockForUserAsync(discordId) {
+    if (_adminStockCache[discordId]) return _adminStockCache[discordId];
+    if (typeof dbLoadUserArticles === 'function') {
+        var articles = await dbLoadUserArticles(discordId);
+        _adminStockCache[discordId] = articles;
+        return articles;
+    }
+    var raw = localStorage.getItem('stock_d_' + discordId);
+    if (!raw) return [];
+    try { return JSON.parse(raw); } catch (e) { return []; }
+}
+
 function getStockForUser(discordId) {
-    const raw = localStorage.getItem('stock_d_' + discordId);
+    if (_adminStockCache[discordId]) return _adminStockCache[discordId];
+    var raw = localStorage.getItem('stock_d_' + discordId);
     if (!raw) return [];
     try { return JSON.parse(raw); } catch (e) { return []; }
 }
@@ -233,14 +264,14 @@ function renderUserList(users) {
     }).join('');
 }
 
-function openDetail(discordId) {
+async function openDetail(discordId) {
     const u = allUsers.find(x => x.discordId === discordId);
     if (!u) return;
 
     const panel = document.getElementById('admin-detail-panel');
     const stats = u.stats || {};
     const vip = u.vip;
-    const stock = getStockForUser(discordId);
+    const stock = await getStockForUserAsync(discordId);
     const isVip = vip && (vip.status === 'active' || vip.status === 'trialing');
 
     let vipHtml = '';
