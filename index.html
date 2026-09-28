@@ -23,14 +23,18 @@
                 <span class="logo-text">OzeaH</span>
             </a>
             <div class="nav-links">
-                <a href="#features">Fonctionnalités</a>
+                <a href="#features" data-i18n="nav_features">Fonctionnalités</a>
                 <a href="#vip">VIP</a>
                 <a href="#faq">FAQ</a>
             </div>
             <div class="nav-right">
-                <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-nav">Rejoindre</a>
+                <div class="lang-switch" id="lang-switch">
+                    <button class="lang-btn active" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-nav" data-i18n="nav_join">Rejoindre</a>
                 <div id="user-area">
-                    <button onclick="loginDiscord()" class="btn btn-login">Connexion</button>
+                    <button onclick="loginDiscord()" class="btn btn-login" data-i18n="nav_login">Connexion</button>
                 </div>
             </div>
         </nav>
@@ -40,12 +44,12 @@
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-text">
-                <div class="hero-badge">Le bot #1 pour le resell Vinted</div>
-                <h1>Trouve les <span class="gradient-text">meilleures affaires</span> avant tout le monde.</h1>
-                <p class="hero-subtitle">Alertes instantanées, legit check par IA, estimation de prix — tout dans ton serveur Discord.</p>
+                <div class="hero-badge" data-i18n="hero_badge">Le bot #1 pour le resell Vinted</div>
+                <h1 data-i18n="hero_title">Trouve les <span class="gradient-text">meilleures affaires</span> avant tout le monde.</h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">Alertes instantanées, legit check par IA, estimation de prix — tout dans ton serveur Discord.</p>
                 <div class="hero-cta">
-                    <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary">Rejoindre le Discord</a>
-                    <a href="#features" class="btn btn-secondary">Découvrir</a>
+                    <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary" data-i18n="hero_cta_join">Rejoindre le Discord</a>
+                    <a href="#features" class="btn btn-secondary" data-i18n="hero_cta_discover">Découvrir</a>
                 </div>
             </div>
             <div class="hero-mascot">
@@ -55,15 +59,15 @@
         <div class="hero-stats">
             <div class="stat">
                 <span class="stat-number">100+</span>
-                <span class="stat-label">Membres</span>
+                <span class="stat-label" data-i18n="stat_members">Membres</span>
             </div>
             <div class="stat">
                 <span class="stat-number">24/7</span>
-                <span class="stat-label">Bot actif</span>
+                <span class="stat-label" data-i18n="stat_active">Bot actif</span>
             </div>
             <div class="stat">
                 <span class="stat-number">30s</span>
-                <span class="stat-label">Délai max</span>
+                <span class="stat-label" data-i18n="stat_delay">Délai max</span>
             </div>
         </div>
     </section>
@@ -71,66 +75,66 @@
     <!-- Features -->
     <section class="features" id="features">
         <div class="section-header">
-            <span class="section-badge">Fonctionnalités</span>
-            <h2>Tout ce qu'il te faut pour <span class="gradient-text">dominer</span> le resell.</h2>
-            <p>Un bot complet, rapide et intelligent qui travaille pour toi 24h/24.</p>
+            <span class="section-badge" data-i18n="features_badge">Fonctionnalités</span>
+            <h2 data-i18n="features_title">Tout ce qu'il te faut pour <span class="gradient-text">dominer</span> le resell.</h2>
+            <p data-i18n="features_desc">Un bot complet, rapide et intelligent qui travaille pour toi 24h/24.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
-                <h3>Alertes instantanées</h3>
-                <p>Reçois les nouvelles annonces Vinted en temps réel dans ton channel Discord. Filtre par marque, prix et état.</p>
+                <h3 data-i18n="feat1_title">Alertes instantanées</h3>
+                <p data-i18n="feat1_desc">Reçois les nouvelles annonces Vinted en temps réel dans ton channel Discord. Filtre par marque, prix et état.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </div>
-                <h3>Legit Check IA</h3>
-                <p>Vérifie l'authenticité d'un article en quelques secondes grâce à l'intelligence artificielle. Score de fiabilité inclus.</p>
+                <h3 data-i18n="feat2_title">Legit Check IA</h3>
+                <p data-i18n="feat2_desc">Vérifie l'authenticité d'un article en quelques secondes grâce à l'intelligence artificielle. Score de fiabilité inclus.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
-                <h3>Estimation de prix</h3>
-                <p>Calcule le prix de revente optimal d'un article à partir d'une simple photo. Basé sur les vrais prix du marché.</p>
+                <h3 data-i18n="feat3_title">Estimation de prix</h3>
+                <p data-i18n="feat3_desc">Calcule le prix de revente optimal d'un article à partir d'une simple photo. Basé sur les vrais prix du marché.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
                 </div>
-                <h3>Multi-catégories</h3>
-                <p>Vêtements, sneakers, accessoires ou crée tes propres niches personnalisées pour être le seul sur le coup.</p>
+                <h3 data-i18n="feat4_title">Multi-catégories</h3>
+                <p data-i18n="feat4_desc">Vêtements, sneakers, accessoires ou crée tes propres niches personnalisées pour être le seul sur le coup.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <h3>Anti-arnaque</h3>
-                <p>Filtrage automatique des concours et faux articles sur les alertes. Ne perds plus ton temps.</p>
+                <h3 data-i18n="feat5_title">Anti-arnaque</h3>
+                <p data-i18n="feat5_desc">Filtrage automatique des concours et faux articles sur les alertes. Ne perds plus ton temps.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                 </div>
-                <h3>Description IA</h3>
-                <p>Génère un titre accrocheur et une description vendeur optimisée à partir de tes photos.</p>
+                <h3 data-i18n="feat6_title">Description IA</h3>
+                <p data-i18n="feat6_desc">Génère un titre accrocheur et une description vendeur optimisée à partir de tes photos.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
                 </div>
-                <h3>Filtres avancés</h3>
-                <p>Prix max, état, catégorie Vinted — personnalise tes alertes comme tu veux.</p>
+                <h3 data-i18n="feat7_title">Filtres avancés</h3>
+                <p data-i18n="feat7_desc">Prix max, état, catégorie Vinted — personnalise tes alertes comme tu veux.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
-                <h3>Profil vendeur</h3>
-                <p>Accède au profil du vendeur en un clic depuis chaque alerte pour vérifier sa fiabilité.</p>
+                <h3 data-i18n="feat8_title">Profil vendeur</h3>
+                <p data-i18n="feat8_desc">Accède au profil du vendeur en un clic depuis chaque alerte pour vérifier sa fiabilité.</p>
             </div>
         </div>
     </section>
@@ -138,24 +142,24 @@
     <!-- How it works -->
     <section class="how-it-works">
         <div class="section-header">
-            <span class="section-badge">Comment ça marche</span>
-            <h2>En place en <span class="gradient-text">30 secondes</span>.</h2>
+            <span class="section-badge" data-i18n="how_badge">Comment ça marche</span>
+            <h2 data-i18n="how_title">En place en <span class="gradient-text">30 secondes</span>.</h2>
         </div>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
-                <h3>Rejoins le Discord</h3>
-                <p>Accède au serveur OzeaH et découvre les channels d'alertes.</p>
+                <h3 data-i18n="step1_title">Rejoins le Discord</h3>
+                <p data-i18n="step1_desc">Accède au serveur OzeaH et découvre les channels d'alertes.</p>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <h3>Choisis tes niches</h3>
-                <p>Sélectionne les catégories qui t'intéressent ou intègre tes propres niches au bot.</p>
+                <h3 data-i18n="step2_title">Choisis tes niches</h3>
+                <p data-i18n="step2_desc">Sélectionne les catégories qui t'intéressent ou intègre tes propres niches au bot.</p>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <h3>Profite des alertes</h3>
-                <p>Reçois les meilleures affaires en temps réel et achète avant les autres.</p>
+                <h3 data-i18n="step3_title">Profite des alertes</h3>
+                <p data-i18n="step3_desc">Reçois les meilleures affaires en temps réel et achète avant les autres.</p>
             </div>
         </div>
     </section>
@@ -164,8 +168,8 @@
     <section class="vip-pricing" id="vip">
         <div class="section-header">
             <span class="section-badge">VIP</span>
-            <h2>Passe au niveau <span class="gradient-text">supérieur</span>.</h2>
-            <p>Accède à tout le potentiel d'OzeaH.</p>
+            <h2 data-i18n="vip_title">Passe au niveau <span class="gradient-text">supérieur</span>.</h2>
+            <p data-i18n="vip_desc">Accède à tout le potentiel d'OzeaH.</p>
         </div>
 
         <div class="pricing-card">
@@ -177,24 +181,19 @@
             </div>
 
             <ul class="pricing-features">
-                <li><span class="check">✓</span> Niches exclusives + intègre tes propres niches au bot</li>
-                <li><span class="check">✓</span> Legit Check IA illimité</li>
-                <li><span class="check">✓</span> Estimation de prix par IA</li>
-                <li><span class="check">✓</span> Description IA pour tes annonces</li>
-                <li><span class="check">✓</span> Support prioritaire 24/7</li>
-                <li><span class="check">✓</span> Accès aux futures fonctionnalités</li>
+                <li><span class="check">✓</span> <span data-i18n="vip_f1">Niches exclusives + intègre tes propres niches au bot</span></li>
+                <li><span class="check">✓</span> <span data-i18n="vip_f2">Legit Check IA illimité</span></li>
+                <li><span class="check">✓</span> <span data-i18n="vip_f3">Estimation de prix par IA</span></li>
+                <li><span class="check">✓</span> <span data-i18n="vip_f4">Description IA pour tes annonces</span></li>
+                <li><span class="check">✓</span> <span data-i18n="vip_f5">Support prioritaire 24/7</span></li>
+                <li><span class="check">✓</span> <span data-i18n="vip_f6">Accès aux futures fonctionnalités</span></li>
             </ul>
 
-            <label class="cgv-check">
-                <input type="checkbox" id="cgv-checkbox">
-                <span>J'accepte les <a href="cgv.html" target="_blank">Conditions Générales de Vente</a></span>
-            </label>
-
             <div class="pricing-cta">
-                <button onclick="handleVipClick()" class="btn btn-primary btn-glow">S'abonner — 9.59€/mois</button>
+                <button onclick="handleVipClick()" class="btn btn-primary btn-glow" data-i18n="vip_cta">S'abonner — 9.59€/mois</button>
             </div>
 
-            <p class="pricing-guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.</p>
+            <p class="pricing-guarantee" data-i18n="vip_guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.<br>En souscrivant, vous acceptez les <a href="#cgv" style="color:var(--purple-light);">Conditions Générales de Vente</a> ci-dessous.</p>
         </div>
     </section>
 
@@ -205,11 +204,11 @@
             <div class="vip-popup-icon">
                 <svg width="40" height="30" viewBox="0 0 71 55" fill="#5865F2"><path d="M60.1 4.9A58.5 58.5 0 0045.4.2a.2.2 0 00-.2.1 40.8 40.8 0 00-1.8 3.7 54 54 0 00-16.2 0A37.3 37.3 0 0025.4.3a.2.2 0 00-.2-.1A58.4 58.4 0 0010.5 4.9a.2.2 0 00-.1.1C1.5 18.7-.9 32.2.3 45.5v.1a58.7 58.7 0 0017.7 9a.2.2 0 00.3-.1 42 42 0 003.6-5.9.2.2 0 00-.1-.3 38.6 38.6 0 01-5.5-2.6.2.2 0 01 0-.4l1.1-.9a.2.2 0 01.2 0 41.8 41.8 0 0035.6 0 .2.2 0 01.2 0l1.1.9a.2.2 0 010 .4 36.3 36.3 0 01-5.5 2.6.2.2 0 00-.1.3 47.2 47.2 0 003.6 5.9.2.2 0 00.3.1 58.5 58.5 0 0017.7-9v-.1c1.4-15-2.3-28.4-9.8-40.1a.2.2 0 00-.1-.1zM23.7 37.3c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7zm23.3 0c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7z"/></svg>
             </div>
-            <h2 class="vip-popup-title">Connexion Discord requise</h2>
-            <p class="vip-popup-desc">Tu dois lier ton compte Discord pour recevoir le rôle VIP automatiquement après le paiement.</p>
+            <h2 class="vip-popup-title" data-i18n="popup_title">Connexion Discord requise</h2>
+            <p class="vip-popup-desc" data-i18n="popup_desc">Tu dois lier ton compte Discord pour recevoir le rôle VIP automatiquement après le paiement.</p>
             <button class="btn-vip-discord" onclick="loginDiscord()">
                 <svg width="20" height="15" viewBox="0 0 71 55" fill="white"><path d="M60.1 4.9A58.5 58.5 0 0045.4.2a.2.2 0 00-.2.1 40.8 40.8 0 00-1.8 3.7 54 54 0 00-16.2 0A37.3 37.3 0 0025.4.3a.2.2 0 00-.2-.1A58.4 58.4 0 0010.5 4.9a.2.2 0 00-.1.1C1.5 18.7-.9 32.2.3 45.5v.1a58.7 58.7 0 0017.7 9a.2.2 0 00.3-.1 42 42 0 003.6-5.9.2.2 0 00-.1-.3 38.6 38.6 0 01-5.5-2.6.2.2 0 01 0-.4l1.1-.9a.2.2 0 01.2 0 41.8 41.8 0 0035.6 0 .2.2 0 01.2 0l1.1.9a.2.2 0 010 .4 36.3 36.3 0 01-5.5 2.6.2.2 0 00-.1.3 47.2 47.2 0 003.6 5.9.2.2 0 00.3.1 58.5 58.5 0 0017.7-9v-.1c1.4-15-2.3-28.4-9.8-40.1a.2.2 0 00-.1-.1zM23.7 37.3c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7zm23.3 0c-3.5 0-6.3-3.2-6.3-7s2.8-7 6.3-7 6.4 3.2 6.3 7-2.8 7-6.3 7z"/></svg>
-                Se connecter avec Discord
+                <span data-i18n="popup_btn">Se connecter avec Discord</span>
             </button>
         </div>
     </div>
@@ -223,49 +222,228 @@
         <div class="faq-list">
             <div class="faq-item">
                 <button class="faq-question">
-                    <span>C'est quoi OzeaH ?</span>
+                    <span data-i18n="faq1_q">C'est quoi OzeaH ?</span>
                     <span class="faq-arrow">›</span>
                 </button>
                 <div class="faq-answer">
-                    <p>OzeaH est un bot Discord qui scanne Vinted en temps réel et t'envoie les meilleures affaires directement dans ton serveur. Il intègre aussi un legit check et une estimation de prix par IA.</p>
+                    <p data-i18n="faq1_a">OzeaH est un bot Discord qui scanne Vinted en temps réel et t'envoie les meilleures affaires directement dans ton serveur. Il intègre aussi un legit check et une estimation de prix par IA.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">
-                    <span>Comment fonctionne le Legit Check ?</span>
+                    <span data-i18n="faq2_q">Comment fonctionne le Legit Check ?</span>
                     <span class="faq-arrow">›</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Envoie jusqu'à 5 photos de ton article avec la commande /legit. L'IA analyse les coutures, logos, étiquettes et matériaux pour te donner un score d'authenticité de 0 à 100%.</p>
+                    <p data-i18n="faq2_a">Envoie jusqu'à 5 photos de ton article avec la commande /legit. L'IA analyse les coutures, logos, étiquettes et matériaux pour te donner un score d'authenticité de 0 à 100%.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">
-                    <span>Comment fonctionne l'estimation de prix ?</span>
+                    <span data-i18n="faq3_q">Comment fonctionne l'estimation de prix ?</span>
                     <span class="faq-arrow">›</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Envoie une photo + description avec /estimation. L'IA identifie l'article, cherche les prix réels sur Vinted, et te donne une fourchette de prix de vente réaliste.</p>
+                    <p data-i18n="faq3_a">Envoie une photo + description avec /estimation. L'IA identifie l'article, cherche les prix réels sur Vinted, et te donne une fourchette de prix de vente réaliste.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">
-                    <span>Le bot tourne 24/7 ?</span>
+                    <span data-i18n="faq4_q">Le bot tourne 24/7 ?</span>
                     <span class="faq-arrow">›</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Oui, le bot est hébergé sur un serveur dédié et scanne Vinted toutes les 30 secondes, 24h/24, 7j/7.</p>
+                    <p data-i18n="faq4_a">Oui, le bot est hébergé sur un serveur dédié et scanne Vinted toutes les 30 secondes, 24h/24, 7j/7.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">
-                    <span>C'est quoi la différence entre gratuit et VIP ?</span>
+                    <span data-i18n="faq5_q">C'est quoi la différence entre gratuit et VIP ?</span>
                     <span class="faq-arrow">›</span>
                 </button>
                 <div class="faq-answer">
-                    <p>En gratuit tu accèdes aux alertes de base. En VIP tu débloques des niches exclusives, le legit check, l'estimation de prix et un support prioritaire.</p>
+                    <p data-i18n="faq5_a">En gratuit tu accèdes aux alertes de base. En VIP tu débloques des niches exclusives, le legit check, l'estimation de prix et un support prioritaire.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CGV -->
+    <section class="cgv-section" id="cgv">
+        <div class="cgv-container">
+            <h2>CONDITIONS GÉNÉRALES DE VENTE</h2>
+            <p><strong>OzeaH — Service Premium Vinted</strong></p>
+            <p class="cgv-updated">Dernière mise à jour : 28 septembre 2026</p>
+
+            <h3>1. Objet</h3>
+            <p>Les présentes Conditions Générales de Vente (« CGV ») régissent la souscription et l'utilisation de l'abonnement premium OzeaH Vinted.</p>
+            <p>Le service est commercialisé sous le nom <strong>OzeaH</strong>.</p>
+            <p><strong>SIRET : 944 519 339 00013</strong></p>
+            <p>Toute souscription à l'abonnement implique l'acceptation des présentes CGV.</p>
+
+            <h3>2. Description du service</h3>
+            <p>OzeaH Vinted est un service numérique destiné à accompagner les utilisateurs dans leurs activités de recherche, d'analyse et de revente d'articles.</p>
+            <p>L'abonnement premium peut notamment donner accès à :</p>
+            <ul>
+                <li>Niches exclusives ;</li>
+                <li>Ajout de niches personnalisées ;</li>
+                <li>Legit Check assisté par intelligence artificielle ;</li>
+                <li>Estimation de prix par intelligence artificielle ;</li>
+                <li>Génération de titres et descriptions ;</li>
+                <li>Support prioritaire ;</li>
+                <li>Fonctionnalités premium supplémentaires ;</li>
+                <li>Futures fonctionnalités développées par OzeaH.</li>
+            </ul>
+            <p>Les fonctionnalités proposées peuvent évoluer au cours du temps.</p>
+            <p>OzeaH peut ajouter, modifier, améliorer ou supprimer certaines fonctionnalités.</p>
+
+            <h3>3. Nature du service</h3>
+            <p>OzeaH fournit un outil d'aide à la recherche et à l'analyse.</p>
+            <p>Les résultats produits par le service, notamment les estimations, Legit Checks et contenus générés par intelligence artificielle, sont fournis à titre indicatif.</p>
+            <p>Ils ne constituent pas :</p>
+            <ul>
+                <li>une certification d'authenticité ;</li>
+                <li>une expertise professionnelle ;</li>
+                <li>une garantie de prix de vente ;</li>
+                <li>une garantie de bénéfice ;</li>
+                <li>un conseil financier ou commercial.</li>
+            </ul>
+            <p>L'utilisateur reste seul responsable de ses décisions.</p>
+
+            <h3>4. Prix</h3>
+            <p>L'abonnement premium est proposé au prix de :</p>
+            <p><strong>9,59 € TTC par mois.</strong></p>
+            <p>Le prix applicable est celui affiché au moment de la souscription.</p>
+
+            <h3>5. Paiement</h3>
+            <p>Le paiement est effectué via <strong>Stripe</strong>.</p>
+            <p>Les données bancaires sont traitées par Stripe et ne sont pas directement stockées par OzeaH.</p>
+            <p>La souscription entraîne la mise en place d'un paiement récurrent jusqu'à la résiliation de l'abonnement.</p>
+            <p>En cas d'échec du paiement, l'accès aux fonctionnalités premium peut être suspendu jusqu'à régularisation.</p>
+
+            <h3>6. Durée et renouvellement</h3>
+            <p>L'abonnement est conclu pour une durée d'un mois.</p>
+            <p>Il est automatiquement renouvelé chaque mois sauf résiliation préalable.</p>
+            <p>Le renouvellement est effectué avec le moyen de paiement enregistré auprès de Stripe.</p>
+
+            <h3>7. Résiliation</h3>
+            <p>L'utilisateur peut résilier son abonnement à tout moment.</p>
+            <p>La résiliation empêche le renouvellement automatique.</p>
+            <p>L'accès premium reste disponible jusqu'à la fin de la période déjà payée, sauf disposition contraire.</p>
+            <p>Une période commencée n'est pas remboursée au prorata du temps restant, sous réserve des droits légalement applicables.</p>
+            <p>La résiliation doit pouvoir être effectuée en ligne depuis l'interface prévue à cet effet.</p>
+
+            <h3>8. Droit de rétractation</h3>
+            <p>Lorsque l'utilisateur est un consommateur, il dispose en principe d'un délai légal de rétractation de quatorze jours.</p>
+            <p>Lorsque l'utilisateur demande expressément l'exécution immédiate du service numérique avant l'expiration de ce délai et reconnaît perdre son droit de rétractation une fois l'exécution commencée, les dispositions applicables aux contenus et services numériques peuvent entraîner la perte de ce droit.</p>
+            <p>Le parcours de souscription doit donc permettre à l'utilisateur d'exprimer clairement son accord au démarrage immédiat du service et sa reconnaissance des conséquences sur son droit de rétractation.</p>
+
+            <h3>9. Accès au service</h3>
+            <p>L'accès premium nécessite notamment :</p>
+            <ul>
+                <li>un compte Discord valide ;</li>
+                <li>un abonnement actif ;</li>
+                <li>le respect des présentes CGV ;</li>
+                <li>le respect des règles du serveur Discord OzeaH.</li>
+            </ul>
+            <p>L'accès premium est personnel et ne peut être partagé avec un tiers.</p>
+
+            <h3>10. Utilisation interdite</h3>
+            <p>Il est notamment interdit de :</p>
+            <ul>
+                <li>partager son abonnement ;</li>
+                <li>revendre son accès ;</li>
+                <li>contourner les limitations du service ;</li>
+                <li>exploiter une faille ;</li>
+                <li>copier ou reproduire le bot ;</li>
+                <li>redistribuer les fonctionnalités premium ;</li>
+                <li>perturber volontairement le fonctionnement du service ;</li>
+                <li>utiliser le service à des fins illégales.</li>
+            </ul>
+            <p>Tout manquement peut entraîner une suspension ou une résiliation de l'accès.</p>
+
+            <h3>11. Intelligence artificielle</h3>
+            <p>Certaines fonctionnalités utilisent des technologies d'intelligence artificielle.</p>
+            <p>Les résultats peuvent comporter des erreurs ou imprécisions.</p>
+            <p>Le Legit Check constitue une analyse indicative et ne garantit pas l'authenticité d'un article.</p>
+            <p>Les estimations constituent des indications et ne garantissent pas le prix auquel un article pourra être vendu.</p>
+            <p>Les descriptions générées doivent être vérifiées par l'utilisateur avant publication.</p>
+
+            <h3>12. Vinted et services tiers</h3>
+            <p>OzeaH est un service indépendant et n'est pas affilié, sponsorisé ou officiellement associé à Vinted.</p>
+            <p>Certaines fonctionnalités peuvent également dépendre de services tiers tels que Discord, Stripe, des fournisseurs d'intelligence artificielle ou des services d'hébergement.</p>
+            <p>Une modification ou interruption d'un service tiers peut affecter le fonctionnement d'OzeaH.</p>
+            <p>L'utilisateur reste responsable du respect des règles applicables aux plateformes qu'il utilise.</p>
+
+            <h3>13. Disponibilité</h3>
+            <p>OzeaH met en œuvre des moyens raisonnables pour maintenir le service accessible.</p>
+            <p>Des interruptions peuvent néanmoins survenir notamment en cas :</p>
+            <ul>
+                <li>de maintenance ;</li>
+                <li>de mise à jour ;</li>
+                <li>de panne ;</li>
+                <li>de problème d'hébergement ;</li>
+                <li>de problème lié à Discord ;</li>
+                <li>de problème lié à un fournisseur tiers ;</li>
+                <li>de modification de Vinted ;</li>
+                <li>de force majeure.</li>
+            </ul>
+            <p>Une interruption temporaire ne donne pas automatiquement droit à un remboursement.</p>
+
+            <h3>14. Responsabilité</h3>
+            <p>OzeaH ne garantit aucun chiffre d'affaires, aucune vente et aucun bénéfice.</p>
+            <p>L'utilisateur est seul responsable de ses achats, ventes, annonces et décisions commerciales.</p>
+            <p>OzeaH ne peut notamment être tenu responsable d'une perte financière résultant d'une décision prise sur la base d'une estimation, d'un Legit Check ou d'une autre information fournie par le service.</p>
+            <p>Cette limitation ne s'applique pas lorsque la responsabilité d'OzeaH ne peut légalement être exclue ou limitée.</p>
+
+            <h3>15. Suspension</h3>
+            <p>OzeaH peut suspendre ou résilier un accès en cas notamment de :</p>
+            <ul>
+                <li>fraude ;</li>
+                <li>partage de compte ;</li>
+                <li>revente d'accès ;</li>
+                <li>tentative de contournement ;</li>
+                <li>exploitation d'une faille ;</li>
+                <li>attaque du service ;</li>
+                <li>violation des présentes CGV.</li>
+            </ul>
+            <p>Sous réserve des dispositions légales applicables, une suspension ou résiliation résultant d'un manquement de l'utilisateur ne donne pas droit au remboursement de la période restante.</p>
+
+            <h3>16. Propriété intellectuelle</h3>
+            <p>Le bot OzeaH, son code, son interface, ses fonctionnalités, ses textes, ses éléments graphiques, ses logos et son identité visuelle sont protégés par les règles applicables en matière de propriété intellectuelle.</p>
+            <p>L'abonnement ne transfère aucun droit de propriété sur ces éléments.</p>
+            <p>Toute reproduction, copie, modification, distribution ou commercialisation non autorisée est interdite.</p>
+
+            <h3>17. Données personnelles et droit d'accès administrateur</h3>
+            <p>OzeaH peut traiter les données nécessaires au fonctionnement du service, notamment les informations liées au compte Discord, à l'abonnement et au fonctionnement technique du service.</p>
+            <p>Les données bancaires sont traitées par Stripe.</p>
+            <p>Les modalités détaillées de traitement des données sont présentées dans la Politique de confidentialité OzeaH.</p>
+            <p><strong>L'administrateur du service, Ysheazo, dispose d'un droit d'accès aux profils des utilisateurs inscrits sur la plateforme ainsi qu'à la consultation de leur gestion de stock.</strong> Ce droit est exercé dans le cadre de l'administration, de la modération et du bon fonctionnement du service. Les données consultées sont traitées de manière confidentielle et ne sont pas communiquées à des tiers.</p>
+
+            <h3>18. Réclamations</h3>
+            <p>Toute réclamation concernant le service peut être adressée à OzeaH via les moyens de contact indiqués sur le site ou via le serveur Discord officiel.</p>
+            <p>OzeaH s'efforcera de traiter les demandes dans les meilleurs délais.</p>
+
+            <h3>19. Médiation de la consommation</h3>
+            <p>Lorsqu'elle est applicable, l'entreprise permet au consommateur de recourir gratuitement à un médiateur de la consommation après une réclamation préalable.</p>
+            <p>Les coordonnées du médiateur compétent sont indiquées sur le site dans les conditions requises.</p>
+
+            <h3>20. Modification des CGV</h3>
+            <p>OzeaH peut modifier les présentes CGV afin de tenir compte de l'évolution du service, de la réglementation ou de ses conditions commerciales.</p>
+            <p>Les modifications importantes pourront être communiquées aux utilisateurs.</p>
+
+            <h3>21. Droit applicable</h3>
+            <p>Les présentes CGV sont soumises au droit français.</p>
+            <p>En cas de litige, les parties rechercheront prioritairement une solution amiable.</p>
+            <p>Les règles légales protectrices applicables aux consommateurs restent applicables.</p>
+
+            <h3>22. Acceptation</h3>
+            <p>En souscrivant à l'abonnement premium, l'utilisateur reconnaît avoir pris connaissance des présentes CGV et les accepte sans réserve.</p>
+            <p>La validation de la commande et le paiement valent acceptation des présentes CGV, sous réserve des dispositions légales applicables.</p>
+
+            <hr style="border-color: var(--border); margin: 2rem 0;">
+            <p><strong>OzeaH</strong></p>
+            <p><strong>SIRET : 944 519 339 00013</strong></p>
         </div>
     </section>
 
@@ -274,14 +452,14 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <span class="logo-text">OzeaH</span>
-                <p>L'outil essentiel pour le resell.</p>
+                <p data-i18n="footer_tagline">L'outil essentiel pour le resell.</p>
             </div>
             <div class="footer-links-row">
-                <a href="#features">Fonctionnalités</a>
+                <a href="#features" data-i18n="nav_features">Fonctionnalités</a>
                 <a href="#vip">VIP</a>
                 <a href="#faq">FAQ</a>
                 <a href="https://discord.gg/7aSMg8DEt8">Discord</a>
-                <a href="cgv.html">CGV</a>
+                <a href="#cgv" data-i18n="footer_cgv">CGV</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -305,11 +483,6 @@
         }
 
         function handleVipClick() {
-            if (!document.getElementById('cgv-checkbox').checked) {
-                document.getElementById('cgv-checkbox').parentElement.classList.add('cgv-error');
-                return;
-            }
-            document.getElementById('cgv-checkbox').parentElement.classList.remove('cgv-error');
             var discordId = getDiscordId();
             if (discordId) {
                 window.location.href = 'https://buy.stripe.com/aFaeVcaATa1Cc52aK428801?client_reference_id=' + discordId;
