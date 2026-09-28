@@ -73,7 +73,7 @@ async function initAdmin() {
         statsData = { users: {} };
     }
 
-    usersRegistry = JSON.parse(localStorage.getItem('ozeah_users_registry') || '{}');
+    usersRegistry = {};
 
     if (typeof dbGetAllUsers === 'function') {
         var fbUsers = await dbGetAllUsers();
