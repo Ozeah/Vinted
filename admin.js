@@ -255,7 +255,7 @@ function renderUserList(users) {
                     <div class="admin-user-stat-mini-label">Actions</div>
                 </div>
                 <div class="admin-user-stat-mini">
-                    <div class="admin-user-stat-mini-value">${stats.first_seen ? formatDate(stats.first_seen).split(' ')[0] : '-'}</div>
+                    <div class="admin-user-stat-mini-value">${u.first_seen ? formatDate(u.first_seen) : (stats.first_seen ? formatDate(stats.first_seen) : '-')}</div>
                     <div class="admin-user-stat-mini-label">Inscrit</div>
                 </div>
             </div>
