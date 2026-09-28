@@ -254,10 +254,6 @@ function renderUserList(users) {
                     <div class="admin-user-stat-mini-value">${u.first_seen ? formatDate(u.first_seen) : '-'}</div>
                     <div class="admin-user-stat-mini-label">Inscrit</div>
                 </div>
-                <div class="admin-user-stat-mini">
-                    <div class="admin-user-stat-mini-value">${u.last_seen ? formatDate(u.last_seen) : '-'}</div>
-                    <div class="admin-user-stat-mini-label">Dernière co</div>
-                </div>
             </div>
             <div class="admin-user-arrow">→</div>
         </div>`;
