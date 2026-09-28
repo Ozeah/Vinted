@@ -156,6 +156,20 @@ function initLang() {
     });
 }
 
+// Session version — bump to force everyone to re-login
+var OZEAH_SESSION_VERSION = '2';
+(function() {
+    if (localStorage.getItem('ozeah_session_v') !== OZEAH_SESSION_VERSION) {
+        localStorage.removeItem('ozeah_user');
+        localStorage.removeItem('discord_user');
+        localStorage.removeItem('ozeah_users_registry');
+        localStorage.setItem('ozeah_session_v', OZEAH_SESSION_VERSION);
+        if (window.location.pathname.indexOf('stock') !== -1 || window.location.pathname.indexOf('profile') !== -1 || window.location.pathname.indexOf('admin') !== -1 || window.location.pathname.indexOf('account') !== -1) {
+            window.location.href = 'index.html';
+        }
+    }
+})();
+
 // Particles
 function createParticles() {
     const container = document.getElementById('particles');
