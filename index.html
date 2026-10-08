@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OzeaH — Bot Vinted Resell</title>
     <meta name="description" content="OzeaH est le bot Discord ultime pour le resell Vinted. Alertes en temps réel, legit check IA, estimation de prix.">
-    <link rel="icon" type="image/png" href="vip.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -44,30 +44,88 @@
     <section class="hero">
         <div class="hero-inner">
             <div class="hero-text">
-                <div class="hero-badge" data-i18n="hero_badge">Le bot #1 pour le resell Vinted</div>
+                <div class="hero-badge"><span class="live-dot" aria-hidden="true"></span><span data-i18n="hero_badge">Le bot #1 pour le resell Vinted</span></div>
                 <h1 data-i18n="hero_title">Trouve les <span class="gradient-text">meilleures affaires</span> avant tout le monde.</h1>
                 <p class="hero-subtitle" data-i18n="hero_subtitle">Alertes instantanées, legit check par IA, estimation de prix — tout dans ton serveur Discord.</p>
                 <div class="hero-cta">
                     <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-primary" data-i18n="hero_cta_join">Rejoindre le Discord</a>
                     <a href="#features" class="btn btn-secondary" data-i18n="hero_cta_discover">Découvrir</a>
                 </div>
+                <dl class="hero-stats">
+                    <div class="stat">
+                        <dt class="stat-number">100+</dt>
+                        <dd class="stat-label" data-i18n="stat_members">Membres</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-number">24/7</dt>
+                        <dd class="stat-label" data-i18n="stat_active">Bot actif</dd>
+                    </div>
+                    <div class="stat">
+                        <dt class="stat-number">30s</dt>
+                        <dd class="stat-label" data-i18n="stat_delay">Délai max</dd>
+                    </div>
+                </dl>
             </div>
-            <div class="hero-mascot">
-                <img src="winnie-vinted.png" alt="OzeaH Mascot" class="mascot-img">
-            </div>
-        </div>
-        <div class="hero-stats">
-            <div class="stat">
-                <span class="stat-number">100+</span>
-                <span class="stat-label" data-i18n="stat_members">Membres</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">24/7</span>
-                <span class="stat-label" data-i18n="stat_active">Bot actif</span>
-            </div>
-            <div class="stat">
-                <span class="stat-number">30s</span>
-                <span class="stat-label" data-i18n="stat_delay">Délai max</span>
+
+            <div class="hero-visual">
+                <div class="hero-mascot">
+                    <img src="winnie-vinted.png" alt="Mascotte OzeaH" class="mascot-img">
+                </div>
+
+                <!-- Aperçu d'une alerte telle que le bot la poste sur Discord -->
+                <div class="alert-feed" aria-label="Exemple d'alerte Discord">
+                    <div class="dc-msg dc-msg-1">
+                        <div class="dc-avatar"><img src="bot-avatar.png" alt=""></div>
+                        <div class="dc-body">
+                            <div class="dc-head">
+                                <span class="dc-name">OzeaH</span>
+                                <span class="dc-bot">BOT</span>
+                                <span class="dc-time" data-i18n="demo_time1">il y a 4 s</span>
+                            </div>
+                            <div class="dc-embed">
+                                <div class="dc-embed-main">
+                                    <div class="dc-embed-title">Carhartt Detroit Jacket — brun</div>
+                                    <div class="dc-fields">
+                                        <div><span data-i18n="demo_price">Prix</span><strong class="price">24,00 €</strong></div>
+                                        <div><span data-i18n="demo_size">Taille</span><strong>L</strong></div>
+                                        <div><span data-i18n="demo_state">État</span><strong data-i18n="demo_state_v1">Très bon</strong></div>
+                                    </div>
+                                </div>
+                                <div class="dc-thumb dc-thumb-jacket" aria-hidden="true">
+                                    <svg viewBox="0 0 64 64"><path d="M22 10l10 5 10-5 12 7 4 16-8 3v20H14V36l-8-3 4-16z" fill="currentColor"/><path d="M32 15v41" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="dc-buttons">
+                                <span class="dc-btn dc-btn-link" data-i18n="demo_btn_vinted">Voir sur Vinted</span>
+                                <span class="dc-btn" data-i18n="demo_btn_seller">Profil vendeur</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dc-msg dc-msg-2">
+                        <div class="dc-avatar"><img src="bot-avatar.png" alt=""></div>
+                        <div class="dc-body">
+                            <div class="dc-head">
+                                <span class="dc-name">OzeaH</span>
+                                <span class="dc-bot">BOT</span>
+                                <span class="dc-time" data-i18n="demo_time2">à l'instant</span>
+                            </div>
+                            <div class="dc-embed">
+                                <div class="dc-embed-main">
+                                    <div class="dc-embed-title">Nike Air Force 1 '07</div>
+                                    <div class="dc-fields">
+                                        <div><span data-i18n="demo_price">Prix</span><strong class="price">35,00 €</strong></div>
+                                        <div><span data-i18n="demo_size">Taille</span><strong>42</strong></div>
+                                        <div><span data-i18n="demo_state">État</span><strong data-i18n="demo_state_v2">Neuf</strong></div>
+                                    </div>
+                                </div>
+                                <div class="dc-thumb dc-thumb-shoe" aria-hidden="true">
+                                    <svg viewBox="0 0 64 64"><path d="M6 40c0-6 4-12 9-14l7-2c3 4 9 6 14 6 6 0 10 4 16 5 4 1 7 3 7 7v4H6z" fill="currentColor"/><path d="M6 46h52v5H6z" fill="#fff" opacity=".85"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -79,62 +137,91 @@
             <h2 data-i18n="features_title">Tout ce qu'il te faut pour <span class="gradient-text">dominer</span> le resell.</h2>
             <p data-i18n="features_desc">Un bot complet, rapide et intelligent qui travaille pour toi 24h/24.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
+
+        <div class="features-main">
+            <article class="feature-card feature-card-lg">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
                 <h3 data-i18n="feat1_title">Alertes instantanées</h3>
                 <p data-i18n="feat1_desc">Reçois les nouvelles annonces Vinted en temps réel dans ton channel Discord. Filtre par marque, prix et état.</p>
-            </div>
-            <div class="feature-card">
+                <div class="feature-demo demo-timeline" aria-hidden="true">
+                    <div class="tl-row"><span class="tl-dot"></span><span class="tl-txt">Ralph Lauren pull</span><span class="tl-price">12 €</span></div>
+                    <div class="tl-row"><span class="tl-dot"></span><span class="tl-txt">Levi's 501</span><span class="tl-price">18 €</span></div>
+                    <div class="tl-row"><span class="tl-dot"></span><span class="tl-txt">Stone Island</span><span class="tl-price">45 €</span></div>
+                </div>
+            </article>
+
+            <article class="feature-card feature-card-lg">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </div>
                 <h3 data-i18n="feat2_title">Legit Check IA</h3>
                 <p data-i18n="feat2_desc">Vérifie l'authenticité d'un article en quelques secondes grâce à l'intelligence artificielle. Score de fiabilité inclus.</p>
-            </div>
-            <div class="feature-card">
+                <div class="feature-demo demo-legit" aria-hidden="true">
+                    <div class="legit-top"><span class="legit-verdict">LEGIT</span><span class="legit-score">92%</span></div>
+                    <div class="legit-bar"><span style="width:92%"></span></div>
+                </div>
+            </article>
+
+            <article class="feature-card feature-card-lg">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <h3 data-i18n="feat3_title">Estimation de prix</h3>
                 <p data-i18n="feat3_desc">Calcule le prix de revente optimal d'un article à partir d'une simple photo. Basé sur les vrais prix du marché.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                <div class="feature-demo demo-price" aria-hidden="true">
+                    <div class="range-bar"><span class="range-fill"></span><span class="range-mark"></span></div>
+                    <div class="range-labels"><span>18 €</span><strong>24 €</strong><span>30 €</span></div>
                 </div>
-                <h3 data-i18n="feat4_title">Multi-catégories</h3>
-                <p data-i18n="feat4_desc">Vêtements, sneakers, accessoires ou crée tes propres niches personnalisées pour être le seul sur le coup.</p>
-            </div>
-            <div class="feature-card">
+            </article>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card feature-card-sm">
                 <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
                 </div>
-                <h3 data-i18n="feat5_title">Anti-arnaque</h3>
-                <p data-i18n="feat5_desc">Filtrage automatique des concours et faux articles sur les alertes. Ne perds plus ton temps.</p>
+                <div>
+                    <h3 data-i18n="feat4_title">Multi-catégories</h3>
+                    <p data-i18n="feat4_desc">Vêtements, sneakers, accessoires ou crée tes propres niches personnalisées pour être le seul sur le coup.</p>
+                </div>
             </div>
-            <div class="feature-card">
+            <div class="feature-card feature-card-sm">
                 <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <h3 data-i18n="feat6_title">Description IA</h3>
-                <p data-i18n="feat6_desc">Génère un titre accrocheur et une description vendeur optimisée à partir de tes photos.</p>
+                <div>
+                    <h3 data-i18n="feat5_title">Anti-arnaque</h3>
+                    <p data-i18n="feat5_desc">Filtrage automatique des concours et faux articles sur les alertes. Ne perds plus ton temps.</p>
+                </div>
             </div>
-            <div class="feature-card">
+            <div class="feature-card feature-card-sm">
                 <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                 </div>
-                <h3 data-i18n="feat7_title">Filtres avancés</h3>
-                <p data-i18n="feat7_desc">Prix max, état, catégorie Vinted — personnalise tes alertes comme tu veux.</p>
+                <div>
+                    <h3 data-i18n="feat6_title">Description IA</h3>
+                    <p data-i18n="feat6_desc">Génère un titre accrocheur et une description vendeur optimisée à partir de tes photos.</p>
+                </div>
             </div>
-            <div class="feature-card">
+            <div class="feature-card feature-card-sm">
                 <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
                 </div>
-                <h3 data-i18n="feat8_title">Profil vendeur</h3>
-                <p data-i18n="feat8_desc">Accède au profil du vendeur en un clic depuis chaque alerte pour vérifier sa fiabilité.</p>
+                <div>
+                    <h3 data-i18n="feat7_title">Filtres avancés</h3>
+                    <p data-i18n="feat7_desc">Prix max, état, catégorie Vinted — personnalise tes alertes comme tu veux.</p>
+                </div>
+            </div>
+            <div class="feature-card feature-card-sm">
+                <div class="feature-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                    <h3 data-i18n="feat8_title">Profil vendeur</h3>
+                    <p data-i18n="feat8_desc">Accède au profil du vendeur en un clic depuis chaque alerte pour vérifier sa fiabilité.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -145,23 +232,23 @@
             <span class="section-badge" data-i18n="how_badge">Comment ça marche</span>
             <h2 data-i18n="how_title">En place en <span class="gradient-text">30 secondes</span>.</h2>
         </div>
-        <div class="steps">
-            <div class="step">
+        <ol class="steps">
+            <li class="step">
                 <div class="step-number">1</div>
                 <h3 data-i18n="step1_title">Rejoins le Discord</h3>
                 <p data-i18n="step1_desc">Accède au serveur OzeaH et découvre les channels d'alertes.</p>
-            </div>
-            <div class="step">
+            </li>
+            <li class="step">
                 <div class="step-number">2</div>
                 <h3 data-i18n="step2_title">Choisis tes niches</h3>
                 <p data-i18n="step2_desc">Sélectionne les catégories qui t'intéressent ou intègre tes propres niches au bot.</p>
-            </div>
-            <div class="step">
+            </li>
+            <li class="step">
                 <div class="step-number">3</div>
                 <h3 data-i18n="step3_title">Profite des alertes</h3>
                 <p data-i18n="step3_desc">Reçois les meilleures affaires en temps réel et achète avant les autres.</p>
-            </div>
-        </div>
+            </li>
+        </ol>
     </section>
 
     <!-- VIP Section -->
@@ -172,28 +259,44 @@
             <p data-i18n="vip_desc">Accède à tout le potentiel d'OzeaH.</p>
         </div>
 
-        <div class="pricing-card">
-            <span class="pricing-badge">Abonnement VIP</span>
-
-            <div class="pricing-price">
-                <span class="amount">9.59€</span>
-                <span class="period">/mois</span>
+        <div class="pricing-wrap">
+            <div class="pricing-free">
+                <h3 data-i18n="free_title">Gratuit</h3>
+                <div class="pricing-price pricing-price-free">
+                    <span class="amount">0€</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><span class="check">✓</span> <span data-i18n="free_f1">Alertes Vinted de base</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="free_f2">Accès au serveur Discord</span></li>
+                    <li class="off"><span class="check">–</span> <span data-i18n="free_f3">Niches exclusives</span></li>
+                    <li class="off"><span class="check">–</span> <span data-i18n="free_f4">Outils IA (legit, estimation, description)</span></li>
+                </ul>
+                <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-secondary btn-block" data-i18n="free_cta">Rejoindre gratuitement</a>
             </div>
 
-            <ul class="pricing-features">
-                <li><span class="check">✓</span> <span data-i18n="vip_f1">Niches exclusives + intègre tes propres niches au bot</span></li>
-                <li><span class="check">✓</span> <span data-i18n="vip_f2">Legit Check IA illimité</span></li>
-                <li><span class="check">✓</span> <span data-i18n="vip_f3">Estimation de prix par IA</span></li>
-                <li><span class="check">✓</span> <span data-i18n="vip_f4">Description IA pour tes annonces</span></li>
-                <li><span class="check">✓</span> <span data-i18n="vip_f5">Support prioritaire 24/7</span></li>
-                <li><span class="check">✓</span> <span data-i18n="vip_f6">Accès aux futures fonctionnalités</span></li>
-            </ul>
+            <div class="pricing-card">
+                <span class="pricing-badge">Abonnement VIP</span>
 
-            <div class="pricing-cta">
-                <button onclick="handleVipClick()" class="btn btn-primary btn-glow" data-i18n="vip_cta">S'abonner — 9.59€/mois</button>
+                <div class="pricing-price">
+                    <span class="amount">9.59€</span>
+                    <span class="period">/mois</span>
+                </div>
+
+                <ul class="pricing-features">
+                    <li><span class="check">✓</span> <span data-i18n="vip_f1">Niches exclusives + intègre tes propres niches au bot</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="vip_f2">Legit Check IA illimité</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="vip_f3">Estimation de prix par IA</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="vip_f4">Description IA pour tes annonces</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="vip_f5">Support prioritaire 24/7</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="vip_f6">Accès aux futures fonctionnalités</span></li>
+                </ul>
+
+                <div class="pricing-cta">
+                    <button onclick="handleVipClick()" class="btn btn-primary" data-i18n="vip_cta">S'abonner — 9.59€/mois</button>
+                </div>
+
+                <p class="pricing-guarantee" data-i18n="vip_guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.<br>En souscrivant, vous acceptez les <a href="cgv.html" style="color:var(--purple-light);">Conditions Générales de Vente</a>.</p>
             </div>
-
-            <p class="pricing-guarantee" data-i18n="vip_guarantee">Annulable à tout moment. Paiement sécurisé par Stripe.<br>En souscrivant, vous acceptez les <a href="cgv.html" style="color:var(--purple-light);">Conditions Générales de Vente</a>.</p>
         </div>
     </section>
 
@@ -291,6 +394,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="firebase-db.js"></script>
+    <script src="animations.js"></script>
     <script src="script.js"></script>
     <script>
         function getDiscordId() {

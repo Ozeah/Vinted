@@ -64,6 +64,21 @@ var i18n = {
         faq5_a: 'En gratuit tu accèdes aux alertes de base. En VIP tu débloques des niches exclusives, le legit check, l\'estimation de prix et un support prioritaire.',
         footer_tagline: 'L\'outil essentiel pour le resell.',
         footer_cgv: 'CGV',
+        demo_time1: 'il y a 4 s',
+        demo_time2: 'à l\'instant',
+        demo_price: 'Prix',
+        demo_size: 'Taille',
+        demo_state: 'État',
+        demo_state_v1: 'Très bon',
+        demo_state_v2: 'Neuf',
+        demo_btn_vinted: 'Voir sur Vinted',
+        demo_btn_seller: 'Profil vendeur',
+        free_title: 'Gratuit',
+        free_f1: 'Alertes Vinted de base',
+        free_f2: 'Accès au serveur Discord',
+        free_f3: 'Niches exclusives',
+        free_f4: 'Outils IA (legit, estimation, description)',
+        free_cta: 'Rejoindre gratuitement',
     },
     en: {
         nav_features: 'Features',
@@ -129,6 +144,21 @@ var i18n = {
         faq5_a: 'With free you get basic alerts. With VIP you unlock exclusive niches, legit check, price estimation, and priority support.',
         footer_tagline: 'The essential tool for reselling.',
         footer_cgv: 'T&C',
+        demo_time1: '4 s ago',
+        demo_time2: 'just now',
+        demo_price: 'Price',
+        demo_size: 'Size',
+        demo_state: 'Condition',
+        demo_state_v1: 'Very good',
+        demo_state_v2: 'New',
+        demo_btn_vinted: 'View on Vinted',
+        demo_btn_seller: 'Seller profile',
+        free_title: 'Free',
+        free_f1: 'Basic Vinted alerts',
+        free_f2: 'Access to the Discord server',
+        free_f3: 'Exclusive niches',
+        free_f4: 'AI tools (legit, estimation, description)',
+        free_cta: 'Join for free',
     }
 };
 
@@ -202,6 +232,7 @@ function initFAQ() {
 
 // Scroll animations
 function initScrollAnimations() {
+    if (document.documentElement.classList.contains('fx')) return; // animations.js gère la page
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -210,7 +241,7 @@ function initScrollAnimations() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.feature-card, .step, .pricing-card, .faq-item').forEach(el => {
+    document.querySelectorAll('.features-main, .features-grid, .steps, .pricing-wrap, .faq-list').forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });
@@ -247,20 +278,16 @@ const style = document.createElement('style');
 style.textContent = `
     .animate-on-scroll {
         opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transform: translateY(14px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
     }
     .animate-on-scroll.visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
-    .feature-card:nth-child(2) { transition-delay: 0.1s; }
-    .feature-card:nth-child(3) { transition-delay: 0.2s; }
-    .feature-card:nth-child(4) { transition-delay: 0.3s; }
-    .feature-card:nth-child(5) { transition-delay: 0.4s; }
-    .feature-card:nth-child(6) { transition-delay: 0.5s; }
-    .step:nth-child(2) { transition-delay: 0.15s; }
-    .step:nth-child(3) { transition-delay: 0.3s; }
+    @media (prefers-reduced-motion: reduce) {
+        .animate-on-scroll { opacity: 1; transform: none; transition: none; }
+    }
 `;
 document.head.appendChild(style);
 
