@@ -226,7 +226,6 @@
     ready(function () {
         initReveal();
         initStats();
-        initFeed();
         initSpotlight();
         initMagnet();
         initParallax();
