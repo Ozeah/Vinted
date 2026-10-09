@@ -2036,3 +2036,28 @@ footer {
 .fx .feature-card[data-reveal].in:hover {
     transform: translateY(-4px);
 }
+
+
+/* Hero : uniquement la mascotte (annonces retirées) */
+.hero-visual {
+    min-height: 0;
+    align-items: center;
+}
+
+.hero-visual .hero-mascot {
+    position: relative;
+    top: auto;
+    right: auto;
+}
+
+.hero-visual .mascot-img {
+    height: 430px;
+    width: auto;
+    filter: drop-shadow(0 30px 60px rgba(108, 52, 131, 0.45));
+}
+
+@media (max-width: 768px) {
+    .hero-visual .mascot-img {
+        height: 230px;
+    }
+}
