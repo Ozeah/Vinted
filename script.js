@@ -375,7 +375,7 @@ function initNavUser() {
 // Discord login redirect (used on signup/login pages)
 function loginDiscord() {
     const DISCORD_CLIENT_ID = '1107624523479650345';
-    const REDIRECT_URI = 'https://ozeah.github.io/Vinted/';
+    const REDIRECT_URI = 'https://ozeah-vinted.fr/';
     window.location.href = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
 }
 
