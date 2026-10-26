@@ -1046,9 +1046,9 @@ nav {
 
 .pricing-wrap {
     display: grid;
-    grid-template-columns: 0.85fr 1fr;
+    grid-template-columns: 0.85fr 0.9fr 1fr;
     gap: 1.25rem;
-    max-width: 880px;
+    max-width: 1140px;
     margin: 0 auto;
     align-items: center;
 }
@@ -2059,5 +2059,59 @@ footer {
 @media (max-width: 768px) {
     .hero-visual .mascot-img {
         height: 230px;
+    }
+}
+
+
+/* ===== Formule Illimité (3,99 €) ===== */
+.pricing-cmd {
+    border-color: rgba(245, 185, 66, 0.35);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(245, 185, 66, 0.08), transparent 60%),
+        rgba(255, 255, 255, 0.03);
+}
+
+.pricing-cmd h3 {
+    color: var(--honey);
+}
+
+.pricing-cmd .pricing-price-free .period {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-left: 0.2rem;
+}
+
+.pricing-cmd .pricing-features li .check {
+    background: rgba(245, 185, 66, 0.15);
+    color: var(--honey);
+}
+
+.pricing-cmd .pricing-features li.off .check {
+    background: rgba(155, 89, 182, 0.12);
+    color: var(--text-dim);
+}
+
+.btn-cmd {
+    border-color: rgba(245, 185, 66, 0.5);
+}
+
+.btn-cmd:hover:not(:disabled) {
+    border-color: var(--honey);
+    background: rgba(245, 185, 66, 0.1);
+}
+
+.btn-cmd:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 1080px) and (min-width: 901px) {
+    .pricing-wrap {
+        grid-template-columns: 1fr 1fr;
+    }
+    .pricing-wrap .pricing-card {
+        grid-column: 1 / -1;
+        max-width: 520px;
     }
 }

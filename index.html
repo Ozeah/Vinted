@@ -64,6 +64,12 @@
       },
       {
         "@type": "Offer",
+        "name": "Illimité",
+        "price": "3.99",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
         "name": "VIP",
         "price": "9.59",
         "priceCurrency": "EUR"
@@ -120,7 +126,7 @@
     </script>
     <link rel="icon" type="image/png" href="favicon.png?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Russo+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
     <!-- Background effects -->
@@ -327,10 +333,25 @@
                 <ul class="pricing-features">
                     <li><span class="check">✓</span> <span data-i18n="free_f1">Alertes Vinted de base</span></li>
                     <li><span class="check">✓</span> <span data-i18n="free_f2">Accès au serveur Discord</span></li>
-                    <li class="off"><span class="check">–</span> <span data-i18n="free_f3">Niches exclusives</span></li>
-                    <li class="off"><span class="check">–</span> <span data-i18n="free_f4">Outils IA (legit, estimation, description)</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="free_f3">2 legit check + 2 estimations IA par jour</span></li>
+                    <li class="off"><span class="check">–</span> <span data-i18n="free_f4">Niches exclusives</span></li>
                 </ul>
                 <a href="https://discord.gg/7aSMg8DEt8" class="btn btn-secondary btn-block" data-i18n="free_cta">Rejoindre gratuitement</a>
+            </div>
+
+            <div class="pricing-free pricing-cmd">
+                <h3 data-i18n="cmd_title">Illimité</h3>
+                <div class="pricing-price pricing-price-free">
+                    <span class="amount">3,99€</span>
+                    <span class="period" data-i18n="per_month">/mois</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><span class="check">✓</span> <span data-i18n="cmd_f1">Legit check IA illimité</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="cmd_f2">Estimation de prix IA illimitée</span></li>
+                    <li><span class="check">✓</span> <span data-i18n="cmd_f3">Toutes les commandes du bot sans limite</span></li>
+                    <li class="off"><span class="check">–</span> <span data-i18n="cmd_f4">Pas d'accès aux salons VIP</span></li>
+                </ul>
+                <button onclick="handleCmdClick()" class="btn btn-secondary btn-block btn-cmd" id="cmd-btn" data-i18n="cmd_cta">S'abonner — 3,99€/mois</button>
             </div>
 
             <div class="pricing-card">
@@ -456,7 +477,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="firebase-db.js"></script>
     <script src="animations.js?v=4"></script>
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
     <script>
         function getDiscordId() {
             var user = JSON.parse(localStorage.getItem('ozeah_user') || 'null');
@@ -478,6 +499,26 @@
             } else {
                 document.getElementById('vip-overlay').classList.add('show');
             }
+        }
+
+        // Lien de paiement Stripe de l'abonnement Illimité (3,99 €/mois) — à renseigner
+        var STRIPE_CMD_LINK = '';
+
+        function handleCmdClick() {
+            if (!STRIPE_CMD_LINK) return;
+            var discordId = getDiscordId();
+            if (discordId) {
+                window.location.href = STRIPE_CMD_LINK + '?client_reference_id=' + discordId;
+            } else {
+                document.getElementById('vip-overlay').classList.add('show');
+            }
+        }
+
+        if (!STRIPE_CMD_LINK) {
+            document.addEventListener('DOMContentLoaded', function () {
+                var b = document.getElementById('cmd-btn');
+                if (b) { b.disabled = true; b.removeAttribute('data-i18n'); b.textContent = 'Bientôt disponible'; }
+            });
         }
 
         function closeVipPopup(e) {
